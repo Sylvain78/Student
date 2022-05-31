@@ -1,0 +1,17 @@
+#ifndef _SERVERWINDOW_H_
+#define _SERVERWINDOW_H_
+#include <TextControl.h>
+#include <Window.h>
+
+class ServerWindow : public BWindow {
+
+public:
+		ServerWindow(void);
+		
+		void MessageReceived(BMessage* message);
+	private:
+		BTextControl *fHost;
+		BTextControl* fPort;
+};
+
+#endif	// _SERVERWINDOW_H_
