@@ -22,6 +22,7 @@
 #include "Constantes.h"
 #include "LatexUtils.h"
 #include "LatexListScrollView.h"
+#include "SessionView.h"
 
 #include "Relation.h"
 #include "Theorie.h"
@@ -37,13 +38,7 @@ class DemonstrationWindow : public BWindow {
 	
 	private :
 		BMenuBar*     fMenuBar;
-		BBox*         fModeBox;
-		BBox*		  fSpeedBox;
-		BBox*		  fCompileBox;
-		
 		BTabView* fTabView_Demonstration;
-		
-		LatexListScrollView*	fDemonstration;
 		
 		void ActiveButtons(bool activate);
 	
