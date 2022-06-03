@@ -8,20 +8,15 @@
 #define B_TRANSLATION_CONTEXT "SessionView"
 
 SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
+	fDemonstration(new LatexListScrollView()),
 	fModeBox(new BBox("mode")),
 	fSpeedBox(new BBox("speed")),
-	fCompileBox(new BBox("compile")),
-	fDemonstration(new LatexListScrollView()) {
+	fCompileBox(new BBox("compile")) {
 	BLayoutBuilder::Group<>(this, B_VERTICAL)
 		.SetInsets(B_USE_WINDOW_INSETS)
-			
 		.AddGroup(B_HORIZONTAL)
 	    	.Add(fModeBox)
-		.End()
-		.AddGroup(B_HORIZONTAL)
 			.Add(fSpeedBox)
-		.End()
-		.AddGroup(B_HORIZONTAL)
 			.Add(fCompileBox)
 		.End()
 	.Add(fDemonstration)
