@@ -3,6 +3,7 @@
 
 #include <Bitmap.h>
 #include <GraphicsDefs.h>
+#include <InterfaceDefs.h>
 #include <View.h>
 
 #include "ListItem.h"

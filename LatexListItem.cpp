@@ -21,12 +21,17 @@ void LatexListItem::DrawItem(BView *owner, BRect frame, bool complete) {
 	else {
 		color = owner->ViewColor();
 	}
-	
+
     owner->SetHighColor(color);
     owner->FillRect(frame);
 	owner->MovePenTo(frame.left+4, frame.top);
 	owner->SetHighColor(draw_color);
 	owner->DrawBitmap(fLatex->GetBitmap());
+
+	//Copied from QuickLaunch
+	owner->SetHighColor(tint_color(ui_color(B_CONTROL_BACKGROUND_COLOR),
+		B_DARKEN_1_TINT));
+	owner->StrokeLine(frame.LeftBottom(), frame.RightBottom());
 }
 
 void LatexListItem::Update(BView* owner, const BFont* font)
