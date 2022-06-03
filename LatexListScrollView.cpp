@@ -16,5 +16,5 @@ LatexListView* LatexListScrollView::GetView() {
 
 bool addToLatexListScrollView(void *lView, void* listScrollView_arg) {
 	LatexListItem *lItem = new LatexListItem((LView *)lView);
-	return ((LatexListView *)((LatexListScrollView *)listScrollView_arg)->GetView())->AddItem(lItem);
+	return !(((LatexListView *)((LatexListScrollView *)listScrollView_arg)->GetView())->AddItem(lItem));
 }
