@@ -13,7 +13,8 @@ LView::LView(LView* lview)
 LView::LView(const BString& texte)
 	:BView("LView", B_FOLLOW_NONE|B_WILL_DRAW),
        fLatex(new BString(texte)),
-       fOldLatex(new BString("")) {
+       fOldLatex(new BString("")),
+       fBitmap(NULL) {
         (((App*)be_app)->latexToPNG(texte, &fBitmap));
        	ResizeToPreferred();
        	SetDrawingMode(B_OP_ALPHA);
