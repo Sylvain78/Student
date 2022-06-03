@@ -33,5 +33,4 @@ class LView : public BView {
 		BBitmap* fBitmap;
 };
 
-
 #endif
