@@ -480,7 +480,7 @@ bool TheorieWindow::QuitRequested()
 			BDirectory *directory = new BDirectory();
 			entry->GetParent(directory);
 			BPath* path = new BPath(directory);
-			path->Append("theories");
+			path->Append("théories");
 			directory->SetTo(path->Path());	
 			theorie->SetOCamlChemin(new BPath(directory, LatexUtils::Normalize(theorie->GetLatex())->String()));
 			theorie->SetSource(ocamlSource);
