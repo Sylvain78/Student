@@ -11,11 +11,11 @@ BWindow(BRect(100,100,500,500),"Démonstrations",B_TITLED_WINDOW,B_ASYNCHRONOUS_
 	fTabView_Demonstration = new BTabView("Onglet Démonstrations");
 	
 	BLayoutBuilder::Group<>(this, B_VERTICAL)
-		.AddGroup(B_HORIZONTAL)
 		    .Add(fMenuBar)
 			.Add(fTabView_Demonstration)
 		.End();
 		
+	fTabView_Demonstration->AddTab(new SessionView("Session"));
 	fTabView_Demonstration->AddTab(new SessionView("+"));
 }
 
