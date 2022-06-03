@@ -334,11 +334,11 @@ status_t App::latexToPNG(const BString& texte, BBitmap **image) {
 		student = strcat(student, "/Student.png");
 		
 		
-		BBitmap *image = new BBitmap(BTranslationUtils::GetBitmap(student));
+		*image = new BBitmap(BTranslationUtils::GetBitmap(student));
 		
-		images.insert(std::pair<BString,BBitmap *>(texte,image));
+		images.insert(std::pair<BString,BBitmap *>(texte,*image));
 		
-		BBitmapStream *strm = new BBitmapStream(image);
+		BBitmapStream *strm = new BBitmapStream(*image);
 		App::nb_images_produites++;
 		
 		app_info app_info;
@@ -380,6 +380,8 @@ MainWindow* App::GetMainWindow() {
 	return fMainWin;
 }
 
+
+// #pragma mark - Modèles
 BList* App::GetSignatures() {
 	return fSignatures;
 }
