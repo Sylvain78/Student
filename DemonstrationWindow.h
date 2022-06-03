@@ -2,6 +2,7 @@
 #define DEMONSTRATIONWINDOW_H
 
 #include <Box.h>
+#include <Button.h>
 #include <File.h>
 #include <Path.h>
 #include <Window.h>
@@ -13,6 +14,7 @@
 #include <LayoutBuilder.h>
 #include <TabView.h>
 #include <TextControl.h>
+#include <TextView.h>
 #include <Roster.h>
 #include <RadioButton.h>
 #include <Catalog.h>
@@ -39,8 +41,9 @@ class DemonstrationWindow : public BWindow {
 	private :
 		BMenuBar*     fMenuBar;
 		BTabView* fTabView_Demonstration;
+		BButton*   fButton;
+		BTextControl* fInputView;
 		
 		void ActiveButtons(bool activate);
-	
 };
 #endif
