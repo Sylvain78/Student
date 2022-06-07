@@ -9,19 +9,31 @@
 
 #include <LayoutBuilder.h>
 
-const BRect rect(150,150,500,200);
+const BRect rect(150,150,150,150);
 
-ServerWindow::ServerWindow(void) 
-	:	BWindow(rect, "Serveur",B_TITLED_WINDOW,B_ASYNCHRONOUS_CONTROLS)
+ServerWindow::ServerWindow(BLooper* target) 
+	:	BWindow(rect, "Serveur",B_TITLED_WINDOW,B_NOT_RESIZABLE | B_AUTO_UPDATE_SIZE_LIMITS),
+	fTarget(target)
 {
-	fHost = new BTextControl("host", "host", new BMessage(kServerHost));
-	fPort = new BTextControl("port", "port", new BMessage(kServerPort));
+	fHost = new BTextControl("host", "host / IP", new BMessage(kServerHost));
+	fPort = new BTextControl("port", "5757", new BMessage(kServerPort));
 	
-	BLayoutBuilder::Group<>(this, B_HORIZONTAL, 0)
-			.SetInsets(5, 5, 5, 5)
+	fHost->SetTarget(target);
+	fPort->SetTarget(target);
+	
+	BLayoutBuilder::Group<>(this, B_VERTICAL)
+	.SetInsets(B_USE_WINDOW_SPACING)
+		.AddGroup(B_HORIZONTAL, B_USE_DEFAULT_SPACING, 1.0)
+			.Add(new BRadioButton("local", new BMessage(kLocalServer)))
+			.Add(new BRadioButton("distant", new BMessage(kDistantServer)))
+			.AddGlue()
+		.End()
+		.AddGroup(B_HORIZONTAL, B_USE_DEFAULT_SPACING)
 			.Add(fHost)
 			.Add(fPort)
-			.End();
+		.End()
+	.End();
+	ResizeToPreferred();
 	Show();
 }
 
@@ -29,16 +41,15 @@ ServerWindow::ServerWindow(void)
 
 void ServerWindow::MessageReceived(BMessage* message) {
 	switch (message->what) {
-		case(kServerHost) :
+		
+		 case(kLocalServer) :
 		 {
-		 	std::cout << "host : " << fHost->Text() << std::endl;
-		 	((App *)be_app)->GetSettings()->AddString("ServerHost", fHost->Text());
+		 	fHost->SetEnabled(false);
 		 	break;
 		 }
-		 case(kServerPort) :
+		 case(kDistantServer) :
 		 {
-		 	std::cout << "host : " << fPort->Text() << std::endl;
-		 	((App *)be_app)->GetSettings()->AddString("ServerPort", fPort->Text());
+		 	fHost->SetEnabled(true);
 		 	break;
 		 }
 		default :

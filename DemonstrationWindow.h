@@ -24,6 +24,7 @@
 #include "Constantes.h"
 #include "LatexUtils.h"
 #include "LatexListScrollView.h"
+#include "ServerWindow.h"
 #include "SessionView.h"
 
 #include "Relation.h"

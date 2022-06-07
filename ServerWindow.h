@@ -6,10 +6,11 @@
 class ServerWindow : public BWindow {
 
 public:
-		ServerWindow(void);
+		ServerWindow(BLooper* target);
 		
 		void MessageReceived(BMessage* message);
 	private:
+		BLooper* fTarget;
 		BTextControl *fHost;
 		BTextControl* fPort;
 };

@@ -7,6 +7,11 @@ DemonstrationWindow::DemonstrationWindow() :
 BWindow(BRect(100,100,500,500),"Démonstrations",B_TITLED_WINDOW,B_ASYNCHRONOUS_CONTROLS | B_AUTO_UPDATE_SIZE_LIMITS)
 {
 	fMenuBar = new BMenuBar("menubar");
+	//Serveur
+	BMenu* menu = new BMenu("Serveur");
+	BMenuItem* item = new BMenuItem("New", new BMessage(kServerSettings), 'P');
+	menu->AddItem(item);
+	fMenuBar->AddItem(menu);
 
 	fTabView_Demonstration = new BTabView("Onglet Démonstrations");
 	fInputView  = new BTextControl("InputView",0,0,0);
@@ -29,7 +34,24 @@ BWindow(BRect(100,100,500,500),"Démonstrations",B_TITLED_WINDOW,B_ASYNCHRONOUS_
 
 void DemonstrationWindow::MessageReceived(BMessage* message) 
 {
-//TODO
+	switch(message->what) {
+		case (kServerSettings):
+			{
+				ServerWindow* serverWindow = new ServerWindow(this);
+				serverWindow->Show();
+				break;
+			}
+		case(kServerHost) :
+		 {
+		 	SessionView* view = (SessionView*)fTabView_Demonstration->ViewForTab(fTabView_Demonstration->Selection());
+		 	break;
+		 }
+		 case(kServerPort) :
+		 {
+		 	SessionView* view = (SessionView*)fTabView_Demonstration->ViewForTab(fTabView_Demonstration->Selection());
+		 	break;
+		 }
+	}
 }
 
 void DemonstrationWindow::ActiveButtons(bool activate) {

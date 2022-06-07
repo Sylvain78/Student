@@ -1,5 +1,4 @@
 #include "MainWindow.h"
-#include "ServerWindow.h"
 #include "SignatureWindow.h"
 
 const BRect rect(100,100,500,400);
@@ -11,12 +10,6 @@ MainWindow::MainWindow(void)
 	
 	BMenu *menu;
 	BMenuItem* item;
-	
-	//Serveur
-	menu = new BMenu("Serveur");
-	item = new BMenuItem("New", new BMessage(kServerSettings), 'P');
-	menu->AddItem(item);
-	fMenuBar->AddItem(menu);
 	
 	//Signatures
 	menu = new BMenu("Signatures");
@@ -92,13 +85,6 @@ MainWindow::MessageReceived(BMessage *msg)
 {
 	switch (msg->what)
 	{
-		case (kServerSettings):
-		{
-			ServerWindow* serverWindow = new ServerWindow();
-			serverWindow->Show();
-			break;
-		}
-		
 		case (kLatex):
 		{
 			LWindow* lWindow = new LWindow();

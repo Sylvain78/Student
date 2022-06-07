@@ -56,5 +56,6 @@ static const uint32 kNouvelleDemonstration=33;
 static const uint32 kServerSettings=34;
 static const uint32 kServerHost=35;
 static const uint32 kServerPort=36;
-
+static const uint32 kLocalServer=37;
+static const uint32 kDistantServer=38;
 #endif
