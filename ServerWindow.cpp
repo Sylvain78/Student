@@ -11,8 +11,8 @@
 
 const BRect rect(150,150,150,150);
 
-ServerWindow::ServerWindow(BLooper* target) 
-	:	BWindow(rect, "Serveur",B_TITLED_WINDOW,B_NOT_RESIZABLE | B_AUTO_UPDATE_SIZE_LIMITS),
+ServerWindow::ServerWindow(BWindow* target) 
+	:	BWindow(rect, "Serveur",B_TITLED_WINDOW_LOOK,B_FLOATING_SUBSET_WINDOW_FEEL, B_NOT_RESIZABLE | B_AUTO_UPDATE_SIZE_LIMITS),
 	fTarget(target)
 {
 	fHost = new BTextControl("host", "host / IP", new BMessage(kServerHost));
@@ -21,6 +21,8 @@ ServerWindow::ServerWindow(BLooper* target)
 	fHost->SetTarget(target);
 	fPort->SetTarget(target);
 	
+	status_t status = this->AddToSubset(target);
+
 	BLayoutBuilder::Group<>(this, B_VERTICAL)
 	.SetInsets(B_USE_WINDOW_SPACING)
 		.AddGroup(B_HORIZONTAL, B_USE_DEFAULT_SPACING, 1.0)

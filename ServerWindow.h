@@ -6,7 +6,7 @@
 class ServerWindow : public BWindow {
 
 public:
-		ServerWindow(BLooper* target);
+		ServerWindow(BWindow* target);
 		
 		void MessageReceived(BMessage* message);
 	private:

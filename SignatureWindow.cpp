@@ -590,7 +590,6 @@ bool SignatureWindow::QuitRequested()
 {
 	int nbSig = fListeSignatures_ListView->GetView()->CountItems();
 	for (int i = 0 ; i < nbSig ; i++) {
-		std::cout << " SignatureWindow::QuitRequested item " << i << " type =" << class_name(fListeSignatures_ListView->GetView()->ItemAt(i)) << std::endl;
 		LatexListItem* latexItem = dynamic_cast<LatexListItem *>(fListeSignatures_ListView->GetView()->ItemAt(i));
 		if (!is_kind_of(latexItem->GetLView(), Signature))
 			continue;
