@@ -58,4 +58,9 @@ static const uint32 kServerHost=35;
 static const uint32 kServerPort=36;
 static const uint32 kLocalServer=37;
 static const uint32 kDistantServer=38;
+static const uint32 kConnect=39;
+
+//Status
+static const uint32 kStatusChange=40;
+
 #endif

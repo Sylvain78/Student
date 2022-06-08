@@ -38,12 +38,15 @@ class DemonstrationWindow : public BWindow {
 		DemonstrationWindow();
 		virtual void MessageReceived(BMessage* message);
 		bool QuitRequested();
-	
+		
+		void SetServerWindow(ServerWindow* window);
 	private :
-		BMenuBar*     fMenuBar;
-		BTabView* fTabView_Demonstration;
-		BButton*   fButton;
-		BTextControl* fInputView;
+		ServerWindow*	fServerWindow;
+		BMenuBar*		fMenuBar;
+		BTabView*		fTabView_Demonstration;
+		BButton*		fButton;
+		BTextControl*	fInputView;
+		BString*		fStatusText;
 		
 		void ActiveButtons(bool activate);
 };

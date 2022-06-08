@@ -3,14 +3,17 @@
 #include <TextControl.h>
 #include <Window.h>
 
+class DemonstrationWindow;
+
 class ServerWindow : public BWindow {
 
 public:
-		ServerWindow(BWindow* target);
+		ServerWindow(DemonstrationWindow* target);
 		
 		void MessageReceived(BMessage* message);
+		bool QuitRequested();
 	private:
-		BLooper* fTarget;
+		DemonstrationWindow* fTarget;
 		BTextControl *fHost;
 		BTextControl* fPort;
 };
