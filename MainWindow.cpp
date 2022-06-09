@@ -110,6 +110,9 @@ MainWindow::MessageReceived(BMessage *msg)
 		{
 			DemonstrationWindow* demonstrationWindow = new DemonstrationWindow();
 			demonstrationWindow->Show();
+			BMessage *messageStatus = new BMessage(kStatusChange);
+			messageStatus->AddString("status", "Not connected.");
+			demonstrationWindow->PostMessage(messageStatus);
 			break;
 		}
 		default:

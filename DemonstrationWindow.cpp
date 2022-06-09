@@ -25,9 +25,7 @@ DemonstrationWindow::DemonstrationWindow() :
 	BScrollView* fScrollOutputView = new BScrollView("ScrollOutput",fOutputView, B_FOLLOW_ALL, 0, true, true);
 	fScrollOutputView->SetViewColor(255,255,255);
 	
-	rgb_color textColor;
-	textColor.set_to(0,0,0);//TODO ui_color(B_DOCUMENT_TEXT_COLOR);
-	BTextView* statusView = new BTextView("status",be_plain_font,&textColor, 0);
+	BStringView* statusView = new BStringView("status",NULL);
 	 
 	fOutputView->MakeEditable(false);
 	BLayoutBuilder::Group<>(this, B_VERTICAL)
@@ -77,7 +75,7 @@ void DemonstrationWindow::MessageReceived(BMessage* message)
 		 	
 		 	BMessage* statusMessage = new BMessage(kStatusChange);
 		 	char* newStatus = (char *)malloc(strlen("connecting to ") +strlen(host)+1+5);
-		 	sprintf(newStatus, "connecting to %s:%d", host, port);
+		 	sprintf(newStatus, "Connecting to %s:%d", host, port);
 		 	std::cout << newStatus << std::endl;
 
 		 	statusMessage->AddString("status", newStatus);
@@ -92,7 +90,7 @@ void DemonstrationWindow::MessageReceived(BMessage* message)
 		 	//TODO : Get rid of fStatusText ?
 		 	const char* newStatus = message->GetString("status");
 		 	fStatusText->SetTo(newStatus);
-		 	((BTextView*)FindView("status"))->SetText(fStatusText->String());
+		 	((BStringView*)FindView("status"))->SetText(fStatusText->String());
 		 	break;
 		 }
 	}
