@@ -11,18 +11,12 @@
 
 const BRect rect(150,150,150,150);
 
-ServerWindow::ServerWindow(DemonstrationWindow* target) 
-	:	BWindow(rect, "Serveur",B_TITLED_WINDOW_LOOK,B_FLOATING_SUBSET_WINDOW_FEEL, B_NOT_RESIZABLE | B_AUTO_UPDATE_SIZE_LIMITS),
-	fTarget(target)
+ServerWindow::ServerWindow() 
+	:	BWindow(rect, "Serveur",B_TITLED_WINDOW_LOOK,B_FLOATING_SUBSET_WINDOW_FEEL, B_NOT_RESIZABLE | B_AUTO_UPDATE_SIZE_LIMITS)
 {
 	fHost = new BTextControl("host", "host / IP", new BMessage(kServerHost));
 	fPort = new BTextControl("port", "5757", new BMessage(kServerPort));
 	
-	fHost->SetTarget(target);
-	fPort->SetTarget(target);
-	
-	status_t status = this->AddToSubset(target);
-
 	BRadioButton* localButton = new BRadioButton("local", "Local", new BMessage(kLocalServer));
 	BRadioButton* distantButton = new BRadioButton("distant", "Distant", new BMessage(kDistantServer));
 	BButton *button = new BButton("Connect", new BMessage(kConnect));
@@ -83,7 +77,7 @@ void ServerWindow::MessageReceived(BMessage* message) {
     		} else {
     			message->AddString("host", fHost->Text());
 			 	message->AddUInt16("port", port);
-			 	fTarget->PostMessage(message);
+			 	fTarget->MessageReceived(message);
 			 	PostMessage(B_QUIT_REQUESTED);
     		}
     	}
@@ -92,8 +86,12 @@ void ServerWindow::MessageReceived(BMessage* message) {
 		}
 }
 
+void ServerWindow::SetTarget(SessionView* target) {
+	fTarget = target;
+	target->Window()->AddToSubset(this);
+}
+
 bool ServerWindow::QuitRequested() {
-	fTarget->SetServerWindow(NULL);
 	return true;
 	}
 #endif	// _SERVERWINDOW_CPP_

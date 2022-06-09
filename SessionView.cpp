@@ -11,7 +11,9 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 	fDemonstration(new LatexListScrollView()),
 	fModeBox(new BBox("mode")),
 	fSpeedBox(new BBox("speed")),
-	fCompileBox(new BBox("compile")) {
+	fCompileBox(new BBox("compile")),
+	fSession(new Session()) {
+		
 	BLayoutBuilder::Group<>(this, B_VERTICAL)
 		.SetInsets(B_USE_WINDOW_INSETS)
 		.AddGroup(B_HORIZONTAL)

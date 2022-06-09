@@ -9,16 +9,17 @@
 #include <View.h>
 
 #include "LatexListScrollView.h"
+#include "Session.h"
 
 class SessionView : public BView {
 	public:
 		SessionView(const char* name);
 	private:
 		LatexListScrollView* fDemonstration;
-		BBox*         fModeBox;
-		BBox*		  fSpeedBox;
-		BBox*		  fCompileBox;
-	
+		BBox*         		 fModeBox;
+		BBox*		 		 fSpeedBox;
+		BBox*				 fCompileBox;
+		Session*			 fSession;
 };
 
 #endif	// _SESSIONVIEW_H_

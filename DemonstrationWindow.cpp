@@ -52,8 +52,12 @@ void DemonstrationWindow::MessageReceived(BMessage* message)
 	switch(message->what) {
 		case (kServerSettings):
 			{
+				SessionView* sessionView = (SessionView*)fTabView_Demonstration->ViewForTab(fTabView_Demonstration->Selection());
+				
 				if (!fServerWindow)
-					fServerWindow = new ServerWindow(this);
+					fServerWindow = new ServerWindow();
+				
+				fServerWindow->SetTarget(sessionView);
 				fServerWindow->Activate();
 				break;
 			}
