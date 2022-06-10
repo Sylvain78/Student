@@ -44,9 +44,6 @@ class DemonstrationWindow : public BWindow {
 		ServerWindow*	fServerWindow;
 		BMenuBar*		fMenuBar;
 		BTabView*		fTabView_Demonstration;
-		BButton*		fButton;
-		BTextControl*	fInputView;
-		BString*		fStatusText;
 		
 		void ActiveButtons(bool activate);
 };

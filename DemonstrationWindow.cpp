@@ -5,8 +5,7 @@
 
 DemonstrationWindow::DemonstrationWindow() :
 	BWindow(BRect(100,100,500,500),"Démonstrations",B_TITLED_WINDOW,B_ASYNCHRONOUS_CONTROLS | B_AUTO_UPDATE_SIZE_LIMITS),
-	fServerWindow(NULL),
-	fStatusText(new BString("Not connected"))
+	fServerWindow(NULL)
 {
 	fMenuBar = new BMenuBar("menubar");
 	//Serveur
@@ -16,31 +15,18 @@ DemonstrationWindow::DemonstrationWindow() :
 	fMenuBar->AddItem(menu);
 
 	fTabView_Demonstration = new BTabView("Onglet Démonstrations");
-	fInputView  = new BTextControl("InputView",0,0,0);
-	fButton = new BButton("Envoi", "Envoi", new BMessage(kEnvoi));
 	
-	fInputView->MakeFocus(true);
 
 	BTextView* fOutputView = new BTextView(BRect(), "OutputView", BRect(), B_FOLLOW_ALL, B_FRAME_EVENTS | B_WILL_DRAW);
 	BScrollView* fScrollOutputView = new BScrollView("ScrollOutput",fOutputView, B_FOLLOW_ALL, 0, true, true);
 	fScrollOutputView->SetViewColor(255,255,255);
-	
-	BStringView* statusView = new BStringView("status",NULL);
 	 
 	fOutputView->MakeEditable(false);
 	BLayoutBuilder::Group<>(this, B_VERTICAL)
 		    .Add(fMenuBar)
 			.Add(fTabView_Demonstration)
 			.Add(fScrollOutputView)
-		.AddGroup(B_HORIZONTAL)
-			.SetInsets(5,5,5,5)
-			.Add(fInputView)
-			.Add(fButton)
-		.End()
-		.AddGroup(B_HORIZONTAL)
-		//TODO font & color
-			.Add(statusView, 0.1f)
-		.End();
+	.End();
 		
 	fTabView_Demonstration->AddTab(new SessionView("Session"));
 	fTabView_Demonstration->AddTab(new SessionView("+"));
@@ -87,16 +73,9 @@ void DemonstrationWindow::MessageReceived(BMessage* message)
 		 	PostMessage(statusMessage);
 		 	break;
 		 }
-		 case (kStatusChange) : 
-		 {
-		 	std::cout << "status change  " <<  message->GetString("status") << std::endl;
-
-		 	//TODO : Get rid of fStatusText ?
-		 	const char* newStatus = message->GetString("status");
-		 	fStatusText->SetTo(newStatus);
-		 	((BStringView*)FindView("status"))->SetText(fStatusText->String());
-		 	break;
-		 }
+		 default:
+		 	BWindow::MessageReceived(message);
+		 
 	}
 }
 
