@@ -85,19 +85,21 @@ E-Mail address works, Jabber: hexarith@jabber.org, ICQ: 134682867
 	
 
 	// Load the app image... and pass the args
-	char **argv;
-	argv = (char **)malloc(10*sizeof(char *));
-	argv[0] = strdup("ocaml");
-	argv[1] = strdup("-I");
-	argv[2] = strdup("signatures");
-	argv[3] = strdup("-I");
-	argv[4] = strdup("Preuves/_build/util");
-	argv[5] = strdup("-I");
-	argv[6] = strdup("Preuves/_build/prop");
-	argv[7] = strdup("-I");
-	argv[8] = strdup("Preuves/_build/premier_ordre");
+	int arg_c=9;
+	char **arg_v;
 	
-	argv[9] = NULL;
+	arg_v = (char **)malloc(10*sizeof(char *));
+	arg_v[0] = strdup("ocaml");
+	arg_v[1] = strdup("-I");
+	arg_v[2] = strdup("signatures");
+	arg_v[3] = strdup("-I");
+	arg_v[4] = strdup("Preuves/_build/util");
+	arg_v[5] = strdup("-I");
+	arg_v[6] = strdup("Preuves/_build/prop");
+	arg_v[7] = strdup("-I");
+	arg_v[8] = strdup("Preuves/_build/premier_ordre");
+	
+	arg_v[9] = NULL;
 	
 	BPath dir_path;
 	dir_path.SetTo(fAppDirectory);
@@ -113,18 +115,12 @@ E-Mail address works, Jabber: hexarith@jabber.org, ICQ: 134682867
 		fflush(sortie);
 	}
 	*/
-	thread_id ocamlThread = load_image(9, const_cast<const char**>(argv), const_cast<const char**>(environ));
+	thread_id ocamlThread = load_image(arg_c, const_cast<const char**>(arg_v), const_cast<const char**>(environ));
 	
-	free(argv[0]);	
-	free(argv[1]);
-	free(argv[2]);
-	free(argv[3]);
-	free(argv[4]);
-	free(argv[5]);
-	free(argv[6]);
-	free(argv[7]);
-	free(argv[8]);
-	free(argv);
+	while (--arg_c >= 0)
+	   free(arg_v[arg_c]);
+	
+	free(arg_v);
 
 	//Récupération des STD*_FILENO
 	dup2(oldStdIn,  STDIN_FILENO);
@@ -285,7 +281,7 @@ status_t App::latexToPNG(const BString& texte, BBitmap **image) {
 	else {
 		char tmp[MAXPATHLEN]; 
 		char *student;
-		const char ** argv = (const char **)malloc(12*sizeof(char *));
+		const char ** arg_v = (const char **)malloc(12*sizeof(char *));
 		extern char** environ;
 		status_t status;
 		BString *latex_string = new BString();
@@ -299,36 +295,36 @@ status_t App::latexToPNG(const BString& texte, BBitmap **image) {
 		latex_string->Append(texte.String());
 		latex_string->Append(" \\end{document}\"");
 		
-		argv[0] = strdup("latex");
-		argv[1] = strdup("-interaction=batchmode");
-		argv[2] = strdup("-jobname=Student");
-		argv[3] = latex_string->String();
-		argv[4] = NULL;          
+		arg_v[0] = strdup("latex");
+		arg_v[1] = strdup("-interaction=batchmode");
+		arg_v[2] = strdup("-jobname=Student");
+		arg_v[3] = latex_string->String();
+		arg_v[4] = NULL;          
 		
-		printf("%s\n",argv[3]);fflush(stdout);	
-		thread_id latex_id = load_image(4, argv, (const char**)environ);
+		printf("%s\n",arg_v[3]);fflush(stdout);	
+		thread_id latex_id = load_image(4, arg_v, (const char**)environ);
 		wait_for_thread(latex_id, &status);
 		
-		argv[0] = strdup("dvipng");
-		argv[1] = strdup("-T");
-		argv[2] = strdup("tight");
-		argv[3] = strdup("-bg");
-		argv[4] = strdup("Transparent");
-		argv[5] = strdup("-D");
-		argv[6] = strdup("200");
-		argv[7] = strdup("-o");
-		argv[8] = strdup("Student.png");
-		argv[9] = strdup("Student.dvi");
-		argv[10] = strdup("-q");
-		argv[11] = NULL;
+		arg_v[0] = strdup("dvipng");
+		arg_v[1] = strdup("-T");
+		arg_v[2] = strdup("tight");
+		arg_v[3] = strdup("-bg");
+		arg_v[4] = strdup("Transparent");
+		arg_v[5] = strdup("-D");
+		arg_v[6] = strdup("200");
+		arg_v[7] = strdup("-o");
+		arg_v[8] = strdup("Student.png");
+		arg_v[9] = strdup("Student.dvi");
+		arg_v[10] = strdup("-q");
+		arg_v[11] = NULL;
 		
-		thread_id dvipng_id = load_image(11, argv, (const char**)environ);
+		thread_id dvipng_id = load_image(11, arg_v, (const char**)environ);
 		wait_for_thread(dvipng_id, &status);
 
 		for (int i =0; i <11; i++) {
-			free((void*)argv[i]);
+			free((void*)arg_v[i]);
 		}
-		free(argv);
+		free(arg_v);
 		
 		student = tmp;
 		student = strcat(student, "/Student.png");

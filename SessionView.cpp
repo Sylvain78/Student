@@ -8,15 +8,12 @@
 #define B_TRANSLATION_CONTEXT "SessionView"
 
 
-#undef B_TRANSLATION_CONTEXT
-#define B_TRANSLATION_CONTEXT "SessionView"
-
 SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 	fDemonstration(new LatexListScrollView()),
 	fModeBox(new BBox("mode")),
 	fSpeedBox(new BBox("speed")),
 	fCompileBox(new BBox("compile")),
-	fSession(new Session()),
+	fSession(NULL),
 	fStatusText(new BString("Not connected")) {
 		
 	fInputView  = new BTextControl("InputView",0,0,0);
@@ -80,6 +77,35 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 
 void SessionView::MessageReceived(BMessage* message) {
 	switch(message->what) {
+		case (kConnect) : {
+		 	const char* host = message->GetString("host", "");
+		 	uint16 port = message->GetUInt16("port",0);
+		 	std::cout << "connect to " << host << ":" << port << std::endl;
+		 	
+		 	BMessage* statusMessage = new BMessage(kStatusChange);
+		 	char* newStatus = (char *)malloc(strlen("Connecting to ") +strlen(host)+1+5);
+		 	sprintf(newStatus, "Connecting to %s:%d", host, port);
+		 	std::cout << newStatus << std::endl;
+			statusMessage->AddString("status", newStatus);
+		 	MessageReceived(statusMessage);
+		 	
+		 	fSession = new Session(host, port);
+		 	int connection = fSession->Connect();
+		 	if (connection < 0) {
+		 		newStatus = (char *)realloc(newStatus,strlen("Failed to connect to ") +strlen(host)+1+5);
+		 		sprintf(newStatus, "Failed to connect to %s:%d", host, port);
+		 		std::cout << newStatus << std::endl;
+				statusMessage->ReplaceString("status", newStatus);
+		 		MessageReceived(statusMessage);
+		 	} else {
+				newStatus = (char *)realloc(newStatus,strlen("Connected to ") +strlen(host)+1+5);
+		 		sprintf(newStatus, "Connected to %s:%d", host, port);
+		 		std::cout << newStatus << std::endl;
+				statusMessage->ReplaceString("status", newStatus);
+		 		MessageReceived(statusMessage);
+		 	}
+		 	break;
+		}
 		case (kStatusChange) : 
 			{
 			 	std::cout << "status change  " <<  message->GetString("status") << std::endl;
@@ -87,7 +113,9 @@ void SessionView::MessageReceived(BMessage* message) {
 			 	//TODO : Get rid of fStatusText ?
 			 	const char* newStatus = message->GetString("status");
 			 	fStatusText->SetTo(newStatus);
-			 	((BStringView*)FindView("status"))->SetText(fStatusText->String());
+			 	LockLooper();
+			 		((BStringView*)FindView("status"))->SetText(fStatusText->String());
+			 	UnlockLooper();
 			 	break;
 		 	}
 	}

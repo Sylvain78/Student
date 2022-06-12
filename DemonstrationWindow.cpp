@@ -1,5 +1,6 @@
 #include "DemonstrationWindow.h"
 #include<iostream>
+
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "DemonstrationWindow"
 
@@ -29,53 +30,33 @@ DemonstrationWindow::DemonstrationWindow() :
 	.End();
 		
 	fTabView_Demonstration->AddTab(new SessionView("Session"));
-	fTabView_Demonstration->AddTab(new SessionView("+"));
-	fTabView_Demonstration->AddTab(new SessionView("++"));
 }
 
 void DemonstrationWindow::MessageReceived(BMessage* message) 
 {
+	SessionView* sessionView = (SessionView*)fTabView_Demonstration->ViewForTab(fTabView_Demonstration->Selection());
 	switch(message->what) {
-		case (kServerSettings):
-			{
-				SessionView* sessionView = (SessionView*)fTabView_Demonstration->ViewForTab(fTabView_Demonstration->Selection());
-				
-				if (!fServerWindow)
-					fServerWindow = new ServerWindow();
-				
-				fServerWindow->SetTarget(sessionView);
-				fServerWindow->Activate();
-				break;
+		case (kServerSettings): {
+			bool init;
+			
+			if (!fServerWindow) {
+				init = true;
+				fServerWindow = new ServerWindow();
+				fServerWindow->AddToSubset(this);
 			}
-		case (kServerHost) :
-		 {
-		 	SessionView* view = (SessionView*)fTabView_Demonstration->ViewForTab(fTabView_Demonstration->Selection());
-		 	break;
-		 }
-		 case(kServerPort) :
-		 {
-		 	SessionView* view = (SessionView*)fTabView_Demonstration->ViewForTab(fTabView_Demonstration->Selection());
-		 	break;
-		 }
-		 case (kConnect) :
-		 {
-		 	const char* host = message->GetString("host", "");
-		 	uint16 port = message->GetUInt16("port",0);
-		 	std::cout << "connect to " << host << ":" << port << std::endl;
-		 	
-		 	BMessage* statusMessage = new BMessage(kStatusChange);
-		 	char* newStatus = (char *)malloc(strlen("connecting to ") +strlen(host)+1+5);
-		 	sprintf(newStatus, "Connecting to %s:%d", host, port);
-		 	std::cout << newStatus << std::endl;
 
-		 	statusMessage->AddString("status", newStatus);
-		 	
-		 	PostMessage(statusMessage);
-		 	break;
-		 }
-		 default:
-		 	BWindow::MessageReceived(message);
-		 
+			fServerWindow->SetTarget(sessionView);
+			fServerWindow->Show();
+			if(init) {
+				fServerWindow->Show();
+			} else {
+				fServerWindow->Activate();
+			}
+			fServerWindow->PostMessage(new BMessage(kLocalServer));
+			break;
+		}
+		default:
+			BWindow::MessageReceived(message);
 	}
 }
 

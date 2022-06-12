@@ -19,8 +19,8 @@ public:
 
 	private:
 		SessionView* fTarget;
-		BTextControl *fHost;
-		BTextControl* fPort;
+		BRadioButton *fLocalButton, *fDistantButton;
+		BTextControl *fHost, *fPort;
 };
 
 #endif	// _SERVERWINDOW_H_

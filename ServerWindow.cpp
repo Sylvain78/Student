@@ -12,23 +12,23 @@
 const BRect rect(150,150,150,150);
 
 ServerWindow::ServerWindow() 
-	:	BWindow(rect, "Serveur",B_TITLED_WINDOW_LOOK,B_FLOATING_SUBSET_WINDOW_FEEL, B_NOT_RESIZABLE | B_AUTO_UPDATE_SIZE_LIMITS)
+	:	BWindow(rect, "Serveur",B_TITLED_WINDOW_LOOK, B_FLOATING_SUBSET_WINDOW_FEEL, B_NOT_RESIZABLE | B_AUTO_UPDATE_SIZE_LIMITS)
 {
 	fHost = new BTextControl("host", "host / IP", new BMessage(kServerHost));
 	fPort = new BTextControl("port", "5757", new BMessage(kServerPort));
 	
-	BRadioButton* localButton = new BRadioButton("local", "Local", new BMessage(kLocalServer));
-	BRadioButton* distantButton = new BRadioButton("distant", "Distant", new BMessage(kDistantServer));
+	fLocalButton = new BRadioButton("local", "Local", new BMessage(kLocalServer));
+	fDistantButton = new BRadioButton("distant", "Distant", new BMessage(kDistantServer));
 	BButton *button = new BButton("Connect", new BMessage(kConnect));
 	
 	button->MakeDefault(true);
-	localButton->SetValue(1);
+	fLocalButton->SetValue(1);
 	
 	BLayoutBuilder::Group<>(this, B_VERTICAL)
 	.SetInsets(B_USE_WINDOW_SPACING)
 		.AddGroup(B_HORIZONTAL, B_USE_DEFAULT_SPACING, 1.0)
-			.Add(localButton)
-			.Add(distantButton)
+			.Add(fLocalButton)
+			.Add(fDistantButton)
 			.AddGlue()
 		.End()
 		.AddGroup(B_HORIZONTAL, B_USE_DEFAULT_SPACING)
@@ -40,9 +40,7 @@ ServerWindow::ServerWindow()
 			.AddGlue()
 		.End()
 	.End();
-	ResizeToPreferred();
-	Show();
-	PostMessage(new BMessage(kLocalServer));
+	//ResizeToPreferred();
 }
 
 
@@ -75,7 +73,12 @@ void ServerWindow::MessageReceived(BMessage* message) {
     			BAlert* alert = new BAlert("", buf.c_str(), "Ok", NULL, NULL, B_WIDTH_AS_USUAL, B_STOP_ALERT);
     			alert->Go();
     		} else {
-    			message->AddString("host", fHost->Text());
+    			if (fLocalButton->Value() == B_CONTROL_ON) {
+    			    message->AddString("host", "localhost");
+    			} else {
+    				message->AddString("host", fHost->Text());
+    			}    			
+			 	
 			 	message->AddUInt16("port", port);
 			 	fTarget->MessageReceived(message);
 			 	PostMessage(B_QUIT_REQUESTED);
@@ -88,10 +91,11 @@ void ServerWindow::MessageReceived(BMessage* message) {
 
 void ServerWindow::SetTarget(SessionView* target) {
 	fTarget = target;
-	target->Window()->AddToSubset(this);
 }
 
 bool ServerWindow::QuitRequested() {
+	((DemonstrationWindow *)fTarget->Window())->SetServerWindow(NULL);
 	return true;
-	}
+}
+
 #endif	// _SERVERWINDOW_CPP_
