@@ -49,6 +49,9 @@ class App : public BApplication
 		BList* GetSignatures();
 		BList* GetTheories();
 		
+		/////////////////
+		void LaunchLocalServer(const uint16 port);
+		
 	private:
 	// #pragma mark - OCaml
 		int inputocaml[2];

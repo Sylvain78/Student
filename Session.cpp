@@ -7,7 +7,7 @@ Session::Session(const char* host, const uint16 port) :
 	fHost(host),
 	fPort(port) 
 	{}
-
+	
 int Session::Connect() {
 	BNetworkAddressResolver resolver(fHost, fPort);
 	BNetworkAddress address;
@@ -38,10 +38,30 @@ int Session::Connect() {
 	}
 
 	if (!success) {
-		errorString = B_TRANSLATE("Could not connect to fHhost/fPort TODO");
+		errorString = B_TRANSLATE("Could not connect to fHost/fPort TODO");
 		close(connection);
 		return B_ERROR;
 	} else {
-		return connection;
+		fSocket = connection;
+		return fSocket;
+	}
+}
+
+bool Session::IsLocalServerLaunched() {
+	return fLocalServerLaunched;
+}
+
+void Session::LaunchLocalServer(const uint16 port) {
+	((App *)be_app)->LaunchLocalServer(port);
+	fLocalServerLaunched = true;
+}
+
+status_t Session::Send(BString *text) {
+	BString textProtocol = text->Append("\n\n");
+	int sent = send(fSocket, &textProtocol, textProtocol.Length(), 0);
+	if (sent == textProtocol.Length()) {
+		return B_OK;
+	} else {
+		return B_ERROR;
 	}
 }

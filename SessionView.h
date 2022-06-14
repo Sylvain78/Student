@@ -10,7 +10,8 @@
 #include <View.h>
 
 #include "LatexListScrollView.h"
-#include "Session.h"
+
+class Session;
 
 class SessionView : public BView {
 	public:

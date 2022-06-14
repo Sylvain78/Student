@@ -1,8 +1,10 @@
 #ifndef _SESSIONVIEW_CPP_
 #define _SESSIONVIEW_CPP_
 
-#include "SessionView.h"
 #include <iostream>
+
+#include "Session.h"
+#include "SessionView.h"
 
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "SessionView"
@@ -17,7 +19,10 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 	fStatusText(new BString("Not connected")) {
 		
 	fInputView  = new BTextControl("InputView",0,0,0);
+	
 	fButton = new BButton("Envoi", "Envoi", new BMessage(kEnvoi));
+	fButton->SetTarget(this);
+	
 	BStringView* statusView = new BStringView("status",NULL);
 	
 	fInputView->MakeFocus(true);
@@ -97,6 +102,25 @@ void SessionView::MessageReceived(BMessage* message) {
 		 		std::cout << newStatus << std::endl;
 				statusMessage->ReplaceString("status", newStatus);
 		 		MessageReceived(statusMessage);
+		 		
+		 		if (!strcmp(host , "localhost") && !fSession->IsLocalServerLaunched()) {
+		 			
+		 			BMessage* statusMessage = new BMessage(kStatusChange);
+				 	char* newStatus = (char *)malloc(strlen("Launching proof server on port %d") +5);
+				 	sprintf(newStatus, "Launching proof server on port %d", port);
+				 	std::cout << newStatus << std::endl;
+					statusMessage->AddString("status", newStatus);
+				 	MessageReceived(statusMessage);
+				 	
+				 	
+				 	fSession->LaunchLocalServer(port);
+				 	BMessage* connectMessage = new BMessage(kConnect);
+				 	connectMessage->AddString("host", host);
+				 	connectMessage->AddUInt16("port", port);
+				 	
+				 	MessageReceived(connectMessage);
+				 	
+		 			}
 		 	} else {
 				newStatus = (char *)realloc(newStatus,strlen("Connected to ") +strlen(host)+1+5);
 		 		sprintf(newStatus, "Connected to %s:%d", host, port);
@@ -106,18 +130,21 @@ void SessionView::MessageReceived(BMessage* message) {
 		 	}
 		 	break;
 		}
-		case (kStatusChange) : 
-			{
-			 	std::cout << "status change  " <<  message->GetString("status") << std::endl;
-	
-			 	//TODO : Get rid of fStatusText ?
-			 	const char* newStatus = message->GetString("status");
-			 	fStatusText->SetTo(newStatus);
-			 	LockLooper();
-			 		((BStringView*)FindView("status"))->SetText(fStatusText->String());
-			 	UnlockLooper();
-			 	break;
-		 	}
+		case (kStatusChange) : {
+			std::cout << "status change  " <<  message->GetString("status") << std::endl;
+
+			//TODO : Get rid of fStatusText ?
+			const char* newStatus = message->GetString("status");
+			fStatusText->SetTo(newStatus);
+			LockLooper();
+		 		((BStringView*)FindView("status"))->SetText(fStatusText->String());
+			UnlockLooper();
+			break;
+		}
+		case(kEnvoi) : {
+			fSession->Send(new BString(fInputView->Text()));
+			break;
+		}
 	}
 }
 #endif	// _SESSIONVIEW_CPP_

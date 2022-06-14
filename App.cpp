@@ -1,3 +1,7 @@
+#include <iostream>
+
+#include <poll.h>
+
 #include "App.h"
 
 unsigned int App::nb_images_produites = 0;
@@ -477,6 +481,69 @@ BMessage* App::GetSettings() {
 	return fSettings;
 }
 
+// #pragma mark - Serveur
+
+
+void App::LaunchLocalServer(const uint16 port) {
+	// Load the app image... and pass the args
+	int arg_c=3;
+	char **arg_v;
+	
+	char * serverAddress = (char *)malloc(strlen("localhost:"+5));
+	sprintf(serverAddress, "localhost:%d", port);
+	arg_v = (char **)malloc(10*sizeof(char *));
+	arg_v[0] = strdup("proof_server.exe");
+	arg_v[1] = strdup("-s");
+	arg_v[2] = serverAddress;
+	arg_v[3] = NULL;
+	
+	BPath dir_path;
+	dir_path.SetTo(fAppDirectory);
+
+	chdir(dir_path.Path());
+	
+	int outputServer[2];
+	int oldStdOut;
+	
+	pipe(outputServer);
+	//copie des anciens STD*_FILENO
+	oldStdOut = dup(STDOUT_FILENO);
+	//fermeture
+	close(STDOUT_FILENO);
+	//création des nouveaux STD*_FILENO
+	dup2(outputServer[1], STDOUT_FILENO);
+	
+	extern char** environ;
+	thread_id serverThread = load_image(arg_c, const_cast<const char**>(arg_v), const_cast<const char**>(environ));
+	
+	while (--arg_c >= 0) {
+	   free(arg_v[arg_c]);
+	}
+	free(arg_v);
+	
+	//Lancement thread proof_server
+	resume_thread(serverThread);
+
+	//Récupération des STD*_FILENO
+	dup2(oldStdOut, STDOUT_FILENO);
+	//Fermeture des copies temporaires
+	close(oldStdOut);
+	//Fermeture pipe
+	close(outputServer[1]);
+	char buf;
+		
+	short revents = 0;
+	struct pollfd pollfdServer = {outputServer[0], POLLIN, revents};
+	
+		poll(&pollfdServer, 1, 95);
+		revents = pollfdServer.revents;
+		if (revents == POLLERR || revents == POLLHUP || revents == POLLNVAL) {
+			std::cout << "erreur lecture sur sortie proof_server " << std::endl;
+		}
+	
+	close(outputServer[0]);
+}
+	
 int
 main(void)
 {
