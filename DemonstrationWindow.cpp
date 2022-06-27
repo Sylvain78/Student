@@ -16,19 +16,12 @@ DemonstrationWindow::DemonstrationWindow() :
 	fMenuBar->AddItem(menu);
 
 	fTabView_Demonstration = new BTabView("Onglet Démonstrations");
-	
 
-	BTextView* fOutputView = new BTextView(BRect(), "OutputView", BRect(), B_FOLLOW_ALL, B_FRAME_EVENTS | B_WILL_DRAW);
-	BScrollView* fScrollOutputView = new BScrollView("ScrollOutput",fOutputView, B_FOLLOW_ALL, 0, true, true);
-	fScrollOutputView->SetViewColor(255,255,255);
-	 
-	fOutputView->MakeEditable(false);
 	BLayoutBuilder::Group<>(this, B_VERTICAL)
 		    .Add(fMenuBar)
 			.Add(fTabView_Demonstration)
-			.Add(fScrollOutputView)
 	.End();
-		
+
 	fTabView_Demonstration->AddTab(new SessionView("Session"));
 }
 
