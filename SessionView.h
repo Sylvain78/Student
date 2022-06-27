@@ -16,6 +16,7 @@ class Session;
 class SessionView : public BView {
 	public:
 		SessionView(const char* name);
+		virtual void AttachedToWindow();
 		virtual	void MessageReceived(BMessage* message);
 		
 	private:
@@ -24,6 +25,7 @@ class SessionView : public BView {
 		BBox*		 		 fSpeedBox;
 		BBox*				 fCompileBox;
 		BTextControl*		 fInputView;
+		BTextView*			 fOutputView;
 		BString*			 fStatusText;
 		BButton*			 fButton;
 

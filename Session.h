@@ -2,6 +2,7 @@
 #define _SESSION_H_
 
 #include <cerrno>
+#include <netdb.h>
 
 #include <Catalog.h>
 #include <NetworkAddressResolver.h>
@@ -21,17 +22,21 @@ enum Flags {
 
 class Session {
 	public:
-		Session(const char* host, const uint16 port);
-		int Connect();
+		Session(const char* host, const uint16 port, BTextView *output);
+		int Connect(BTextView *outputView);
 		status_t Send(BString *text);
+		static status_t Receive(void *data);
 		bool IsLocalServerLaunched();
 		void LaunchLocalServer(const uint16 port);
+		BTextView* GetOutput();
+
 	private:
 		Flags  fFlags;
 		const char*  fHost;
 		const uint16 fPort;
 		bool fLocalServerLaunched=false;
 		int fSocket;
+		BTextView *fOutput;
 		
 };	
 

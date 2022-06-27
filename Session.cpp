@@ -1,26 +1,34 @@
 #include "Session.h"
+#include <iostream>
+#include <stdio.h>
 
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "Session"
- 
-Session::Session(const char* host, const uint16 port) :
+
+Session::Session(const char* host, const uint16 port, BTextView *output) :
 	fHost(host),
-	fPort(port) 
-	{}
-	
-int Session::Connect() {
-	BNetworkAddressResolver resolver(fHost, fPort);
-	BNetworkAddress address;
-	
+	fPort(port)
+	{
+		fOutput = output;
+	}
+
+int Session::Connect(BTextView *outputView) {
+	struct hostent* host = gethostbyname(fHost);
+	if (host == NULL) {
+		perror("gethostbyname");
+		return 1;
+	}
+
+	struct sockaddr_in serverAddr;
+	memset(&serverAddr, 0, sizeof(struct sockaddr_in));
+	serverAddr.sin_family = AF_INET;
+	serverAddr.sin_port = htons(fPort);
+	serverAddr.sin_addr = *((struct in_addr*)host->h_addr);
+
 	uint32 cookie = 0;
 	bool success = false;
 	const char *errorString;
 	int errorCode;
-	
-	if (resolver.InitCheck() != B_OK) {
-		errorString = B_TRANSLATE("Could not resolve server address");
-		return B_ENTRY_NOT_FOUND;
-	}
 
 	int connection = socket(AF_INET, SOCK_STREAM, 0);
 	if (connection < 0) {
@@ -29,22 +37,33 @@ int Session::Connect() {
 		return B_ERROR;
 	}
 
-	while (resolver.GetNextAddress(&cookie, address) == B_OK) {
-		if (connect(connection,&address.SockAddr(),
-				address.Length()) >= 0 ) {
-			success = true;
-			break;
+	status_t status = connect(connection,(struct sockaddr*)&serverAddr, sizeof(struct sockaddr_in));
+
+	if (status < 0  && !strcmp(fHost, "localhost") && !fLocalServerLaunched) {
+		status_t err_connect = errno;
+		perror(NULL);
+		close(connection);
+		LaunchLocalServer(fPort);
+		while ( connection = socket(AF_INET, SOCK_STREAM, 0),connect(connection, (struct sockaddr*)&serverAddr,
+				sizeof(struct sockaddr_in)) < 0) {
+					status_t err_connect = errno;
+					perror(NULL);
+					close(connection);
+
+					snooze(100*1000);
 		}
+	} else {
+		if(!strcmp(fHost, "localhost")) 
+			fLocalServerLaunched = true;
 	}
 
-	if (!success) {
-		errorString = B_TRANSLATE("Could not connect to fHost/fPort TODO");
-		close(connection);
-		return B_ERROR;
-	} else {
-		fSocket = connection;
-		return fSocket;
-	}
+
+	fSocket = connection;
+
+	thread_id receive_thread = spawn_thread(&Session::Receive, "receiver", B_NORMAL_PRIORITY, this);
+	resume_thread(receive_thread);
+
+	return fSocket;
 }
 
 bool Session::IsLocalServerLaunched() {
@@ -56,12 +75,32 @@ void Session::LaunchLocalServer(const uint16 port) {
 	fLocalServerLaunched = true;
 }
 
+BTextView *Session::GetOutput() {
+	return fOutput;
+}
+
 status_t Session::Send(BString *text) {
 	BString textProtocol = text->Append("\n\n");
+	std::cout << "send : " << textProtocol.String()<< std::endl;
 	int sent = send(fSocket, &textProtocol, textProtocol.Length(), 0);
 	if (sent == textProtocol.Length()) {
 		return B_OK;
 	} else {
 		return B_ERROR;
 	}
+}
+
+status_t Session::Receive(void *data) {
+	Session *session = (Session *)data;
+
+ 	char buffer[1024];
+	ssize_t received;
+
+	while (received = recv(session->fSocket, buffer, 1024, 0/*flags*/)) {
+		if (errno < 0) 
+			perror("test");
+		((BTextView *) session->GetOutput())->Insert(buffer,received);
+	};
+
+	return B_OK;
 }
