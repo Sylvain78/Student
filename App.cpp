@@ -486,16 +486,17 @@ BMessage* App::GetSettings() {
 
 void App::LaunchLocalServer(const uint16 port) {
 	// Load the app image... and pass the args
-	int arg_c=3;
+	int arg_c=4;
 	char **arg_v;
 	
 	char * serverAddress = (char *)malloc(strlen("localhost:"+5));
 	sprintf(serverAddress, "localhost:%d", port);
 	arg_v = (char **)malloc(4*sizeof(char *));
 	arg_v[0] = strdup("proof_server.exe");
-	arg_v[1] = strdup("-s");
-	arg_v[2] = serverAddress;
-	arg_v[3] = NULL;
+	arg_v[1] = strdup("-v");
+	arg_v[2] = strdup("-s");
+	arg_v[3] = serverAddress;
+	arg_v[4] = NULL;
 	extern char** environ;
 	
 	BPath dir_path;
