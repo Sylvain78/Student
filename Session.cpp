@@ -82,7 +82,7 @@ BTextView *Session::GetOutput() {
 status_t Session::Send(BString *text) {
 	BString textProtocol = text->Append("\n\n");
 	std::cout << "send : " << textProtocol.String()<< std::endl;
-	int sent = send(fSocket, &textProtocol, textProtocol.Length(), 0);
+	int sent = send(fSocket, textProtocol.String(), textProtocol.Length(), 0);
 	if (sent == textProtocol.Length()) {
 		return B_OK;
 	} else {
@@ -92,14 +92,16 @@ status_t Session::Send(BString *text) {
 
 status_t Session::Receive(void *data) {
 	Session *session = (Session *)data;
-
- 	char buffer[1024];
+	BTextView *output = session->GetOutput();
+ 	char buffer[1];
 	ssize_t received;
 
-	while (received = recv(session->fSocket, buffer, 1024, 0/*flags*/)) {
+	while (received = recv(session->fSocket, buffer, 1, 0/*flags*/) != NULL) {
 		if (errno < 0) 
 			perror("test");
-		((BTextView *) session->GetOutput())->Insert(buffer,received);
+		output->LockLooper();
+			output->Insert(buffer,received);
+		output->UnlockLooper();
 	};
 
 	return B_OK;
