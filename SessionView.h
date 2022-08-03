@@ -24,6 +24,7 @@ class SessionView : public BView {
 		BBox*         		 fModeBox;
 		BBox*		 		 fSpeedBox;
 		BBox*				 fCompileBox;
+		BBox*				 fDemonstrationBox;
 		BTextControl*		 fInputView;
 		BTextView*			 fOutputView;
 		BString*			 fStatusText;

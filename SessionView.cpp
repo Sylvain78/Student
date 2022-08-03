@@ -15,15 +15,16 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 	fModeBox(new BBox("mode")),
 	fSpeedBox(new BBox("speed")),
 	fCompileBox(new BBox("compile")),
+	fDemonstrationBox(new BBox("demonstration")),
 	fSession(NULL),
 
 	fStatusText(new BString("Not connected")) {
 
-	fInputView  = new BTextControl("InputView",0,0,0);
+	fInputView  = new BTextControl("InputView",NULL,NULL,NULL);
 
 	fButton = new BButton("Envoi", "Envoi", new BMessage(kEnvoi));
 
-	BStringView* statusView = new BStringView("status",NULL);
+	BStringView* statusView = new BStringView("status",fStatusText->String());
 
 	fInputView->MakeFocus(true);
 
@@ -40,10 +41,10 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 			.Add(fSpeedBox)
 			.Add(fCompileBox)
 		.End()
-		.Add(fDemonstration)
+		.Add(fDemonstrationBox)
 		.AddGroup(B_HORIZONTAL)
 			.SetInsets(5,5,5,5)
-			.Add(fInputView)
+			.Add(fInputView, 45.0f)
 			.Add(fButton)
 		.End()
 		.AddGroup(B_HORIZONTAL)
@@ -85,6 +86,9 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 
 	fCompileBox->SetLabel(new BStringView("Compile label", "Compile"));
 	fCompileBox->AddChild(compileBoxLayout->View());
+	fDemonstrationBox->SetLabel(new BStringView("Demonstration label", "Demonstration"));
+	fDemonstrationBox->AddChild(fDemonstration);
+	
 }
 
 
