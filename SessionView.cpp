@@ -44,7 +44,7 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 		.Add(fDemonstrationBox)
 		.AddGroup(B_HORIZONTAL)
 			.SetInsets(5,5,5,5)
-			.Add(fInputView, 45.0f)
+			.Add(fInputView)
 			.Add(fButton)
 		.End()
 		.AddGroup(B_HORIZONTAL)
