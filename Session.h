@@ -37,7 +37,6 @@ class Session {
 		bool fLocalServerLaunched=false;
 		int fSocket;
 		BTextView *fOutput;
-		
 };	
 
 #endif	// _SESSION_H_

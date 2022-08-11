@@ -1,6 +1,9 @@
-#include "Session.h"
+#include <fstream>
 #include <iostream>
 #include <stdio.h>
+
+#include "Session.h"
+#include "server_protocol.pb.h"
 
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "Session"
@@ -57,7 +60,6 @@ int Session::Connect(BTextView *outputView) {
 			fLocalServerLaunched = true;
 	}
 
-
 	fSocket = connection;
 
 	thread_id receive_thread = spawn_thread(&Session::Receive, "receiver", B_NORMAL_PRIORITY, this);
@@ -93,14 +95,22 @@ status_t Session::Send(BString *text) {
 status_t Session::Receive(void *data) {
 	Session *session = (Session *)data;
 	BTextView *output = session->GetOutput();
- 	char buffer[1];
+	uint32 answerSize;
+	char *answerBuffer;
 	ssize_t received;
+	Answer answer;
+	while (true) {
+		received = recv(session->fSocket, &answerSize, 4, 0/*flags*/);
+		uint32 answerSize32 = ntohl(answerSize);
+		answerBuffer = (char *)realloc(answerBuffer, answerSize32);
+		received = recv(session->fSocket, answerBuffer, answerSize32, 0/*flags*/);
 
-	while (received = recv(session->fSocket, buffer, 1, 0/*flags*/) != NULL) {
+		answer.ParseFromString(answerBuffer);
+
 		if (errno < 0) 
-			perror("test");
+			perror("error in Receive.recv");
 		output->LockLooper();
-			output->Insert(buffer,received);
+			output->Insert(answerBuffer,received);
 		output->UnlockLooper();
 	};
 
