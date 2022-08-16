@@ -27,7 +27,8 @@ int32 boucle(void *fd) ;
 class App : public BApplication
 {
 	public:
-		App(void);
+		App();
+		~App();
 		virtual bool QuitRequested();
 		virtual void MessageReceived(BMessage *msg);
 		void ReadyToRun();

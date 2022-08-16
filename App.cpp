@@ -2,6 +2,8 @@
 
 #include <poll.h>
 
+#include "server_protocol.pb.h"
+
 #include "App.h"
 
 unsigned int App::nb_images_produites = 0;
@@ -18,6 +20,9 @@ App::App(void)
 	fMainWin->Show();
 }
 
+App::~App() {
+	google::protobuf::ShutdownProtobufLibrary();
+}
 
 /**
  * Launch ocaml
