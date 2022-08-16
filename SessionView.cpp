@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+#include "Constantes.h"
 #include "Session.h"
 #include "SessionView.h"
 
@@ -56,31 +57,29 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 	.End();
 
 
-	BRadioButton* mode_prop = new BRadioButton("Prop", new BMessage('Prop'));
-	BRadioButton* mode_first_order = new BRadioButton(B_TRANSLATE("First order"), new BMessage('Frst'));
-	BRadioButton* speed_fast = new BRadioButton("Fast", new BMessage('Fast'));
-	BRadioButton* speed_paranoid = new BRadioButton("Paranoid", new BMessage('Prnd'));
-	BRadioButton* compile = new BRadioButton("Compile", new BMessage('Cmpl'));
-	BRadioButton* interprete = new BRadioButton("Interprete", new BMessage('Intp'));
+	fMode_prop = new BRadioButton("Prop", new BMessage(kModeProp));
+	fMode_first_order = new BRadioButton(B_TRANSLATE("First order"), new BMessage(kModeFirstOrder));
+	fSpeed_fast = new BRadioButton("Fast", new BMessage(kSpeedFast));
+	fSpeed_paranoid = new BRadioButton("Paranoid", new BMessage(kSpeedParanoid));
+	fCompile = new BRadioButton("Compile", new BMessage(kCompile));
+	fInterprete = new BRadioButton("Interprete", new BMessage(kInterprete));
 
 	BGroupLayout *modeBoxLayout = BLayoutBuilder::Group<>(B_HORIZONTAL)
 	.SetInsets(2,0,2,0)
-	.Add(mode_prop)
-	.Add(mode_first_order);
-
+	.Add(fMode_prop)
+	.Add(fMode_first_order);
 	BGroupLayout *speedBoxLayout = BLayoutBuilder::Group<>(B_HORIZONTAL)
 	.SetInsets(2,0,2,0)
-	.Add(speed_fast)
-	.Add(speed_paranoid);
+	.Add(fSpeed_fast)
+	.Add(fSpeed_paranoid);
 
 	BGroupLayout *compileBoxLayout = BLayoutBuilder::Group<>(B_HORIZONTAL)
 	.SetInsets(2,0,2,0)
-	.Add(compile)
-	.Add(interprete);
+	.Add(fCompile)
+	.Add(fInterprete);
 
 	fModeBox->SetLabel(new BStringView("Order label", "Order"));
 	fModeBox->AddChild(modeBoxLayout->View());
-
 	fSpeedBox->SetLabel(new BStringView("Speed label", "Speed"));
 	fSpeedBox->AddChild(speedBoxLayout->View());
 
@@ -88,7 +87,7 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 	fCompileBox->AddChild(compileBoxLayout->View());
 	fDemonstrationBox->SetLabel(new BStringView("Demonstration label", "Demonstration"));
 	fDemonstrationBox->AddChild(fDemonstration);
-	
+
 }
 
 
@@ -154,14 +153,24 @@ void SessionView::MessageReceived(BMessage* message) {
 		}
 		case(kEnvoi) : {
 			fSession->Send(new BString(fInputView->Text()));
-//			BString * receveid = fSession->Receive();
+			break;
+		}
+		case(kModeProp) : {
+			fSession->Send(new BString("Prop"));
 			break;
 		}
 	}
 }
 
 void SessionView::AttachedToWindow() {
-	status_t status = fButton->SetTarget(this);
+	fButton->SetTarget(this);
+	fMode_prop->SetTarget(this);
+	fMode_first_order->SetTarget(this);
+	fSpeed_fast->SetTarget(this);
+	fSpeed_paranoid->SetTarget(this);
+	fCompile->SetTarget(this);
+	fInterprete->SetTarget(this);
+
 }
 
 #endif	// _SESSIONVIEW_CPP_

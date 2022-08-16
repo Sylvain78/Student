@@ -99,6 +99,9 @@ status_t Session::Receive(void *data) {
 	char *answerBuffer;
 	ssize_t received;
 	Answer answer;
+
+	GOOGLE_PROTOBUF_VERIFY_VERSION;
+
 	while (true) {
 		received = recv(session->fSocket, &answerSize, 4, 0/*flags*/);
 		uint32 answerSize32 = ntohl(answerSize);
@@ -106,7 +109,13 @@ status_t Session::Receive(void *data) {
 		received = recv(session->fSocket, answerBuffer, answerSize32, 0/*flags*/);
 
 		answer.ParseFromString(answerBuffer);
-
+		switch (answer.t_case()) {
+			case Answer::TCase::kOk :
+				output->LockLooper();
+					output->Insert("Ok");
+				output->UnlockLooper();
+			break;
+		}
 		if (errno < 0) 
 			perror("error in Receive.recv");
 		output->LockLooper();

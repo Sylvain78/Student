@@ -10,7 +10,6 @@ static const uint32 kLatexPreview=3;
 static const uint32 kSelectionTheorie=4;
 static const uint32 kNomTheorieChange=5;
 
-//TODO REMOVE static const uint32 kSignature=6;
 static const uint32 kNewSignature=6;
 static const uint32 kDeleteSignature=7;
 static const uint32 kSelectionSignature=8;
@@ -59,6 +58,13 @@ static const uint32 kServerPort=36;
 static const uint32 kLocalServer=37;
 static const uint32 kDistantServer=38;
 static const uint32 kConnect=39;
+
+static const uint32 kModeProp='Prop';
+static const uint32 kModeFirstOrder='Frst';
+static const uint32 kSpeedFast='Fast';
+static const uint32 kSpeedParanoid='Prno';
+static const uint32 kCompile='Cmpl';
+static const uint32 kInterprete='Itrp';
 
 //Status
 static const uint32 kStatusChange=40;

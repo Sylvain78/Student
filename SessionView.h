@@ -24,6 +24,12 @@ class SessionView : public BView {
 		BBox*         		 fModeBox;
 		BBox*		 		 fSpeedBox;
 		BBox*				 fCompileBox;
+		BRadioButton* 		 fMode_prop;
+		BRadioButton* 		 fMode_first_order;
+		BRadioButton* 		 fSpeed_fast;
+		BRadioButton* 		 fSpeed_paranoid;
+		BRadioButton* 		 fCompile;
+		BRadioButton* 		 fInterprete;
 		BBox*				 fDemonstrationBox;
 		BTextControl*		 fInputView;
 		BTextView*			 fOutputView;
