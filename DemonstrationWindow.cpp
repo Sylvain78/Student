@@ -5,7 +5,7 @@
 #define B_TRANSLATION_CONTEXT "DemonstrationWindow"
 
 DemonstrationWindow::DemonstrationWindow() :
-	BWindow(BRect(100,100,500,500),"Démonstrations",B_TITLED_WINDOW,B_ASYNCHRONOUS_CONTROLS | B_AUTO_UPDATE_SIZE_LIMITS),
+	BWindow(BRect(100,100,800,700),"Démonstrations",B_TITLED_WINDOW,B_ASYNCHRONOUS_CONTROLS | B_AUTO_UPDATE_SIZE_LIMITS),
 	fServerWindow(NULL)
 {
 	fMenuBar = new BMenuBar("menubar");

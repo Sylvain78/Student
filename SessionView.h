@@ -31,7 +31,7 @@ class SessionView : public BView {
 		BRadioButton* 		 fCompile;
 		BRadioButton* 		 fInterprete;
 		BBox*				 fDemonstrationBox;
-		BTextControl*		 fInputView;
+		BTextView*			 fInputView;
 		BTextView*			 fOutputView;
 		BString*			 fStatusText;
 		BButton*			 fButton;

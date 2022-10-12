@@ -32,6 +32,7 @@ SOURCEFILE=Schema.cpp
 DEPENDENCY=Schema.h LView.h|Constantes.h
 SOURCEFILE=Schema.h
 SOURCEFILE=Session.cpp
+DEPENDENCY=Session.h App.h|Signature.h Constante.h|LView.h Constantes.h|Relation.h Operation.h|OCamlModule.h|LatexUtils.h|MainWindow.h|DemonstrationWindow.h|LatexListScrollView.h|LatexListView.h|LatexListItem.h|ServerWindow.h|SessionView.h Theorie.h|Axiome.h LWindow.h|TheorieWindow.h Schema.h|server_protocol.pb.h
 SOURCEFILE=Signature.cpp
 DEPENDENCY=Signature.h Constante.h|LView.h Constantes.h|Relation.h Operation.h|OCamlModule.h|LatexUtils.h App.h|MainWindow.h|DemonstrationWindow.h|LatexListScrollView.h|LatexListView.h|LatexListItem.h|ServerWindow.h|SessionView.h Theorie.h|Axiome.h LWindow.h|TheorieWindow.h Schema.h
 SOURCEFILE=Signature.h

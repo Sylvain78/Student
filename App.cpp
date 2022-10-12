@@ -491,6 +491,7 @@ BMessage* App::GetSettings() {
 
 void App::LaunchLocalServer(const uint16 port) {
 	// Load the app image... and pass the args
+	printf("%s\n","App::LaunchLocalServer");fflush(stdout);	
 	int arg_c=4;
 	char **arg_v;
 	

@@ -108,6 +108,13 @@ status_t Session::Receive(void *data) {
 		answerBuffer = (char *)realloc(answerBuffer, answerSize32);
 		received = recv(session->fSocket, answerBuffer, answerSize32, 0/*flags*/);
 
+		if (received == -1) {
+			BMessage *messageQuit = new BMessage(kStatusChange);
+			messageQuit->AddString("status", "Disconnected");
+			output->Parent()->MessageReceived(messageQuit);
+			return B_OK;
+		}  
+		
 		answer.ParseFromString(answerBuffer);
 		switch (answer.t_case()) {
 			case Answer::TCase::kOk :

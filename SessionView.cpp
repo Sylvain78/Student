@@ -21,17 +21,20 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 
 	fStatusText(new BString("Not connected")) {
 
-	fInputView  = new BTextControl("InputView",NULL,NULL,NULL);
+	fInputView  = new BTextView("InputView");
+	fInputView->MakeFocus(true);
+	BScrollView* fScrollInputView = new BScrollView("ScrollInput",fInputView, B_FOLLOW_ALL | B_WILL_DRAW | B_FRAME_EVENTS, false,
+		true, B_FANCY_BORDER);
+	fScrollInputView->SetViewColor(255,255,255);
 
 	fButton = new BButton("Envoi", "Envoi", new BMessage(kEnvoi));
 
 	BStringView* statusView = new BStringView("status",fStatusText->String());
-
-	fInputView->MakeFocus(true);
-
+	
 	fOutputView = new BTextView(BRect(), "OutputView", BRect(), B_FOLLOW_ALL, B_FRAME_EVENTS | B_WILL_DRAW);
 
-	BScrollView* fScrollOutputView = new BScrollView("ScrollOutput",fOutputView, B_FOLLOW_ALL, 0, true, true);
+	BScrollView* fScrollOutputView = new BScrollView("ScrollOutput",fOutputView,  B_FOLLOW_ALL | B_WILL_DRAW | B_FRAME_EVENTS, false,
+		true, B_FANCY_BORDER);
 	fScrollOutputView->SetViewColor(255,255,255);
 	fOutputView->MakeEditable(false);
 
@@ -42,11 +45,14 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 			.Add(fSpeedBox)
 			.Add(fCompileBox)
 		.End()
-		.Add(fDemonstrationBox)
 		.AddGroup(B_HORIZONTAL)
 			.SetInsets(5,5,5,5)
-			.Add(fInputView)
-			.Add(fButton)
+			.AddGroup(B_HORIZONTAL)
+				.SetInsets(5,5,5,5)
+				.Add(fScrollInputView)
+				.Add(fButton)
+			.End()
+			.Add(fDemonstrationBox)
 		.End()
 		.AddGroup(B_HORIZONTAL)
 		//TODO font & color
