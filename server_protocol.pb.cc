@@ -192,17 +192,6 @@ struct CommandDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CommandDefaultTypeInternal _Command_default_instance_;
-PROTOBUF_CONSTEXPR Answer_Ok::Answer_Ok(
-    ::_pbi::ConstantInitialized){}
-struct Answer_OkDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR Answer_OkDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~Answer_OkDefaultTypeInternal() {}
-  union {
-    Answer_Ok _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Answer_OkDefaultTypeInternal _Answer_Ok_default_instance_;
 PROTOBUF_CONSTEXPR Answer_Error::Answer_Error(
     ::_pbi::ConstantInitialized)
   : error_message_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
@@ -228,7 +217,7 @@ struct AnswerDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AnswerDefaultTypeInternal _Answer_default_instance_;
-static ::_pb::Metadata file_level_metadata_server_5fprotocol_2eproto[17];
+static ::_pb::Metadata file_level_metadata_server_5fprotocol_2eproto[16];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_server_5fprotocol_2eproto[3];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_server_5fprotocol_2eproto = nullptr;
 
@@ -350,13 +339,8 @@ const uint32_t TableStruct_server_5fprotocol_2eproto::offsets[] PROTOBUF_SECTION
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
   ::_pbi::kInvalidFieldOffsetTag,
+  ::_pbi::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::Command, t_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::Answer_Ok, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Answer_Error, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -391,9 +375,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 83, -1, -1, sizeof(::Command_History)},
   { 89, -1, -1, sizeof(::Command_Quit)},
   { 95, -1, -1, sizeof(::Command)},
-  { 118, -1, -1, sizeof(::Answer_Ok)},
-  { 124, -1, -1, sizeof(::Answer_Error)},
-  { 132, -1, -1, sizeof(::Answer)},
+  { 119, -1, -1, sizeof(::Answer_Error)},
+  { 127, -1, -1, sizeof(::Answer)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -411,7 +394,6 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::_Command_History_default_instance_._instance,
   &::_Command_Quit_default_instance_._instance,
   &::_Command_default_instance_._instance,
-  &::_Answer_Ok_default_instance_._instance,
   &::_Answer_Error_default_instance_._instance,
   &::_Answer_default_instance_._instance,
 };
@@ -419,7 +401,7 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_server_5fprotocol_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\025server_protocol.proto\":\n\020Notation_elem"
   "ent\022\017\n\005param\030\001 \001(\tH\000\022\020\n\006string\030\002 \001(\tH\000B\003"
-  "\n\001t\"\374\007\n\007Command\022\021\n\007verbose\030\001 \001(\005H\000\022\035\n\004pr"
+  "\n\001t\"\214\010\n\007Command\022\021\n\007verbose\030\001 \001(\005H\000\022\035\n\004pr"
   "op\030\002 \001(\0132\r.Command.PropH\000\0221\n\016keep_notati"
   "ons\030\003 \001(\0132\027.Command.Keep_notationsH\000\0225\n\020"
   "expand_notations\030\004 \001(\0132\031.Command.Expand_"
@@ -432,32 +414,33 @@ const char descriptor_table_protodef_server_5fprotocol_2eproto[] PROTOBUF_SECTIO
   "\000\022#\n\007theorem\030\013 \001(\0132\020.Command.TheoremH\000\022\037"
   "\n\005axiom\030\014 \001(\0132\016.Command.AxiomH\000\022#\n\007histo"
   "ry\030\r \001(\0132\020.Command.HistoryH\000\022\016\n\004show\030\016 \001"
-  "(\tH\000\022\026\n\004list\030\017 \001(\0162\006.KnownH\000\022\035\n\004quit\030\020 \001"
-  "(\0132\r.Command.QuitH\000\032\006\n\004Prop\0322\n\004File\022\030\n\004m"
-  "ode\030\001 \001(\0162\n.File_mode\022\020\n\010filename\030\002 \001(\t\032"
-  "\020\n\016Keep_notations\032\022\n\020Expand_notations\032\n\n"
-  "\010Compiled\032\r\n\013Interpreted\032\r\n\013First_order\032"
-  "q\n\010Notation\022\014\n\004name\030\001 \001(\t\022\016\n\006params\030\002 \003("
-  "\t\022!\n\006syntax\030\003 \003(\0132\021.Notation_element\022$\n\t"
-  "semantics\030\004 \003(\0132\021.Notation_element\032~\n\007Th"
-  "eorem\022\014\n\004name\030\001 \001(\t\022\016\n\006params\030\002 \003(\t\022\021\n\tp"
-  "remisses\030\003 \003(\t\022\022\n\nconclusion\030\004 \001(\t\022\025\n\rde"
-  "monstration\030\005 \003(\t\022\027\n\006status\030\006 \001(\0162\007.Stat"
-  "us\032&\n\005Axiom\022\014\n\004name\030\001 \001(\t\022\017\n\007formula\030\002 \001"
-  "(\t\032\t\n\007History\032\006\n\004QuitB\003\n\001t\"\232\001\n\006Answer\022\030\n"
-  "\002ok\030\001 \001(\0132\n.Answer.OkH\000\022\036\n\005error\030\002 \001(\0132\r"
-  ".Answer.ErrorH\000\022\020\n\006answer\030\003 \001(\tH\000\032\004\n\002Ok\032"
-  "9\n\005Error\022\025\n\rerror_message\030\001 \001(\t\022\031\n\007comma"
-  "nd\030\002 \001(\0132\010.CommandB\003\n\001t*!\n\tFile_mode\022\010\n\004"
-  "TEXT\020\000\022\n\n\006BINARY\020\001*2\n\006Status\022\016\n\nUNVERIFI"
-  "ED\020\000\022\014\n\010VERIFIED\020\001\022\n\n\006UNTRUE\020\002*!\n\005Known\022"
-  "\n\n\006AXIOMS\020\000\022\014\n\010THEOREMS\020\001b\006proto3"
+  "(\tH\000\022\026\n\004list\030\017 \001(\0162\006.KnownH\000\022\016\n\004user\030\020 \001"
+  "(\tH\000\022\035\n\004quit\030\021 \001(\0132\r.Command.QuitH\000\032\006\n\004P"
+  "rop\0322\n\004File\022\030\n\004mode\030\001 \001(\0162\n.File_mode\022\020\n"
+  "\010filename\030\002 \001(\t\032\020\n\016Keep_notations\032\022\n\020Exp"
+  "and_notations\032\n\n\010Compiled\032\r\n\013Interpreted"
+  "\032\r\n\013First_order\032q\n\010Notation\022\014\n\004name\030\001 \001("
+  "\t\022\016\n\006params\030\002 \003(\t\022!\n\006syntax\030\003 \003(\0132\021.Nota"
+  "tion_element\022$\n\tsemantics\030\004 \003(\0132\021.Notati"
+  "on_element\032~\n\007Theorem\022\014\n\004name\030\001 \001(\t\022\016\n\006p"
+  "arams\030\002 \003(\t\022\021\n\tpremisses\030\003 \003(\t\022\022\n\nconclu"
+  "sion\030\004 \001(\t\022\025\n\rdemonstration\030\005 \003(\t\022\027\n\006sta"
+  "tus\030\006 \001(\0162\007.Status\032&\n\005Axiom\022\014\n\004name\030\001 \001("
+  "\t\022\017\n\007formula\030\002 \001(\t\032\t\n\007History\032\006\n\004QuitB\003\n"
+  "\001t\"\222\001\n\006Answer\022\026\n\002ok\030\001 \001(\0132\010.CommandH\000\022\036\n"
+  "\005error\030\002 \001(\0132\r.Answer.ErrorH\000\022\020\n\006answer\030"
+  "\003 \001(\tH\000\0329\n\005Error\022\025\n\rerror_message\030\001 \001(\t\022"
+  "\031\n\007command\030\002 \001(\0132\010.CommandB\003\n\001t*!\n\tFile_"
+  "mode\022\010\n\004TEXT\020\000\022\n\n\006BINARY\020\001*2\n\006Status\022\016\n\n"
+  "UNVERIFIED\020\000\022\014\n\010VERIFIED\020\001\022\n\n\006UNTRUE\020\002*,"
+  "\n\005Known\022\n\n\006AXIOMS\020\000\022\014\n\010THEOREMS\020\001\022\t\n\005FIL"
+  "ES\020\002b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_server_5fprotocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fprotocol_2eproto = {
-    false, false, 1393, descriptor_table_protodef_server_5fprotocol_2eproto,
+    false, false, 1412, descriptor_table_protodef_server_5fprotocol_2eproto,
     "server_protocol.proto",
-    &descriptor_table_server_5fprotocol_2eproto_once, nullptr, 0, 17,
+    &descriptor_table_server_5fprotocol_2eproto_once, nullptr, 0, 16,
     schemas, file_default_instances, TableStruct_server_5fprotocol_2eproto::offsets,
     file_level_metadata_server_5fprotocol_2eproto, file_level_enum_descriptors_server_5fprotocol_2eproto,
     file_level_service_descriptors_server_5fprotocol_2eproto,
@@ -505,6 +488,7 @@ bool Known_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
+    case 2:
       return true;
     default:
       return false;
@@ -2570,6 +2554,10 @@ Command::Command(const Command& from)
       _internal_set_list(from._internal_list());
       break;
     }
+    case kUser: {
+      _internal_set_user(from._internal_user());
+      break;
+    }
     case kQuit: {
       _internal_mutable_quit()->::Command_Quit::MergeFrom(from._internal_quit());
       break;
@@ -2690,6 +2678,10 @@ void Command::clear_t() {
     }
     case kList: {
       // No need to clear
+      break;
+    }
+    case kUser: {
+      t_.user_.Destroy();
       break;
     }
     case kQuit: {
@@ -2845,9 +2837,19 @@ const char* Command::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
         } else
           goto handle_unusual;
         continue;
-      // .Command.Quit quit = 16;
+      // string user = 16;
       case 16:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 130)) {
+          auto str = _internal_mutable_user();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "Command.user"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .Command.Quit quit = 17;
+      case 17:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 138)) {
           ptr = ctx->ParseMessage(_internal_mutable_quit(), ptr);
           CHK_(ptr);
         } else
@@ -2989,10 +2991,20 @@ uint8_t* Command::_InternalSerialize(
       15, this->_internal_list(), target);
   }
 
-  // .Command.Quit quit = 16;
+  // string user = 16;
+  if (_internal_has_user()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_user().data(), static_cast<int>(this->_internal_user().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Command.user");
+    target = stream->WriteStringMaybeAliased(
+        16, this->_internal_user(), target);
+  }
+
+  // .Command.Quit quit = 17;
   if (_internal_has_quit()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(16, _Internal::quit(this),
+      InternalWriteMessage(17, _Internal::quit(this),
         _Internal::quit(this).GetCachedSize(), target, stream);
   }
 
@@ -3115,7 +3127,14 @@ size_t Command::ByteSizeLong() const {
         ::_pbi::WireFormatLite::EnumSize(this->_internal_list());
       break;
     }
-    // .Command.Quit quit = 16;
+    // string user = 16;
+    case kUser: {
+      total_size += 2 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_user());
+      break;
+    }
+    // .Command.Quit quit = 17;
     case kQuit: {
       total_size += 2 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -3209,6 +3228,10 @@ void Command::MergeFrom(const Command& from) {
       _internal_set_list(from._internal_list());
       break;
     }
+    case kUser: {
+      _internal_set_user(from._internal_user());
+      break;
+    }
     case kQuit: {
       _internal_mutable_quit()->::Command_Quit::MergeFrom(from._internal_quit());
       break;
@@ -3242,45 +3265,6 @@ void Command::InternalSwap(Command* other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fprotocol_2eproto_getter, &descriptor_table_server_5fprotocol_2eproto_once,
       file_level_metadata_server_5fprotocol_2eproto[13]);
-}
-
-// ===================================================================
-
-class Answer_Ok::_Internal {
- public:
-};
-
-Answer_Ok::Answer_Ok(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
-  // @@protoc_insertion_point(arena_constructor:Answer.Ok)
-}
-Answer_Ok::Answer_Ok(const Answer_Ok& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:Answer.Ok)
-}
-
-
-
-
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Answer_Ok::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Answer_Ok::GetClassData() const { return &_class_data_; }
-
-
-
-
-
-
-
-::PROTOBUF_NAMESPACE_ID::Metadata Answer_Ok::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_server_5fprotocol_2eproto_getter, &descriptor_table_server_5fprotocol_2eproto_once,
-      file_level_metadata_server_5fprotocol_2eproto[14]);
 }
 
 // ===================================================================
@@ -3517,18 +3501,18 @@ void Answer_Error::InternalSwap(Answer_Error* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Answer_Error::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fprotocol_2eproto_getter, &descriptor_table_server_5fprotocol_2eproto_once,
-      file_level_metadata_server_5fprotocol_2eproto[15]);
+      file_level_metadata_server_5fprotocol_2eproto[14]);
 }
 
 // ===================================================================
 
 class Answer::_Internal {
  public:
-  static const ::Answer_Ok& ok(const Answer* msg);
+  static const ::Command& ok(const Answer* msg);
   static const ::Answer_Error& error(const Answer* msg);
 };
 
-const ::Answer_Ok&
+const ::Command&
 Answer::_Internal::ok(const Answer* msg) {
   return *msg->t_.ok_;
 }
@@ -3536,7 +3520,7 @@ const ::Answer_Error&
 Answer::_Internal::error(const Answer* msg) {
   return *msg->t_.error_;
 }
-void Answer::set_allocated_ok(::Answer_Ok* ok) {
+void Answer::set_allocated_ok(::Command* ok) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   clear_t();
   if (ok) {
@@ -3578,7 +3562,7 @@ Answer::Answer(const Answer& from)
   clear_has_t();
   switch (from.t_case()) {
     case kOk: {
-      _internal_mutable_ok()->::Answer_Ok::MergeFrom(from._internal_ok());
+      _internal_mutable_ok()->::Command::MergeFrom(from._internal_ok());
       break;
     }
     case kError: {
@@ -3663,7 +3647,7 @@ const char* Answer::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .Answer.Ok ok = 1;
+      // .Command ok = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_ok(), ptr);
@@ -3718,7 +3702,7 @@ uint8_t* Answer::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .Answer.Ok ok = 1;
+  // .Command ok = 1;
   if (_internal_has_ok()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(1, _Internal::ok(this),
@@ -3759,7 +3743,7 @@ size_t Answer::ByteSizeLong() const {
   (void) cached_has_bits;
 
   switch (t_case()) {
-    // .Answer.Ok ok = 1;
+    // .Command ok = 1;
     case kOk: {
       total_size += 1 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -3808,7 +3792,7 @@ void Answer::MergeFrom(const Answer& from) {
 
   switch (from.t_case()) {
     case kOk: {
-      _internal_mutable_ok()->::Answer_Ok::MergeFrom(from._internal_ok());
+      _internal_mutable_ok()->::Command::MergeFrom(from._internal_ok());
       break;
     }
     case kError: {
@@ -3847,7 +3831,7 @@ void Answer::InternalSwap(Answer* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Answer::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fprotocol_2eproto_getter, &descriptor_table_server_5fprotocol_2eproto_once,
-      file_level_metadata_server_5fprotocol_2eproto[16]);
+      file_level_metadata_server_5fprotocol_2eproto[15]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -3907,10 +3891,6 @@ Arena::CreateMaybeMessage< ::Command_Quit >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::Command*
 Arena::CreateMaybeMessage< ::Command >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Command >(arena);
-}
-template<> PROTOBUF_NOINLINE ::Answer_Ok*
-Arena::CreateMaybeMessage< ::Answer_Ok >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::Answer_Ok >(arena);
 }
 template<> PROTOBUF_NOINLINE ::Answer_Error*
 Arena::CreateMaybeMessage< ::Answer_Error >(Arena* arena) {

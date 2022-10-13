@@ -119,7 +119,11 @@ status_t Session::Receive(void *data) {
 		switch (answer.t_case()) {
 			case Answer::TCase::kOk :
 				output->LockLooper();
-					output->Insert("Ok");
+					output->Insert("Ok ");
+					switch(answer.ok().t_case()) {
+						case Command::TCase::kProp :
+						output->Insert("Prop\n");
+					}
 				output->UnlockLooper();
 			break;
 		}

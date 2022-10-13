@@ -52,9 +52,6 @@ extern AnswerDefaultTypeInternal _Answer_default_instance_;
 class Answer_Error;
 struct Answer_ErrorDefaultTypeInternal;
 extern Answer_ErrorDefaultTypeInternal _Answer_Error_default_instance_;
-class Answer_Ok;
-struct Answer_OkDefaultTypeInternal;
-extern Answer_OkDefaultTypeInternal _Answer_Ok_default_instance_;
 class Command;
 struct CommandDefaultTypeInternal;
 extern CommandDefaultTypeInternal _Command_default_instance_;
@@ -100,7 +97,6 @@ extern Notation_elementDefaultTypeInternal _Notation_element_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::Answer* Arena::CreateMaybeMessage<::Answer>(Arena*);
 template<> ::Answer_Error* Arena::CreateMaybeMessage<::Answer_Error>(Arena*);
-template<> ::Answer_Ok* Arena::CreateMaybeMessage<::Answer_Ok>(Arena*);
 template<> ::Command* Arena::CreateMaybeMessage<::Command>(Arena*);
 template<> ::Command_Axiom* Arena::CreateMaybeMessage<::Command_Axiom>(Arena*);
 template<> ::Command_Compiled* Arena::CreateMaybeMessage<::Command_Compiled>(Arena*);
@@ -171,12 +167,13 @@ inline bool Status_Parse(
 enum Known : int {
   AXIOMS = 0,
   THEOREMS = 1,
+  FILES = 2,
   Known_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   Known_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool Known_IsValid(int value);
 constexpr Known Known_MIN = AXIOMS;
-constexpr Known Known_MAX = THEOREMS;
+constexpr Known Known_MAX = FILES;
 constexpr int Known_ARRAYSIZE = Known_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Known_descriptor();
@@ -2163,7 +2160,8 @@ class Command final :
     kHistory = 13,
     kShow = 14,
     kList = 15,
-    kQuit = 16,
+    kUser = 16,
+    kQuit = 17,
     T_NOT_SET = 0,
   };
 
@@ -2271,7 +2269,8 @@ class Command final :
     kHistoryFieldNumber = 13,
     kShowFieldNumber = 14,
     kListFieldNumber = 15,
-    kQuitFieldNumber = 16,
+    kUserFieldNumber = 16,
+    kQuitFieldNumber = 17,
   };
   // int32 verbose = 1;
   bool has_verbose() const;
@@ -2533,7 +2532,25 @@ class Command final :
   void _internal_set_list(::Known value);
   public:
 
-  // .Command.Quit quit = 16;
+  // string user = 16;
+  bool has_user() const;
+  private:
+  bool _internal_has_user() const;
+  public:
+  void clear_user();
+  const std::string& user() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_user(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_user();
+  PROTOBUF_NODISCARD std::string* release_user();
+  void set_allocated_user(std::string* user);
+  private:
+  const std::string& _internal_user() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_user(const std::string& value);
+  std::string* _internal_mutable_user();
+  public:
+
+  // .Command.Quit quit = 17;
   bool has_quit() const;
   private:
   bool _internal_has_quit() const;
@@ -2571,6 +2588,7 @@ class Command final :
   void set_has_history();
   void set_has_show();
   void set_has_list();
+  void set_has_user();
   void set_has_quit();
 
   inline bool has_t() const;
@@ -2597,127 +2615,12 @@ class Command final :
     ::Command_History* history_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr show_;
     int list_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr user_;
     ::Command_Quit* quit_;
   } t_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   uint32_t _oneof_case_[1];
 
-  friend struct ::TableStruct_server_5fprotocol_2eproto;
-};
-// -------------------------------------------------------------------
-
-class Answer_Ok final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Answer.Ok) */ {
- public:
-  inline Answer_Ok() : Answer_Ok(nullptr) {}
-  explicit PROTOBUF_CONSTEXPR Answer_Ok(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  Answer_Ok(const Answer_Ok& from);
-  Answer_Ok(Answer_Ok&& from) noexcept
-    : Answer_Ok() {
-    *this = ::std::move(from);
-  }
-
-  inline Answer_Ok& operator=(const Answer_Ok& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Answer_Ok& operator=(Answer_Ok&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Answer_Ok& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const Answer_Ok* internal_default_instance() {
-    return reinterpret_cast<const Answer_Ok*>(
-               &_Answer_Ok_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    14;
-
-  friend void swap(Answer_Ok& a, Answer_Ok& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(Answer_Ok* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Answer_Ok* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Answer_Ok* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<Answer_Ok>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const Answer_Ok& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const Answer_Ok& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
-  }
-  public:
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Answer.Ok";
-  }
-  protected:
-  explicit Answer_Ok(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // @@protoc_insertion_point(class_scope:Answer.Ok)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
   friend struct ::TableStruct_server_5fprotocol_2eproto;
 };
 // -------------------------------------------------------------------
@@ -2770,7 +2673,7 @@ class Answer_Error final :
                &_Answer_Error_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    14;
 
   friend void swap(Answer_Error& a, Answer_Error& b) {
     a.Swap(&b);
@@ -2945,7 +2848,7 @@ class Answer final :
                &_Answer_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    15;
 
   friend void swap(Answer& a, Answer& b) {
     a.Swap(&b);
@@ -3013,7 +2916,6 @@ class Answer final :
 
   // nested types ----------------------------------------------------
 
-  typedef Answer_Ok Ok;
   typedef Answer_Error Error;
 
   // accessors -------------------------------------------------------
@@ -3023,23 +2925,23 @@ class Answer final :
     kErrorFieldNumber = 2,
     kAnswerFieldNumber = 3,
   };
-  // .Answer.Ok ok = 1;
+  // .Command ok = 1;
   bool has_ok() const;
   private:
   bool _internal_has_ok() const;
   public:
   void clear_ok();
-  const ::Answer_Ok& ok() const;
-  PROTOBUF_NODISCARD ::Answer_Ok* release_ok();
-  ::Answer_Ok* mutable_ok();
-  void set_allocated_ok(::Answer_Ok* ok);
+  const ::Command& ok() const;
+  PROTOBUF_NODISCARD ::Command* release_ok();
+  ::Command* mutable_ok();
+  void set_allocated_ok(::Command* ok);
   private:
-  const ::Answer_Ok& _internal_ok() const;
-  ::Answer_Ok* _internal_mutable_ok();
+  const ::Command& _internal_ok() const;
+  ::Command* _internal_mutable_ok();
   public:
   void unsafe_arena_set_allocated_ok(
-      ::Answer_Ok* ok);
-  ::Answer_Ok* unsafe_arena_release_ok();
+      ::Command* ok);
+  ::Command* unsafe_arena_release_ok();
 
   // .Answer.Error error = 2;
   bool has_error() const;
@@ -3095,7 +2997,7 @@ class Answer final :
   union TUnion {
     constexpr TUnion() : _constinit_{} {}
       ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-    ::Answer_Ok* ok_;
+    ::Command* ok_;
     ::Answer_Error* error_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr answer_;
   } t_;
@@ -5091,7 +4993,84 @@ inline void Command::set_list(::Known value) {
   // @@protoc_insertion_point(field_set:Command.list)
 }
 
-// .Command.Quit quit = 16;
+// string user = 16;
+inline bool Command::_internal_has_user() const {
+  return t_case() == kUser;
+}
+inline bool Command::has_user() const {
+  return _internal_has_user();
+}
+inline void Command::set_has_user() {
+  _oneof_case_[0] = kUser;
+}
+inline void Command::clear_user() {
+  if (_internal_has_user()) {
+    t_.user_.Destroy();
+    clear_has_t();
+  }
+}
+inline const std::string& Command::user() const {
+  // @@protoc_insertion_point(field_get:Command.user)
+  return _internal_user();
+}
+template <typename ArgT0, typename... ArgT>
+inline void Command::set_user(ArgT0&& arg0, ArgT... args) {
+  if (!_internal_has_user()) {
+    clear_t();
+    set_has_user();
+    t_.user_.InitDefault();
+  }
+  t_.user_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Command.user)
+}
+inline std::string* Command::mutable_user() {
+  std::string* _s = _internal_mutable_user();
+  // @@protoc_insertion_point(field_mutable:Command.user)
+  return _s;
+}
+inline const std::string& Command::_internal_user() const {
+  if (_internal_has_user()) {
+    return t_.user_.Get();
+  }
+  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
+}
+inline void Command::_internal_set_user(const std::string& value) {
+  if (!_internal_has_user()) {
+    clear_t();
+    set_has_user();
+    t_.user_.InitDefault();
+  }
+  t_.user_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Command::_internal_mutable_user() {
+  if (!_internal_has_user()) {
+    clear_t();
+    set_has_user();
+    t_.user_.InitDefault();
+  }
+  return t_.user_.Mutable(      GetArenaForAllocation());
+}
+inline std::string* Command::release_user() {
+  // @@protoc_insertion_point(field_release:Command.user)
+  if (_internal_has_user()) {
+    clear_has_t();
+    return t_.user_.Release();
+  } else {
+    return nullptr;
+  }
+}
+inline void Command::set_allocated_user(std::string* user) {
+  if (has_t()) {
+    clear_t();
+  }
+  if (user != nullptr) {
+    set_has_user();
+    t_.user_.InitAllocated(user, GetArenaForAllocation());
+  }
+  // @@protoc_insertion_point(field_set_allocated:Command.user)
+}
+
+// .Command.Quit quit = 17;
 inline bool Command::_internal_has_quit() const {
   return t_case() == kQuit;
 }
@@ -5174,10 +5153,6 @@ inline void Command::clear_has_t() {
 inline Command::TCase Command::t_case() const {
   return Command::TCase(_oneof_case_[0]);
 }
-// -------------------------------------------------------------------
-
-// Answer_Ok
-
 // -------------------------------------------------------------------
 
 // Answer_Error
@@ -5326,7 +5301,7 @@ inline void Answer_Error::set_allocated_command(::Command* command) {
 
 // Answer
 
-// .Answer.Ok ok = 1;
+// .Command ok = 1;
 inline bool Answer::_internal_has_ok() const {
   return t_case() == kOk;
 }
@@ -5344,11 +5319,11 @@ inline void Answer::clear_ok() {
     clear_has_t();
   }
 }
-inline ::Answer_Ok* Answer::release_ok() {
+inline ::Command* Answer::release_ok() {
   // @@protoc_insertion_point(field_release:Answer.ok)
   if (_internal_has_ok()) {
     clear_has_t();
-    ::Answer_Ok* temp = t_.ok_;
+    ::Command* temp = t_.ok_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
@@ -5358,27 +5333,27 @@ inline ::Answer_Ok* Answer::release_ok() {
     return nullptr;
   }
 }
-inline const ::Answer_Ok& Answer::_internal_ok() const {
+inline const ::Command& Answer::_internal_ok() const {
   return _internal_has_ok()
       ? *t_.ok_
-      : reinterpret_cast< ::Answer_Ok&>(::_Answer_Ok_default_instance_);
+      : reinterpret_cast< ::Command&>(::_Command_default_instance_);
 }
-inline const ::Answer_Ok& Answer::ok() const {
+inline const ::Command& Answer::ok() const {
   // @@protoc_insertion_point(field_get:Answer.ok)
   return _internal_ok();
 }
-inline ::Answer_Ok* Answer::unsafe_arena_release_ok() {
+inline ::Command* Answer::unsafe_arena_release_ok() {
   // @@protoc_insertion_point(field_unsafe_arena_release:Answer.ok)
   if (_internal_has_ok()) {
     clear_has_t();
-    ::Answer_Ok* temp = t_.ok_;
+    ::Command* temp = t_.ok_;
     t_.ok_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Answer::unsafe_arena_set_allocated_ok(::Answer_Ok* ok) {
+inline void Answer::unsafe_arena_set_allocated_ok(::Command* ok) {
   clear_t();
   if (ok) {
     set_has_ok();
@@ -5386,16 +5361,16 @@ inline void Answer::unsafe_arena_set_allocated_ok(::Answer_Ok* ok) {
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Answer.ok)
 }
-inline ::Answer_Ok* Answer::_internal_mutable_ok() {
+inline ::Command* Answer::_internal_mutable_ok() {
   if (!_internal_has_ok()) {
     clear_t();
     set_has_ok();
-    t_.ok_ = CreateMaybeMessage< ::Answer_Ok >(GetArenaForAllocation());
+    t_.ok_ = CreateMaybeMessage< ::Command >(GetArenaForAllocation());
   }
   return t_.ok_;
 }
-inline ::Answer_Ok* Answer::mutable_ok() {
-  ::Answer_Ok* _msg = _internal_mutable_ok();
+inline ::Command* Answer::mutable_ok() {
+  ::Command* _msg = _internal_mutable_ok();
   // @@protoc_insertion_point(field_mutable:Answer.ok)
   return _msg;
 }
@@ -5563,8 +5538,6 @@ inline Answer::TCase Answer::t_case() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
