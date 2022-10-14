@@ -32,7 +32,7 @@ class SessionView : public BView {
 		BRadioButton* 		 fInterprete;
 		BBox*				 fDemonstrationBox;
 		BTextView*			 fInputView;
-		BTextView*			 fOutputView;
+		BListView*			 fOutputView;
 		BString*			 fStatusText;
 		BButton*			 fButton;
 

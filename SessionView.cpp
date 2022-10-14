@@ -31,12 +31,10 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 
 	BStringView* statusView = new BStringView("status",fStatusText->String());
 	
-	fOutputView = new BTextView(BRect(), "OutputView", BRect(), B_FOLLOW_ALL, B_FRAME_EVENTS | B_WILL_DRAW);
-
-	BScrollView* fScrollOutputView = new BScrollView("ScrollOutput",fOutputView,  B_FOLLOW_ALL | B_WILL_DRAW | B_FRAME_EVENTS, false,
-		true, B_FANCY_BORDER);
+	
+	LatexListScrollView* fScrollOutputView = new LatexListScrollView();
 	fScrollOutputView->SetViewColor(255,255,255);
-	fOutputView->MakeEditable(false);
+	fOutputView = fScrollOutputView->GetView();
 
 	BLayoutBuilder::Group<>(this, B_VERTICAL)
 		.SetInsets(B_USE_WINDOW_INSETS)
@@ -113,7 +111,7 @@ void SessionView::MessageReceived(BMessage* message) {
 
 			fSession = new Session(host, port, fOutputView);
 			std::cout << "appel de Session::Connect" << std::endl;
-			int connection = fSession->Connect(fOutputView);
+			int connection = fSession->Connect();
 			if (connection < 0) {
 		 		newStatus = (char *)realloc(newStatus,strlen("Failed to connect to ") +strlen(host)+1+5);
 		 		sprintf(newStatus, "Failed to connect to %s:%d", host, port);

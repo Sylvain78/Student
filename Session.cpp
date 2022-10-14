@@ -8,14 +8,14 @@
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "Session"
 
-Session::Session(const char* host, const uint16 port, BTextView *output) :
+Session::Session(const char* host, const uint16 port, BListView *output) :
 	fHost(host),
 	fPort(port)
 	{
 		fOutput = output;
 	}
 
-int Session::Connect(BTextView *outputView) {
+int Session::Connect() {
 	struct hostent* host = gethostbyname(fHost);
 	if (host == NULL) {
 		perror("gethostbyname");
@@ -77,7 +77,7 @@ void Session::LaunchLocalServer(const uint16 port) {
 	fLocalServerLaunched = true;
 }
 
-BTextView *Session::GetOutput() {
+BListView *Session::GetOutput() {
 	return fOutput;
 }
 
@@ -94,7 +94,7 @@ status_t Session::Send(BString *text) {
 
 status_t Session::Receive(void *data) {
 	Session *session = (Session *)data;
-	BTextView *output = session->GetOutput();
+	BListView *output = session->GetOutput();
 	uint32 answerSize;
 	char *answerBuffer;
 	ssize_t received;
@@ -119,10 +119,9 @@ status_t Session::Receive(void *data) {
 		switch (answer.t_case()) {
 			case Answer::TCase::kOk :
 				output->LockLooper();
-					output->Insert("Ok ");
 					switch(answer.ok().t_case()) {
 						case Command::TCase::kProp :
-						output->Insert("Prop\n");
+						output->AddItem(new LatexListItem(new LView("Prop : Ok ")));
 					}
 				output->UnlockLooper();
 			break;
@@ -130,7 +129,7 @@ status_t Session::Receive(void *data) {
 		if (errno < 0) 
 			perror("error in Receive.recv");
 		output->LockLooper();
-			output->Insert(answerBuffer,received);
+//			output->Insert(answerBuffer,received);
 		output->UnlockLooper();
 	};
 

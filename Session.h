@@ -22,13 +22,13 @@ enum Flags {
 
 class Session {
 	public:
-		Session(const char* host, const uint16 port, BTextView *output);
-		int Connect(BTextView *outputView);
+		Session(const char* host, const uint16 port, BListView *output);
+		int Connect();
 		status_t Send(BString *text);
 		static status_t Receive(void *data);
 		bool IsLocalServerLaunched();
 		void LaunchLocalServer(const uint16 port);
-		BTextView* GetOutput();
+		BListView* GetOutput();
 
 	private:
 		Flags  fFlags;
@@ -36,7 +36,7 @@ class Session {
 		const uint16 fPort;
 		bool fLocalServerLaunched=false;
 		int fSocket;
-		BTextView *fOutput;
+		BListView *fOutput;
 };	
 
 #endif	// _SESSION_H_
