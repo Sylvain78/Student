@@ -10,12 +10,12 @@ LView::LView(LView* lview)
 	fBitmap(lview->fBitmap)
 {}
 
-LView::LView(const BString& texte)
+LView::LView(const BString& texte, rgb_color *bgColor)
 	:BView("LView", B_FOLLOW_NONE|B_WILL_DRAW),
        fLatex(new BString(texte)),
        fOldLatex(new BString("")),
        fBitmap(NULL) {
-        (((App*)be_app)->latexToPNG(texte, &fBitmap));
+        (((App*)be_app)->latexToPNG(texte, &fBitmap, bgColor));
        	ResizeToPreferred();
        	SetDrawingMode(B_OP_ALPHA);
 }

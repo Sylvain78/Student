@@ -7,7 +7,7 @@ Operation::Operation(Operation* operation)
 {}
 
 Operation::Operation(BString* operation, int arite)
-	:LView(operation->String()),
+	:LView(operation->String(), NULL),
 	fArite(arite)
 {}
 	

@@ -117,11 +117,14 @@ status_t Session::Receive(void *data) {
 		
 		answer.ParseFromString(answerBuffer);
 		switch (answer.t_case()) {
+			
 			case Answer::TCase::kOk :
 				output->LockLooper();
 					switch(answer.ok().t_case()) {
 						case Command::TCase::kProp :
-						output->AddItem(new LatexListItem(new LView("Prop : Ok ")));
+						rgb_color *bgColor = new rgb_color();
+						*bgColor = tint_color(ui_color(B_SUCCESS_COLOR), B_LIGHTEN_1_TINT);
+						output->AddItem(new LatexListItem(new LView(BString(answer.ok().prop().GetDescriptor()->name().c_str()), bgColor)));
 					}
 				output->UnlockLooper();
 			break;

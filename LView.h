@@ -12,7 +12,7 @@
 class LView : public BView {
 	public:
 		LView(LView* lview);
-		LView(const BString& texte);
+		LView(const BString& texte, rgb_color *bgColor = NULL);
 		LView(BMessage *archive);
 		
 		virtual status_t Archive(BMessage* archive, bool deep);

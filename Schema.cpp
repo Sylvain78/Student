@@ -1,5 +1,5 @@
 #include "Schema.h"
 
 Schema::Schema(BString* nom)
-	:LView(nom->String())
+	:LView(nom->String(), NULL)
 {}

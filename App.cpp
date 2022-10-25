@@ -262,7 +262,7 @@ void App::MessageReceived(BMessage *m)
 	}
 }
 
-status_t App::latexToPNG(const BString& texte, BBitmap **image) {
+status_t App::latexToPNG(const BString& texte, BBitmap **image, rgb_color *rgb_back_color) {
 /*
 		\documentclass[fleqn]{article}
 		\usepackage{amssymb,amsmath,bm,color}
@@ -277,7 +277,7 @@ status_t App::latexToPNG(const BString& texte, BBitmap **image) {
 		dvipng  -T tight  -bg "Transparent" -D 300 -o test.png ens.dvi
 */
 	if (!texte || !strcmp(texte.String(),"")) {
-		*image = new BBitmap(BRect(0.0,0.0,0.0,0.0),B_RGB32);
+		*image = new BBitmap(BRect(0.0,0.0,0.0,0.0),B_RGBA32);
 		return B_OK;
 	}
 
@@ -313,7 +313,7 @@ status_t App::latexToPNG(const BString& texte, BBitmap **image) {
 		printf("%s\n",arg_v[3]);fflush(stdout);	
 		thread_id latex_id = load_image(4, arg_v, (const char**)environ);
 		wait_for_thread(latex_id, &status);
-		
+
 		arg_v[0] = strdup("dvipng");
 		arg_v[1] = strdup("-T");
 		arg_v[2] = strdup("tight");
@@ -339,7 +339,20 @@ status_t App::latexToPNG(const BString& texte, BBitmap **image) {
 		student = strcat(student, "/Student.png");
 		
 		
-		*image = new BBitmap(BTranslationUtils::GetBitmap(student));
+		*image = new BBitmap(BTranslationUtils::GetBitmap(student)->Bounds(), B_RGBA32, true);
+		
+		BView *composite = new BView((*image)->Bounds(), NULL, B_FOLLOW_NONE, B_WILL_DRAW);
+		(*image)->AddChild(composite);
+		
+		rgb_back_color->set_to(rgb_back_color->red, rgb_back_color->green, rgb_back_color->blue, 127);
+		composite->LockLooper();
+			composite->SetLowColor(*rgb_back_color);
+			composite->FillRect(composite->Bounds(), B_SOLID_LOW);
+			composite->SetDrawingMode(B_OP_OVER);
+			composite->DrawBitmap(BTranslationUtils::GetBitmap(student));
+			composite->Sync();
+		composite->UnlockLooper();
+		(*image)->RemoveChild(composite);
 		
 		images.insert(std::pair<BString,BBitmap *>(texte,*image));
 		
