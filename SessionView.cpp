@@ -23,7 +23,7 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 
 	fInputView  = new BTextView("InputView");
 	fInputView->MakeFocus(true);
-	BScrollView* fScrollInputView = new BScrollView("ScrollInput",fInputView, B_FOLLOW_ALL | B_WILL_DRAW | B_FRAME_EVENTS, false,
+	BScrollView* fScrollInputView = new BScrollView("ScrollInput",fInputView, B_WILL_DRAW | B_FRAME_EVENTS, false,
 		true, B_FANCY_BORDER);
 	fScrollInputView->SetViewColor(255,255,255);
 
@@ -38,25 +38,27 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 
 	BLayoutBuilder::Group<>(this, B_VERTICAL)
 		.SetInsets(B_USE_WINDOW_INSETS)
-		.AddGroup(B_HORIZONTAL)
-	    	.Add(fModeBox)
-			.Add(fSpeedBox)
-			.Add(fCompileBox)
-		.End()
-		.AddGroup(B_HORIZONTAL)
-			.SetInsets(5,5,5,5)
+		.AddSplit(B_VERTICAL)
+		
+		.AddGroup(B_VERTICAL,1)
+			.AddGroup(B_HORIZONTAL)
+	    		.Add(fModeBox)
+				.Add(fSpeedBox)
+				.Add(fCompileBox)
+			.End()
 			.AddGroup(B_HORIZONTAL)
 				.SetInsets(5,5,5,5)
 				.Add(fScrollInputView)
 				.Add(fButton)
+				.Add(fDemonstrationBox)
+			//TODO font & color
+				.Add(statusView, 0.1f)
 			.End()
-			.Add(fDemonstrationBox)
 		.End()
-		.AddGroup(B_HORIZONTAL)
-		//TODO font & color
-			.Add(statusView, 0.1f)
+		
+		.AddGroup(B_VERTICAL,5)
+			.Add(fScrollOutputView)
 		.End()
-		.Add(fScrollOutputView)
 
 	.End();
 
@@ -161,6 +163,10 @@ void SessionView::MessageReceived(BMessage* message) {
 		}
 		case(kModeProp) : {
 			fSession->Send(new BString("Prop"));
+			break;
+		}
+		case(kModeFirstOrder) : {
+			fSession->Send(new BString("First_order"));
 			break;
 		}
 	}

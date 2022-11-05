@@ -119,13 +119,27 @@ status_t Session::Receive(void *data) {
 		switch (answer.t_case()) {
 			
 			case Answer::TCase::kOk :
+				rgb_color *bgColor = new rgb_color();
+				*bgColor = tint_color(ui_color(B_SUCCESS_COLOR), B_LIGHTEN_1_TINT);
 				output->LockLooper();
-					switch(answer.ok().t_case()) {
-						case Command::TCase::kProp :
-						rgb_color *bgColor = new rgb_color();
-						*bgColor = tint_color(ui_color(B_SUCCESS_COLOR), B_LIGHTEN_1_TINT);
+				switch(answer.ok().t_case()) {
+					
+					case Command::TCase::kProp : {
 						output->AddItem(new LatexListItem(new LView(BString(answer.ok().prop().GetDescriptor()->name().c_str()), bgColor)));
+						break;
 					}
+					case Command::TCase::kFirstOrder: {
+						std::string command = answer.ok().first_order().GetDescriptor()->name();
+						output->AddItem(new LatexListItem(new LView(BString(command.replace(command.find('_'), 1,"\\_").c_str()), bgColor)));
+						break;
+					}
+					case Command::TCase::kInterpreted : {
+						output->AddItem(new LatexListItem(new LView(BString(answer.ok().interpreted().GetDescriptor()->name().c_str()), bgColor)));
+						break;
+					}
+					default:
+					output->AddItem(new LatexListItem(new LView(BString(answer.ok().GetTypeName().c_str()), bgColor)));
+				}
 				output->UnlockLooper();
 			break;
 		}
