@@ -17,9 +17,9 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 	fSpeedBox(new BBox("speed")),
 	fCompileBox(new BBox("compile")),
 	fDemonstrationBox(new BBox("demonstration")),
-	fSession(NULL),
-
-	fStatusText(new BString("Not connected")) {
+	fStatusText(new BString("Not connected")) ,
+	fSession(NULL)
+	{
 
 	fInputView  = new BTextView("InputView");
 	fInputView->MakeFocus(true);
@@ -35,12 +35,12 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 	LatexListScrollView* fScrollOutputView = new LatexListScrollView();
 	fScrollOutputView->SetViewColor(255,255,255);
 	fOutputView = fScrollOutputView->GetView();
-
-	BLayoutBuilder::Group<>(this, B_VERTICAL)
+	
+		BLayoutBuilder::Group<>(this, B_VERTICAL)
 		.SetInsets(B_USE_WINDOW_INSETS)
 		.AddSplit(B_VERTICAL)
 		
-		.AddGroup(B_VERTICAL,1)
+		.AddGroup(B_VERTICAL)
 			.AddGroup(B_HORIZONTAL)
 	    		.Add(fModeBox)
 				.Add(fSpeedBox)
@@ -56,7 +56,7 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 			.End()
 		.End()
 		
-		.AddGroup(B_VERTICAL,5)
+		.AddGroup(B_VERTICAL)
 			.Add(fScrollOutputView)
 		.End()
 

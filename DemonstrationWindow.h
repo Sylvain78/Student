@@ -40,6 +40,7 @@ class DemonstrationWindow : public BWindow {
 		bool QuitRequested();
 		
 		void SetServerWindow(ServerWindow* window);
+		
 	private :
 		ServerWindow*	fServerWindow;
 		BMenuBar*		fMenuBar;
@@ -48,3 +49,4 @@ class DemonstrationWindow : public BWindow {
 		void ActiveButtons(bool activate);
 };
 #endif
+ 

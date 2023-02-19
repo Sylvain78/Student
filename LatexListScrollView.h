@@ -1,6 +1,7 @@
 #ifndef LATEXLISTSCROLLVIEW_H
 #define LATEXLISTSCROLLVIEW_H 
 
+#include <LayoutBuilder.h>
 #include <ListView.h>
 #include <ScrollView.h>
 
@@ -9,6 +10,7 @@ class LatexListScrollView : public BScrollView {
 	public :  
 		LatexListScrollView();
 		LatexListView* GetView();
+		
 	private :
 	LatexListView* fListView;	
 };  

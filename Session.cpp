@@ -1,5 +1,6 @@
 #include <fstream>
 #include <iostream>
+#include <regex.h>
 #include <stdio.h>
 
 #include "Session.h"
@@ -11,9 +12,9 @@
 Session::Session(const char* host, const uint16 port, BListView *output) :
 	fHost(host),
 	fPort(port)
-	{
-		fOutput = output;
-	}
+{
+	fOutput = output;
+}
 
 int Session::Connect() {
 	struct hostent* host = gethostbyname(fHost);
@@ -48,12 +49,12 @@ int Session::Connect() {
 		close(connection);
 		LaunchLocalServer(fPort);
 		while ( connection = socket(AF_INET, SOCK_STREAM, 0),connect(connection, (struct sockaddr*)&serverAddr,
-				sizeof(struct sockaddr_in)) < 0) {
-					status_t err_connect = errno;
-					perror(NULL);
-					close(connection);
+					sizeof(struct sockaddr_in)) < 0) {
+			status_t err_connect = errno;
+			perror(NULL);
+			close(connection);
 
-					snooze(100*1000);
+			snooze(100*1000);
 		}
 	} else {
 		if(!strcmp(fHost, "localhost")) 
@@ -114,40 +115,59 @@ status_t Session::Receive(void *data) {
 			output->Parent()->MessageReceived(messageQuit);
 			return B_OK;
 		}  
-		
+
 		answer.ParseFromString(answerBuffer);
-		switch (answer.t_case()) {
-			
+		switch (answer.t_case()) 
+		{
+
 			case Answer::TCase::kOk :
-				rgb_color *bgColor = new rgb_color();
-				*bgColor = tint_color(ui_color(B_SUCCESS_COLOR), B_LIGHTEN_1_TINT);
-				output->LockLooper();
-				switch(answer.ok().t_case()) {
-					
-					case Command::TCase::kProp : {
-						output->AddItem(new LatexListItem(new LView(BString(answer.ok().prop().GetDescriptor()->name().c_str()), bgColor)));
-						break;
+				{
+					rgb_color *bgColor = new rgb_color();
+					*bgColor = tint_color(ui_color(B_SUCCESS_COLOR), B_LIGHTEN_1_TINT);
+					output->LockLooper();
+					switch(answer.ok().t_case()) {
+						case Command::TCase::kProp : 
+							{
+								output->AddItem(new LatexListItem(new LView(BString(answer.ok().prop().GetDescriptor()->name().c_str()), LTEXT, bgColor)));
+								break;
+							}
+						case Command::TCase::kFirstOrder: 
+							{
+								std::string command = answer.ok().first_order().GetDescriptor()->name();
+								output->AddItem(new LatexListItem(new LView(BString(command.c_str()), LTEXT, bgColor)));
+								break;
+							}
+						case Command::TCase::kInterpreted : 
+							{
+								output->AddItem(new LatexListItem(new LView(BString(answer.ok().interpreted().GetDescriptor()->name().c_str()), LTEXT, bgColor)));
+								break;
+							}
+						default:
+							output->AddItem(new LatexListItem(new LView(BString(answer.ok().GetTypeName().c_str()), LTEXT, bgColor)));
 					}
-					case Command::TCase::kFirstOrder: {
-						std::string command = answer.ok().first_order().GetDescriptor()->name();
-						output->AddItem(new LatexListItem(new LView(BString(command.replace(command.find('_'), 1,"\\_").c_str()), bgColor)));
-						break;
-					}
-					case Command::TCase::kInterpreted : {
-						output->AddItem(new LatexListItem(new LView(BString(answer.ok().interpreted().GetDescriptor()->name().c_str()), bgColor)));
-						break;
-					}
-					default:
-					output->AddItem(new LatexListItem(new LView(BString(answer.ok().GetTypeName().c_str()), bgColor)));
+					output->UnlockLooper();
+					break;
 				}
-				output->UnlockLooper();
-			break;
+
+			case Answer::TCase::kAnswer: 
+				{
+					rgb_color *bgColor = new rgb_color();
+					*bgColor = tint_color(ui_color(B_FAILURE_COLOR), B_LIGHTEN_1_TINT);
+					output->LockLooper();
+					output->AddItem(new LatexListItem(new LView(BString(answer.answer().c_str()), LTEXT, bgColor)));
+					output->UnlockLooper();
+					break;
+				}
+			case Answer::TCase::kError :
+				{
+					rgb_color *bgColor = new rgb_color();
+					*bgColor = tint_color(ui_color(B_FAILURE_COLOR), B_LIGHTEN_1_TINT);
+					output->LockLooper();
+					output->AddItem(new LatexListItem(new LView(BString(answer.error().error_message().c_str()), LTEXT, bgColor)));
+					output->UnlockLooper();
+					break;
+				}
 		}
-		if (errno < 0) 
-			perror("error in Receive.recv");
-		output->LockLooper();
-//			output->Insert(answerBuffer,received);
-		output->UnlockLooper();
 	};
 
 	return B_OK;

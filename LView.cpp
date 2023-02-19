@@ -10,12 +10,12 @@ LView::LView(LView* lview)
 	fBitmap(lview->fBitmap)
 {}
 
-LView::LView(const BString& texte, rgb_color *bgColor)
+LView::LView(const BString& texte, LView_kind kind, rgb_color *bgColor)
 	:BView("LView", B_FOLLOW_NONE|B_WILL_DRAW),
        fLatex(new BString(texte)),
        fOldLatex(new BString("")),
        fBitmap(NULL) {
-        (((App*)be_app)->latexToPNG(texte, &fBitmap, bgColor));
+        (((App*)be_app)->latexToPNG(texte, &fBitmap, kind, bgColor));
        	ResizeToPreferred();
        	SetDrawingMode(B_OP_ALPHA);
 }
@@ -59,7 +59,7 @@ void LView::GetPreferredSize(float* width, float* height)
 
 	if (fBitmap != NULL) {
 		*width=fBitmap->Bounds().Width();
-		*height=fBitmap->Bounds().Height();
+		*height=fBitmap->Bounds().Height()+10;
 	} else {
 		*width=0.0;
 		*height=0.0;
@@ -100,7 +100,7 @@ void LView::MouseDown(BPoint where)
 	
 }
 
-status_t LView::Archive(BMessage* archive, bool deep)
+status_t LView::Archive(BMessage* archive, bool deep) const
 {
 	status_t status;
 	//if (LockLooper()) 

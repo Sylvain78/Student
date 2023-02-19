@@ -1,13 +1,10 @@
 #include "LatexListScrollView.h"
 #include <Size.h>
 
-LatexListScrollView::LatexListScrollView() : BScrollView("latex list scroll", (BView *)NULL, (uint32)0, (uint32)B_SUPPORTS_LAYOUT, true,true, B_FANCY_BORDER),
+LatexListScrollView::LatexListScrollView() : BScrollView("latex list scroll", (BView *)NULL, (uint32)0, true,true),
 				 fListView(new LatexListView(B_SINGLE_SELECTION_LIST))
  {
- 	//BScrollView* scrollView = new BScrollView("latex list scroll", fListView);
-	//BGroupView::AddChild(/*scrollView*/ fListView);
-	SetTarget(fListView);
-	
+ 	SetTarget(fListView);
 }
 
 LatexListView* LatexListScrollView::GetView() {

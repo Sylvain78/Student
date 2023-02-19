@@ -16,7 +16,7 @@ class Constante : public LView {
 		Constante(Constante* Constante);
 		Constante(BMessage* archive);
 		
-		virtual status_t Archive(BMessage* archive, bool deep);
+		virtual status_t Archive(BMessage* archive, bool deep) const;
 		void PrintToStream();
 		static BArchivable* Instantiate(BMessage* archive);
 	

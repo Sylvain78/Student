@@ -20,7 +20,7 @@ void Constante::PrintToStream()
 	LView::PrintToStream();
 }
 
-status_t Constante::Archive(BMessage* archive, bool deep)
+status_t Constante::Archive(BMessage* archive, bool deep) const
 {
 	LView::Archive(archive, deep);
 	return archive->AddString("class", "Constante");

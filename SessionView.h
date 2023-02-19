@@ -9,8 +9,6 @@
 #include <StringView.h>
 #include <View.h>
 
-#include "LatexListScrollView.h"
-
 class Session;
 
 class SessionView : public BView {

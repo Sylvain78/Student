@@ -21,7 +21,7 @@ DemonstrationWindow::DemonstrationWindow() :
 		    .Add(fMenuBar)
 			.Add(fTabView_Demonstration)
 	.End();
-
+	
 	fTabView_Demonstration->AddTab(new SessionView("Session"));
 }
 
@@ -30,7 +30,7 @@ void DemonstrationWindow::MessageReceived(BMessage* message)
 	SessionView* sessionView = (SessionView*)fTabView_Demonstration->ViewForTab(fTabView_Demonstration->Selection());
 	switch(message->what) {
 		case (kServerSettings): {
-			bool init;
+			bool init = false;
 			
 			if (!fServerWindow) {
 				init = true;
