@@ -35,11 +35,10 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 	LatexListScrollView* fScrollOutputView = new LatexListScrollView();
 	fScrollOutputView->SetViewColor(255,255,255);
 	fOutputView = fScrollOutputView->GetView();
-	
-		BLayoutBuilder::Group<>(this, B_VERTICAL)
-		.SetInsets(B_USE_WINDOW_INSETS)
-		.AddSplit(B_VERTICAL)
-		
+
+	BLayoutBuilder::Group<>(this, B_VERTICAL)
+	.SetInsets(B_USE_WINDOW_INSETS)
+	.AddSplit(B_VERTICAL)
 		.AddGroup(B_VERTICAL)
 			.AddGroup(B_HORIZONTAL)
 	    		.Add(fModeBox)
@@ -47,21 +46,19 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 				.Add(fCompileBox)
 			.End()
 			.AddGroup(B_HORIZONTAL)
+				.SetExplicitMaxSize(BSize(B_SIZE_UNLIMITED, B_SIZE_UNLIMITED))
 				.SetInsets(5,5,5,5)
 				.Add(fScrollInputView)
 				.Add(fButton)
 				.Add(fDemonstrationBox)
-			//TODO font & color
-				.Add(statusView, 0.1f)
 			.End()
 		.End()
-		
 		.AddGroup(B_VERTICAL)
 			.Add(fScrollOutputView)
 		.End()
-
-	.End();
-
+	.End()
+	//TODO font & color
+	.Add(statusView, 0.1f);
 
 	fMode_prop = new BRadioButton("Prop", new BMessage(kModeProp));
 	fMode_first_order = new BRadioButton(B_TRANSLATE("First order"), new BMessage(kModeFirstOrder));
