@@ -84,7 +84,7 @@ BListView *Session::GetOutput() {
 
 status_t Session::Send(BString *text) {
 	BString textProtocol = text->Append("\n\n");
-	std::cout << "send : " << textProtocol.String()<< std::endl;
+	std::cout << "send : " << textProtocol.String()<< "XXX" << std::endl;
 	int sent = send(fSocket, textProtocol.String(), textProtocol.Length(), 0);
 	if (sent == textProtocol.Length()) {
 		return B_OK;
@@ -137,9 +137,15 @@ status_t Session::Receive(void *data) {
 								output->AddItem(new LatexListItem(new LView(BString(command.c_str()), LTEXT, bgColor)));
 								break;
 							}
-						case Command::TCase::kInterpreted : 
+						case Command::TCase::kInterpreted: 
 							{
 								output->AddItem(new LatexListItem(new LView(BString(answer.ok().interpreted().GetDescriptor()->name().c_str()), LTEXT, bgColor)));
+								break;
+							}
+						case Command::TCase::kNotation:
+							{
+								output->AddItem(new LatexListItem(new LView(BString((answer.ok().notation().GetDescriptor()->name() + std::string(" ") +
+								answer.ok().notation().name()).c_str()), LTEXT, bgColor)));
 								break;
 							}
 						default:
