@@ -67,6 +67,14 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 	fCompile = new BRadioButton("Compile", new BMessage(kCompile));
 	fInterprete = new BRadioButton("Interprete", new BMessage(kInterprete));
 
+	fMode_prop->SetEnabled(false);
+	fMode_first_order->SetEnabled(false);
+	fSpeed_fast->SetEnabled(false);
+	fSpeed_paranoid->SetEnabled(false);
+	fCompile->SetEnabled(false);
+	fInterprete->SetEnabled(false);
+	fButton->SetEnabled(false);
+	
 	BGroupLayout *modeBoxLayout = BLayoutBuilder::Group<>(B_HORIZONTAL)
 	.SetInsets(2,0,2,0)
 	.Add(fMode_prop)
@@ -126,7 +134,6 @@ void SessionView::MessageReceived(BMessage* message) {
 				 	std::cout << newStatus << std::endl;
 					statusMessage->AddString("status", newStatus);
 				 	MessageReceived(statusMessage);
-
 				 	
 				 	fSession->LaunchLocalServer(port);
 				 	BMessage* connectMessage = new BMessage(kConnect);
@@ -134,9 +141,18 @@ void SessionView::MessageReceived(BMessage* message) {
 				 	connectMessage->AddUInt16("port", port);
 				 	
 				 	MessageReceived(connectMessage);
-				 	
 		 			}
 		 	} else {
+		 		LockLooper();
+					fMode_prop->SetEnabled(true);
+					fMode_first_order->SetEnabled(true);
+					fSpeed_fast->SetEnabled(true);
+					fSpeed_paranoid->SetEnabled(true);
+					fCompile->SetEnabled(true);
+					fInterprete->SetEnabled(true);
+					fButton->SetEnabled(true);
+				UnlockLooper();
+
 				newStatus = (char *)realloc(newStatus,strlen("Connected to ") +strlen(host)+1+5);
 		 		sprintf(newStatus, "Connected to %s:%d", host, port);
 		 		std::cout << newStatus << std::endl;
