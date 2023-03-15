@@ -37,8 +37,8 @@ void LatexListItem::DrawItem(BView *owner, BRect frame, bool complete) {
 void LatexListItem::Update(BView* owner, const BFont* font)
 {
 	BListItem::Update(owner, font);
-	SetHeight(fLatex->GetBitmap()->Bounds().Height()+1);//TODO why +1
-	SetWidth(fLatex->GetBitmap()->Bounds().Width()+1);//TODO why +1
+	SetHeight(fLatex->GetBitmap()->Bounds().Height()+2);//TODO why +2
+	SetWidth(fLatex->GetBitmap()->Bounds().Width());
 }
 
 void LatexListItem::PrintToStream()
