@@ -148,6 +148,12 @@ status_t Session::Receive(void *data) {
 								answer.ok().notation().name()).c_str()), LTEXT, bgColor)));
 								break;
 							}
+						case Command::TCase::kTheorem:
+							{
+								output->AddItem(new LatexListItem(new LView(BString((answer.ok().theorem().GetDescriptor()->name() + std::string(" ") +
+								answer.ok().theorem().name()).c_str()), LTEXT, bgColor)));
+								break;
+							}
 						default:
 							output->AddItem(new LatexListItem(new LView(BString(answer.ok().GetTypeName().c_str()), LTEXT, bgColor)));
 					}
