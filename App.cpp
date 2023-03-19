@@ -550,12 +550,13 @@ void App::LaunchLocalServer(const uint16 port) {
 
 	char * serverAddress = (char *)malloc(strlen("localhost:"+5));
 	sprintf(serverAddress, "localhost:%d", port);
-	arg_v = (char **)malloc(4*sizeof(char *));
+	arg_v = (char **)malloc(6*sizeof(char *));
 	arg_v[0] = strdup("proof_server.exe");
 	arg_v[1] = strdup("-v");
 	arg_v[2] = strdup("-s");
 	arg_v[3] = serverAddress;
-	arg_v[4] = NULL;
+	arg_v[4] = strdup("--verbosity=info");
+	arg_v[5] = NULL;
 	extern char** environ;
 
 	BPath dir_path;
