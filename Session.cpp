@@ -43,7 +43,7 @@ int Session::Connect() {
 
 	status_t status = connect(connection,(struct sockaddr*)&serverAddr, sizeof(struct sockaddr_in));
 
-	if (status < 0  && !strcmp(fHost, "localhost") && !fLocalServerLaunched) {
+	if (status < 0	&& !strcmp(fHost, "localhost") && !fLocalServerLaunched) {
 		status_t err_connect = errno;
 		perror(NULL);
 		close(connection);
@@ -82,21 +82,41 @@ BListView *Session::GetOutput() {
 	return fOutput;
 }
 
-status_t Session::Send(BString *text) {
-	BString textProtocol = text->Append("\n\n");
-	std::cout << "send : " << textProtocol.String()<< "XXX" << std::endl;
-	int sent = send(fSocket, textProtocol.String(), textProtocol.Length(), 0);
-	if (sent == textProtocol.Length()) {
-		return B_OK;
-	} else {
-		return B_ERROR;
+status_t Session::_Send(void *data) {
+	send_data_params* send_params = (send_data_params *)(data);
+	BString *text= send_params->text;
+	int socket = send_params->socket;
+	BString textProtocol = text->Trim().Append("\n\n");
+	int size = textProtocol.Length();
+	int sent;
+	while (size>0) {
+		sent = send(socket, textProtocol.String(), 64*1024,0);//TODO check return value /errno
+		textProtocol.Remove(0,sent);
+		size -= sent;
+		if (sent <= 0)
+			break;
 	}
+	if (sent < 0)
+		return B_ERROR;
+	else
+		return B_OK;
+}
+
+status_t Session::Send(BString *text) {
+	send_data_params *data =(send_data_params*)malloc(sizeof(send_data_params)); 
+	data->text=text;
+	data->socket=fSocket;
+	thread_id send_thread = spawn_thread(&Session::_Send, "sender", B_NORMAL_PRIORITY, data);
+	resume_thread(send_thread);
+	return B_OK;
+
 }
 
 status_t Session::Receive(void *data) {
 	Session *session = (Session *)data;
 	BListView *output = session->GetOutput();
-	uint32 answerSize;
+	char *answerSizeBuffer = (char *)malloc(4);
+	uint32 answerSize32;
 	char *answerBuffer;
 	ssize_t received;
 	Answer answer;
@@ -104,12 +124,26 @@ status_t Session::Receive(void *data) {
 	GOOGLE_PROTOBUF_VERIFY_VERSION;
 
 	while (true) {
-		received = recv(session->fSocket, &answerSize, 4, 0/*flags*/);
-		uint32 answerSize32 = ntohl(answerSize);
-		answerBuffer = (char *)realloc(answerBuffer, answerSize32);
-		received = recv(session->fSocket, answerBuffer, answerSize32, 0/*flags*/);
 
-		if (received == -1) {
+		int total = 0;
+		int sizeToRead = 4;
+		while ((received = recv(session->fSocket, &answerSizeBuffer[total], sizeToRead-total, 0/*flags*/)) > 0) {
+			total += received;
+			if (total == 4)
+				break;
+		}
+		answerSize32 = ntohl(* ((uint32 *)answerSizeBuffer));
+
+		answerBuffer = (char *)realloc(answerBuffer, answerSize32);
+
+		total = 0;
+		while ((received = recv(session->fSocket, &answerBuffer[total], answerSize32-total, 0/*flags*/)) > 0) {
+			total += received;
+			if (total == answerSize32)
+				break;
+		}
+
+		if (received == 0) {
 			BMessage *messageQuit = new BMessage(kStatusChange);
 			messageQuit->AddString("status", "Disconnected");
 			output->Parent()->MessageReceived(messageQuit);
@@ -117,9 +151,7 @@ status_t Session::Receive(void *data) {
 		}  
 
 		answer.ParseFromString(answerBuffer);
-		switch (answer.t_case()) 
-		{
-
+		switch (answer.t_case()) {
 			case Answer::TCase::kOk :
 				{
 					rgb_color *bgColor = new rgb_color();
@@ -144,14 +176,16 @@ status_t Session::Receive(void *data) {
 							}
 						case Command::TCase::kNotation:
 							{
-								output->AddItem(new LatexListItem(new LView(BString((answer.ok().notation().GetDescriptor()->name() + std::string(" ") +
-								answer.ok().notation().name()).c_str()), LTEXT, bgColor)));
+								output->AddItem(new LatexListItem(new LView(BString((
+														answer.ok().notation().GetDescriptor()->name()
+														+ std::string(" ")
+														+ answer.ok().notation().name()).c_str()), LTEXT, bgColor)));
 								break;
 							}
 						case Command::TCase::kTheorem:
 							{
 								output->AddItem(new LatexListItem(new LView(BString((answer.ok().theorem().GetDescriptor()->name() + std::string(" ") +
-								answer.ok().theorem().name()).c_str()), LTEXT, bgColor)));
+														answer.ok().theorem().name()).c_str()), LTEXT, bgColor)));
 								break;
 							}
 						default:
@@ -161,10 +195,10 @@ status_t Session::Receive(void *data) {
 					break;
 				}
 
-			case Answer::TCase::kAnswer: 
+			case Answer::TCase::kAnswer:
 				{
 					rgb_color *bgColor = new rgb_color();
-					*bgColor = tint_color(ui_color(B_FAILURE_COLOR), B_LIGHTEN_1_TINT);
+					*bgColor = tint_color(ui_color(B_TOOL_TIP_BACKGROUND_COLOR), B_NO_TINT);
 					output->LockLooper();
 					output->AddItem(new LatexListItem(new LView(BString(answer.answer().c_str()), LTEXT, bgColor)));
 					output->UnlockLooper();

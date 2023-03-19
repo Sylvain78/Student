@@ -20,12 +20,18 @@ enum Flags {
 	Interprete
 };
 
+
+typedef struct {
+	BString *text;
+	int socket;
+} send_data_params;
+
+
 class Session {
 	public:
 		Session(const char* host, const uint16 port, BListView *output);
 		int Connect();
 		status_t Send(BString *text);
-		static status_t Receive(void *data);
 		bool IsLocalServerLaunched();
 		void LaunchLocalServer(const uint16 port);
 		BListView* GetOutput();
@@ -37,6 +43,8 @@ class Session {
 		bool fLocalServerLaunched=false;
 		int fSocket;
 		BListView *fOutput;
+		static status_t _Send(void *send_data_params);
+		static status_t Receive(void *data);
 };	
 
 #endif	// _SESSION_H_
