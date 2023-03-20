@@ -52,6 +52,9 @@ extern AnswerDefaultTypeInternal _Answer_default_instance_;
 class Answer_Error;
 struct Answer_ErrorDefaultTypeInternal;
 extern Answer_ErrorDefaultTypeInternal _Answer_Error_default_instance_;
+class Answer_Latex_answer;
+struct Answer_Latex_answerDefaultTypeInternal;
+extern Answer_Latex_answerDefaultTypeInternal _Answer_Latex_answer_default_instance_;
 class Command;
 struct CommandDefaultTypeInternal;
 extern CommandDefaultTypeInternal _Command_default_instance_;
@@ -97,6 +100,7 @@ extern Notation_elementDefaultTypeInternal _Notation_element_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::Answer* Arena::CreateMaybeMessage<::Answer>(Arena*);
 template<> ::Answer_Error* Arena::CreateMaybeMessage<::Answer_Error>(Arena*);
+template<> ::Answer_Latex_answer* Arena::CreateMaybeMessage<::Answer_Latex_answer>(Arena*);
 template<> ::Command* Arena::CreateMaybeMessage<::Command>(Arena*);
 template<> ::Command_Axiom* Arena::CreateMaybeMessage<::Command_Axiom>(Arena*);
 template<> ::Command_Compiled* Arena::CreateMaybeMessage<::Command_Compiled>(Arena*);
@@ -189,6 +193,31 @@ inline bool Known_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, Known* value) {
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Known>(
     Known_descriptor(), name, value);
+}
+enum Latex_mode : int {
+  LTEXT = 0,
+  LMATH = 1,
+  Latex_mode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  Latex_mode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool Latex_mode_IsValid(int value);
+constexpr Latex_mode Latex_mode_MIN = LTEXT;
+constexpr Latex_mode Latex_mode_MAX = LMATH;
+constexpr int Latex_mode_ARRAYSIZE = Latex_mode_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Latex_mode_descriptor();
+template<typename T>
+inline const std::string& Latex_mode_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, Latex_mode>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function Latex_mode_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    Latex_mode_descriptor(), enum_t_value);
+}
+inline bool Latex_mode_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, Latex_mode* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Latex_mode>(
+    Latex_mode_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -2793,6 +2822,165 @@ class Answer_Error final :
 };
 // -------------------------------------------------------------------
 
+class Answer_Latex_answer final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Answer.Latex_answer) */ {
+ public:
+  inline Answer_Latex_answer() : Answer_Latex_answer(nullptr) {}
+  ~Answer_Latex_answer() override;
+  explicit PROTOBUF_CONSTEXPR Answer_Latex_answer(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Answer_Latex_answer(const Answer_Latex_answer& from);
+  Answer_Latex_answer(Answer_Latex_answer&& from) noexcept
+    : Answer_Latex_answer() {
+    *this = ::std::move(from);
+  }
+
+  inline Answer_Latex_answer& operator=(const Answer_Latex_answer& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Answer_Latex_answer& operator=(Answer_Latex_answer&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Answer_Latex_answer& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Answer_Latex_answer* internal_default_instance() {
+    return reinterpret_cast<const Answer_Latex_answer*>(
+               &_Answer_Latex_answer_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(Answer_Latex_answer& a, Answer_Latex_answer& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Answer_Latex_answer* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Answer_Latex_answer* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Answer_Latex_answer* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Answer_Latex_answer>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Answer_Latex_answer& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const Answer_Latex_answer& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Answer_Latex_answer* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Answer.Latex_answer";
+  }
+  protected:
+  explicit Answer_Latex_answer(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAnswerFieldNumber = 2,
+    kModeFieldNumber = 1,
+  };
+  // string answer = 2;
+  void clear_answer();
+  const std::string& answer() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_answer(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_answer();
+  PROTOBUF_NODISCARD std::string* release_answer();
+  void set_allocated_answer(std::string* answer);
+  private:
+  const std::string& _internal_answer() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_answer(const std::string& value);
+  std::string* _internal_mutable_answer();
+  public:
+
+  // .Latex_mode mode = 1;
+  void clear_mode();
+  ::Latex_mode mode() const;
+  void set_mode(::Latex_mode value);
+  private:
+  ::Latex_mode _internal_mode() const;
+  void _internal_set_mode(::Latex_mode value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Answer.Latex_answer)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr answer_;
+  int mode_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_server_5fprotocol_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Answer final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Answer) */ {
  public:
@@ -2848,7 +3036,7 @@ class Answer final :
                &_Answer_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(Answer& a, Answer& b) {
     a.Swap(&b);
@@ -2917,6 +3105,7 @@ class Answer final :
   // nested types ----------------------------------------------------
 
   typedef Answer_Error Error;
+  typedef Answer_Latex_answer Latex_answer;
 
   // accessors -------------------------------------------------------
 
@@ -2961,23 +3150,23 @@ class Answer final :
       ::Answer_Error* error);
   ::Answer_Error* unsafe_arena_release_error();
 
-  // string answer = 3;
+  // .Answer.Latex_answer answer = 3;
   bool has_answer() const;
   private:
   bool _internal_has_answer() const;
   public:
   void clear_answer();
-  const std::string& answer() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_answer(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_answer();
-  PROTOBUF_NODISCARD std::string* release_answer();
-  void set_allocated_answer(std::string* answer);
+  const ::Answer_Latex_answer& answer() const;
+  PROTOBUF_NODISCARD ::Answer_Latex_answer* release_answer();
+  ::Answer_Latex_answer* mutable_answer();
+  void set_allocated_answer(::Answer_Latex_answer* answer);
   private:
-  const std::string& _internal_answer() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_answer(const std::string& value);
-  std::string* _internal_mutable_answer();
+  const ::Answer_Latex_answer& _internal_answer() const;
+  ::Answer_Latex_answer* _internal_mutable_answer();
   public:
+  void unsafe_arena_set_allocated_answer(
+      ::Answer_Latex_answer* answer);
+  ::Answer_Latex_answer* unsafe_arena_release_answer();
 
   void clear_t();
   TCase t_case() const;
@@ -2999,7 +3188,7 @@ class Answer final :
       ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
     ::Command* ok_;
     ::Answer_Error* error_;
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr answer_;
+    ::Answer_Latex_answer* answer_;
   } t_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   uint32_t _oneof_case_[1];
@@ -5299,6 +5488,80 @@ inline void Answer_Error::set_allocated_command(::Command* command) {
 
 // -------------------------------------------------------------------
 
+// Answer_Latex_answer
+
+// .Latex_mode mode = 1;
+inline void Answer_Latex_answer::clear_mode() {
+  mode_ = 0;
+}
+inline ::Latex_mode Answer_Latex_answer::_internal_mode() const {
+  return static_cast< ::Latex_mode >(mode_);
+}
+inline ::Latex_mode Answer_Latex_answer::mode() const {
+  // @@protoc_insertion_point(field_get:Answer.Latex_answer.mode)
+  return _internal_mode();
+}
+inline void Answer_Latex_answer::_internal_set_mode(::Latex_mode value) {
+  
+  mode_ = value;
+}
+inline void Answer_Latex_answer::set_mode(::Latex_mode value) {
+  _internal_set_mode(value);
+  // @@protoc_insertion_point(field_set:Answer.Latex_answer.mode)
+}
+
+// string answer = 2;
+inline void Answer_Latex_answer::clear_answer() {
+  answer_.ClearToEmpty();
+}
+inline const std::string& Answer_Latex_answer::answer() const {
+  // @@protoc_insertion_point(field_get:Answer.Latex_answer.answer)
+  return _internal_answer();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Answer_Latex_answer::set_answer(ArgT0&& arg0, ArgT... args) {
+ 
+ answer_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Answer.Latex_answer.answer)
+}
+inline std::string* Answer_Latex_answer::mutable_answer() {
+  std::string* _s = _internal_mutable_answer();
+  // @@protoc_insertion_point(field_mutable:Answer.Latex_answer.answer)
+  return _s;
+}
+inline const std::string& Answer_Latex_answer::_internal_answer() const {
+  return answer_.Get();
+}
+inline void Answer_Latex_answer::_internal_set_answer(const std::string& value) {
+  
+  answer_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Answer_Latex_answer::_internal_mutable_answer() {
+  
+  return answer_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Answer_Latex_answer::release_answer() {
+  // @@protoc_insertion_point(field_release:Answer.Latex_answer.answer)
+  return answer_.Release();
+}
+inline void Answer_Latex_answer::set_allocated_answer(std::string* answer) {
+  if (answer != nullptr) {
+    
+  } else {
+    
+  }
+  answer_.SetAllocated(answer, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (answer_.IsDefault()) {
+    answer_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:Answer.Latex_answer.answer)
+}
+
+// -------------------------------------------------------------------
+
 // Answer
 
 // .Command ok = 1;
@@ -5449,7 +5712,7 @@ inline ::Answer_Error* Answer::mutable_error() {
   return _msg;
 }
 
-// string answer = 3;
+// .Answer.Latex_answer answer = 3;
 inline bool Answer::_internal_has_answer() const {
   return t_case() == kAnswer;
 }
@@ -5461,69 +5724,66 @@ inline void Answer::set_has_answer() {
 }
 inline void Answer::clear_answer() {
   if (_internal_has_answer()) {
-    t_.answer_.Destroy();
+    if (GetArenaForAllocation() == nullptr) {
+      delete t_.answer_;
+    }
     clear_has_t();
   }
 }
-inline const std::string& Answer::answer() const {
-  // @@protoc_insertion_point(field_get:Answer.answer)
-  return _internal_answer();
-}
-template <typename ArgT0, typename... ArgT>
-inline void Answer::set_answer(ArgT0&& arg0, ArgT... args) {
-  if (!_internal_has_answer()) {
-    clear_t();
-    set_has_answer();
-    t_.answer_.InitDefault();
-  }
-  t_.answer_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Answer.answer)
-}
-inline std::string* Answer::mutable_answer() {
-  std::string* _s = _internal_mutable_answer();
-  // @@protoc_insertion_point(field_mutable:Answer.answer)
-  return _s;
-}
-inline const std::string& Answer::_internal_answer() const {
-  if (_internal_has_answer()) {
-    return t_.answer_.Get();
-  }
-  return ::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited();
-}
-inline void Answer::_internal_set_answer(const std::string& value) {
-  if (!_internal_has_answer()) {
-    clear_t();
-    set_has_answer();
-    t_.answer_.InitDefault();
-  }
-  t_.answer_.Set(value, GetArenaForAllocation());
-}
-inline std::string* Answer::_internal_mutable_answer() {
-  if (!_internal_has_answer()) {
-    clear_t();
-    set_has_answer();
-    t_.answer_.InitDefault();
-  }
-  return t_.answer_.Mutable(      GetArenaForAllocation());
-}
-inline std::string* Answer::release_answer() {
+inline ::Answer_Latex_answer* Answer::release_answer() {
   // @@protoc_insertion_point(field_release:Answer.answer)
   if (_internal_has_answer()) {
     clear_has_t();
-    return t_.answer_.Release();
+    ::Answer_Latex_answer* temp = t_.answer_;
+    if (GetArenaForAllocation() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    t_.answer_ = nullptr;
+    return temp;
   } else {
     return nullptr;
   }
 }
-inline void Answer::set_allocated_answer(std::string* answer) {
-  if (has_t()) {
-    clear_t();
+inline const ::Answer_Latex_answer& Answer::_internal_answer() const {
+  return _internal_has_answer()
+      ? *t_.answer_
+      : reinterpret_cast< ::Answer_Latex_answer&>(::_Answer_Latex_answer_default_instance_);
+}
+inline const ::Answer_Latex_answer& Answer::answer() const {
+  // @@protoc_insertion_point(field_get:Answer.answer)
+  return _internal_answer();
+}
+inline ::Answer_Latex_answer* Answer::unsafe_arena_release_answer() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Answer.answer)
+  if (_internal_has_answer()) {
+    clear_has_t();
+    ::Answer_Latex_answer* temp = t_.answer_;
+    t_.answer_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
   }
-  if (answer != nullptr) {
+}
+inline void Answer::unsafe_arena_set_allocated_answer(::Answer_Latex_answer* answer) {
+  clear_t();
+  if (answer) {
     set_has_answer();
-    t_.answer_.InitAllocated(answer, GetArenaForAllocation());
+    t_.answer_ = answer;
   }
-  // @@protoc_insertion_point(field_set_allocated:Answer.answer)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Answer.answer)
+}
+inline ::Answer_Latex_answer* Answer::_internal_mutable_answer() {
+  if (!_internal_has_answer()) {
+    clear_t();
+    set_has_answer();
+    t_.answer_ = CreateMaybeMessage< ::Answer_Latex_answer >(GetArenaForAllocation());
+  }
+  return t_.answer_;
+}
+inline ::Answer_Latex_answer* Answer::mutable_answer() {
+  ::Answer_Latex_answer* _msg = _internal_mutable_answer();
+  // @@protoc_insertion_point(field_mutable:Answer.answer)
+  return _msg;
 }
 
 inline bool Answer::has_t() const {
@@ -5538,6 +5798,8 @@ inline Answer::TCase Answer::t_case() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -5588,6 +5850,11 @@ template <> struct is_proto_enum< ::Known> : ::std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::Known>() {
   return ::Known_descriptor();
+}
+template <> struct is_proto_enum< ::Latex_mode> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::Latex_mode>() {
+  return ::Latex_mode_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE

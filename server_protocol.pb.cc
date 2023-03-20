@@ -205,6 +205,20 @@ struct Answer_ErrorDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Answer_ErrorDefaultTypeInternal _Answer_Error_default_instance_;
+PROTOBUF_CONSTEXPR Answer_Latex_answer::Answer_Latex_answer(
+    ::_pbi::ConstantInitialized)
+  : answer_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , mode_(0)
+{}
+struct Answer_Latex_answerDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Answer_Latex_answerDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Answer_Latex_answerDefaultTypeInternal() {}
+  union {
+    Answer_Latex_answer _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Answer_Latex_answerDefaultTypeInternal _Answer_Latex_answer_default_instance_;
 PROTOBUF_CONSTEXPR Answer::Answer(
     ::_pbi::ConstantInitialized)
   : _oneof_case_{}{}
@@ -217,8 +231,8 @@ struct AnswerDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AnswerDefaultTypeInternal _Answer_default_instance_;
-static ::_pb::Metadata file_level_metadata_server_5fprotocol_2eproto[16];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_server_5fprotocol_2eproto[3];
+static ::_pb::Metadata file_level_metadata_server_5fprotocol_2eproto[17];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_server_5fprotocol_2eproto[4];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_server_5fprotocol_2eproto = nullptr;
 
 const uint32_t TableStruct_server_5fprotocol_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -350,6 +364,14 @@ const uint32_t TableStruct_server_5fprotocol_2eproto::offsets[] PROTOBUF_SECTION
   PROTOBUF_FIELD_OFFSET(::Answer_Error, error_message_),
   PROTOBUF_FIELD_OFFSET(::Answer_Error, command_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::Answer_Latex_answer, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::Answer_Latex_answer, mode_),
+  PROTOBUF_FIELD_OFFSET(::Answer_Latex_answer, answer_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::Answer, _internal_metadata_),
   ~0u,  // no _extensions_
   PROTOBUF_FIELD_OFFSET(::Answer, _oneof_case_[0]),
@@ -376,7 +398,8 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 89, -1, -1, sizeof(::Command_Quit)},
   { 95, -1, -1, sizeof(::Command)},
   { 119, -1, -1, sizeof(::Answer_Error)},
-  { 127, -1, -1, sizeof(::Answer)},
+  { 127, -1, -1, sizeof(::Answer_Latex_answer)},
+  { 135, -1, -1, sizeof(::Answer)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -395,6 +418,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::_Command_Quit_default_instance_._instance,
   &::_Command_default_instance_._instance,
   &::_Answer_Error_default_instance_._instance,
+  &::_Answer_Latex_answer_default_instance_._instance,
   &::_Answer_default_instance_._instance,
 };
 
@@ -427,20 +451,23 @@ const char descriptor_table_protodef_server_5fprotocol_2eproto[] PROTOBUF_SECTIO
   "sion\030\004 \001(\t\022\025\n\rdemonstration\030\005 \003(\t\022\027\n\006sta"
   "tus\030\006 \001(\0162\007.Status\032&\n\005Axiom\022\014\n\004name\030\001 \001("
   "\t\022\017\n\007formula\030\002 \001(\t\032\t\n\007History\032\006\n\004QuitB\003\n"
-  "\001t\"\222\001\n\006Answer\022\026\n\002ok\030\001 \001(\0132\010.CommandH\000\022\036\n"
-  "\005error\030\002 \001(\0132\r.Answer.ErrorH\000\022\020\n\006answer\030"
-  "\003 \001(\tH\000\0329\n\005Error\022\025\n\rerror_message\030\001 \001(\t\022"
-  "\031\n\007command\030\002 \001(\0132\010.CommandB\003\n\001t*!\n\tFile_"
-  "mode\022\010\n\004TEXT\020\000\022\n\n\006BINARY\020\001*2\n\006Status\022\016\n\n"
-  "UNVERIFIED\020\000\022\014\n\010VERIFIED\020\001\022\n\n\006UNTRUE\020\002*,"
-  "\n\005Known\022\n\n\006AXIOMS\020\000\022\014\n\010THEOREMS\020\001\022\t\n\005FIL"
-  "ES\020\002b\006proto3"
+  "\001t\"\343\001\n\006Answer\022\026\n\002ok\030\001 \001(\0132\010.CommandH\000\022\036\n"
+  "\005error\030\002 \001(\0132\r.Answer.ErrorH\000\022&\n\006answer\030"
+  "\003 \001(\0132\024.Answer.Latex_answerH\000\0329\n\005Error\022\025"
+  "\n\rerror_message\030\001 \001(\t\022\031\n\007command\030\002 \001(\0132\010"
+  ".Command\0329\n\014Latex_answer\022\031\n\004mode\030\001 \001(\0162\013"
+  ".Latex_mode\022\016\n\006answer\030\002 \001(\tB\003\n\001t*!\n\tFile"
+  "_mode\022\010\n\004TEXT\020\000\022\n\n\006BINARY\020\001*2\n\006Status\022\016\n"
+  "\nUNVERIFIED\020\000\022\014\n\010VERIFIED\020\001\022\n\n\006UNTRUE\020\002*"
+  ",\n\005Known\022\n\n\006AXIOMS\020\000\022\014\n\010THEOREMS\020\001\022\t\n\005FI"
+  "LES\020\002*\"\n\nLatex_mode\022\t\n\005LTEXT\020\000\022\t\n\005LMATH\020"
+  "\001b\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_server_5fprotocol_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_server_5fprotocol_2eproto = {
-    false, false, 1412, descriptor_table_protodef_server_5fprotocol_2eproto,
+    false, false, 1529, descriptor_table_protodef_server_5fprotocol_2eproto,
     "server_protocol.proto",
-    &descriptor_table_server_5fprotocol_2eproto_once, nullptr, 0, 16,
+    &descriptor_table_server_5fprotocol_2eproto_once, nullptr, 0, 17,
     schemas, file_default_instances, TableStruct_server_5fprotocol_2eproto::offsets,
     file_level_metadata_server_5fprotocol_2eproto, file_level_enum_descriptors_server_5fprotocol_2eproto,
     file_level_service_descriptors_server_5fprotocol_2eproto,
@@ -489,6 +516,20 @@ bool Known_IsValid(int value) {
     case 0:
     case 1:
     case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Latex_mode_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_server_5fprotocol_2eproto);
+  return file_level_enum_descriptors_server_5fprotocol_2eproto[3];
+}
+bool Latex_mode_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
       return true;
     default:
       return false;
@@ -3506,10 +3547,235 @@ void Answer_Error::InternalSwap(Answer_Error* other) {
 
 // ===================================================================
 
+class Answer_Latex_answer::_Internal {
+ public:
+};
+
+Answer_Latex_answer::Answer_Latex_answer(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:Answer.Latex_answer)
+}
+Answer_Latex_answer::Answer_Latex_answer(const Answer_Latex_answer& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  answer_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    answer_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_answer().empty()) {
+    answer_.Set(from._internal_answer(), 
+      GetArenaForAllocation());
+  }
+  mode_ = from.mode_;
+  // @@protoc_insertion_point(copy_constructor:Answer.Latex_answer)
+}
+
+inline void Answer_Latex_answer::SharedCtor() {
+answer_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  answer_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+mode_ = 0;
+}
+
+Answer_Latex_answer::~Answer_Latex_answer() {
+  // @@protoc_insertion_point(destructor:Answer.Latex_answer)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void Answer_Latex_answer::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  answer_.Destroy();
+}
+
+void Answer_Latex_answer::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void Answer_Latex_answer::Clear() {
+// @@protoc_insertion_point(message_clear_start:Answer.Latex_answer)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  answer_.ClearToEmpty();
+  mode_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* Answer_Latex_answer::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .Latex_mode mode = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_mode(static_cast<::Latex_mode>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // string answer = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_answer();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "Answer.Latex_answer.answer"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* Answer_Latex_answer::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:Answer.Latex_answer)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .Latex_mode mode = 1;
+  if (this->_internal_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_mode(), target);
+  }
+
+  // string answer = 2;
+  if (!this->_internal_answer().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_answer().data(), static_cast<int>(this->_internal_answer().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "Answer.Latex_answer.answer");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_answer(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:Answer.Latex_answer)
+  return target;
+}
+
+size_t Answer_Latex_answer::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:Answer.Latex_answer)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string answer = 2;
+  if (!this->_internal_answer().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_answer());
+  }
+
+  // .Latex_mode mode = 1;
+  if (this->_internal_mode() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_mode());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Answer_Latex_answer::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    Answer_Latex_answer::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Answer_Latex_answer::GetClassData() const { return &_class_data_; }
+
+void Answer_Latex_answer::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Answer_Latex_answer *>(to)->MergeFrom(
+      static_cast<const Answer_Latex_answer &>(from));
+}
+
+
+void Answer_Latex_answer::MergeFrom(const Answer_Latex_answer& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Answer.Latex_answer)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_answer().empty()) {
+    _internal_set_answer(from._internal_answer());
+  }
+  if (from._internal_mode() != 0) {
+    _internal_set_mode(from._internal_mode());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Answer_Latex_answer::CopyFrom(const Answer_Latex_answer& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Answer.Latex_answer)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Answer_Latex_answer::IsInitialized() const {
+  return true;
+}
+
+void Answer_Latex_answer::InternalSwap(Answer_Latex_answer* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &answer_, lhs_arena,
+      &other->answer_, rhs_arena
+  );
+  swap(mode_, other->mode_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Answer_Latex_answer::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_server_5fprotocol_2eproto_getter, &descriptor_table_server_5fprotocol_2eproto_once,
+      file_level_metadata_server_5fprotocol_2eproto[15]);
+}
+
+// ===================================================================
+
 class Answer::_Internal {
  public:
   static const ::Command& ok(const Answer* msg);
   static const ::Answer_Error& error(const Answer* msg);
+  static const ::Answer_Latex_answer& answer(const Answer* msg);
 };
 
 const ::Command&
@@ -3519,6 +3785,10 @@ Answer::_Internal::ok(const Answer* msg) {
 const ::Answer_Error&
 Answer::_Internal::error(const Answer* msg) {
   return *msg->t_.error_;
+}
+const ::Answer_Latex_answer&
+Answer::_Internal::answer(const Answer* msg) {
+  return *msg->t_.answer_;
 }
 void Answer::set_allocated_ok(::Command* ok) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
@@ -3550,6 +3820,21 @@ void Answer::set_allocated_error(::Answer_Error* error) {
   }
   // @@protoc_insertion_point(field_set_allocated:Answer.error)
 }
+void Answer::set_allocated_answer(::Answer_Latex_answer* answer) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  clear_t();
+  if (answer) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(answer);
+    if (message_arena != submessage_arena) {
+      answer = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, answer, submessage_arena);
+    }
+    set_has_answer();
+    t_.answer_ = answer;
+  }
+  // @@protoc_insertion_point(field_set_allocated:Answer.answer)
+}
 Answer::Answer(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -3570,7 +3855,7 @@ Answer::Answer(const Answer& from)
       break;
     }
     case kAnswer: {
-      _internal_set_answer(from._internal_answer());
+      _internal_mutable_answer()->::Answer_Latex_answer::MergeFrom(from._internal_answer());
       break;
     }
     case T_NOT_SET: {
@@ -3620,7 +3905,9 @@ void Answer::clear_t() {
       break;
     }
     case kAnswer: {
-      t_.answer_.Destroy();
+      if (GetArenaForAllocation() == nullptr) {
+        delete t_.answer_;
+      }
       break;
     }
     case T_NOT_SET: {
@@ -3663,13 +3950,11 @@ const char* Answer::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
         } else
           goto handle_unusual;
         continue;
-      // string answer = 3;
+      // .Answer.Latex_answer answer = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          auto str = _internal_mutable_answer();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          ptr = ctx->ParseMessage(_internal_mutable_answer(), ptr);
           CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "Answer.answer"));
         } else
           goto handle_unusual;
         continue;
@@ -3716,14 +4001,11 @@ uint8_t* Answer::_InternalSerialize(
         _Internal::error(this).GetCachedSize(), target, stream);
   }
 
-  // string answer = 3;
+  // .Answer.Latex_answer answer = 3;
   if (_internal_has_answer()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_answer().data(), static_cast<int>(this->_internal_answer().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "Answer.answer");
-    target = stream->WriteStringMaybeAliased(
-        3, this->_internal_answer(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::answer(this),
+        _Internal::answer(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -3757,11 +4039,11 @@ size_t Answer::ByteSizeLong() const {
           *t_.error_);
       break;
     }
-    // string answer = 3;
+    // .Answer.Latex_answer answer = 3;
     case kAnswer: {
       total_size += 1 +
-        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-          this->_internal_answer());
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *t_.answer_);
       break;
     }
     case T_NOT_SET: {
@@ -3800,7 +4082,7 @@ void Answer::MergeFrom(const Answer& from) {
       break;
     }
     case kAnswer: {
-      _internal_set_answer(from._internal_answer());
+      _internal_mutable_answer()->::Answer_Latex_answer::MergeFrom(from._internal_answer());
       break;
     }
     case T_NOT_SET: {
@@ -3831,7 +4113,7 @@ void Answer::InternalSwap(Answer* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Answer::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_server_5fprotocol_2eproto_getter, &descriptor_table_server_5fprotocol_2eproto_once,
-      file_level_metadata_server_5fprotocol_2eproto[15]);
+      file_level_metadata_server_5fprotocol_2eproto[16]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -3895,6 +4177,10 @@ Arena::CreateMaybeMessage< ::Command >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::Answer_Error*
 Arena::CreateMaybeMessage< ::Answer_Error >(Arena* arena) {
   return Arena::CreateMessageInternal< ::Answer_Error >(arena);
+}
+template<> PROTOBUF_NOINLINE ::Answer_Latex_answer*
+Arena::CreateMaybeMessage< ::Answer_Latex_answer >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::Answer_Latex_answer >(arena);
 }
 template<> PROTOBUF_NOINLINE ::Answer*
 Arena::CreateMaybeMessage< ::Answer >(Arena* arena) {
