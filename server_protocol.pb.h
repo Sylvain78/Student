@@ -46,6 +46,7 @@ struct TableStruct_server_5fprotocol_2eproto {
   static const uint32_t offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_server_5fprotocol_2eproto;
+namespace Server_Protocol {
 class Answer;
 struct AnswerDefaultTypeInternal;
 extern AnswerDefaultTypeInternal _Answer_default_instance_;
@@ -97,25 +98,27 @@ extern Command_TheoremDefaultTypeInternal _Command_Theorem_default_instance_;
 class Notation_element;
 struct Notation_elementDefaultTypeInternal;
 extern Notation_elementDefaultTypeInternal _Notation_element_default_instance_;
+}  // namespace Server_Protocol
 PROTOBUF_NAMESPACE_OPEN
-template<> ::Answer* Arena::CreateMaybeMessage<::Answer>(Arena*);
-template<> ::Answer_Error* Arena::CreateMaybeMessage<::Answer_Error>(Arena*);
-template<> ::Answer_Latex_answer* Arena::CreateMaybeMessage<::Answer_Latex_answer>(Arena*);
-template<> ::Command* Arena::CreateMaybeMessage<::Command>(Arena*);
-template<> ::Command_Axiom* Arena::CreateMaybeMessage<::Command_Axiom>(Arena*);
-template<> ::Command_Compiled* Arena::CreateMaybeMessage<::Command_Compiled>(Arena*);
-template<> ::Command_Expand_notations* Arena::CreateMaybeMessage<::Command_Expand_notations>(Arena*);
-template<> ::Command_File* Arena::CreateMaybeMessage<::Command_File>(Arena*);
-template<> ::Command_First_order* Arena::CreateMaybeMessage<::Command_First_order>(Arena*);
-template<> ::Command_History* Arena::CreateMaybeMessage<::Command_History>(Arena*);
-template<> ::Command_Interpreted* Arena::CreateMaybeMessage<::Command_Interpreted>(Arena*);
-template<> ::Command_Keep_notations* Arena::CreateMaybeMessage<::Command_Keep_notations>(Arena*);
-template<> ::Command_Notation* Arena::CreateMaybeMessage<::Command_Notation>(Arena*);
-template<> ::Command_Prop* Arena::CreateMaybeMessage<::Command_Prop>(Arena*);
-template<> ::Command_Quit* Arena::CreateMaybeMessage<::Command_Quit>(Arena*);
-template<> ::Command_Theorem* Arena::CreateMaybeMessage<::Command_Theorem>(Arena*);
-template<> ::Notation_element* Arena::CreateMaybeMessage<::Notation_element>(Arena*);
+template<> ::Server_Protocol::Answer* Arena::CreateMaybeMessage<::Server_Protocol::Answer>(Arena*);
+template<> ::Server_Protocol::Answer_Error* Arena::CreateMaybeMessage<::Server_Protocol::Answer_Error>(Arena*);
+template<> ::Server_Protocol::Answer_Latex_answer* Arena::CreateMaybeMessage<::Server_Protocol::Answer_Latex_answer>(Arena*);
+template<> ::Server_Protocol::Command* Arena::CreateMaybeMessage<::Server_Protocol::Command>(Arena*);
+template<> ::Server_Protocol::Command_Axiom* Arena::CreateMaybeMessage<::Server_Protocol::Command_Axiom>(Arena*);
+template<> ::Server_Protocol::Command_Compiled* Arena::CreateMaybeMessage<::Server_Protocol::Command_Compiled>(Arena*);
+template<> ::Server_Protocol::Command_Expand_notations* Arena::CreateMaybeMessage<::Server_Protocol::Command_Expand_notations>(Arena*);
+template<> ::Server_Protocol::Command_File* Arena::CreateMaybeMessage<::Server_Protocol::Command_File>(Arena*);
+template<> ::Server_Protocol::Command_First_order* Arena::CreateMaybeMessage<::Server_Protocol::Command_First_order>(Arena*);
+template<> ::Server_Protocol::Command_History* Arena::CreateMaybeMessage<::Server_Protocol::Command_History>(Arena*);
+template<> ::Server_Protocol::Command_Interpreted* Arena::CreateMaybeMessage<::Server_Protocol::Command_Interpreted>(Arena*);
+template<> ::Server_Protocol::Command_Keep_notations* Arena::CreateMaybeMessage<::Server_Protocol::Command_Keep_notations>(Arena*);
+template<> ::Server_Protocol::Command_Notation* Arena::CreateMaybeMessage<::Server_Protocol::Command_Notation>(Arena*);
+template<> ::Server_Protocol::Command_Prop* Arena::CreateMaybeMessage<::Server_Protocol::Command_Prop>(Arena*);
+template<> ::Server_Protocol::Command_Quit* Arena::CreateMaybeMessage<::Server_Protocol::Command_Quit>(Arena*);
+template<> ::Server_Protocol::Command_Theorem* Arena::CreateMaybeMessage<::Server_Protocol::Command_Theorem>(Arena*);
+template<> ::Server_Protocol::Notation_element* Arena::CreateMaybeMessage<::Server_Protocol::Notation_element>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
+namespace Server_Protocol {
 
 enum File_mode : int {
   TEXT = 0,
@@ -222,7 +225,7 @@ inline bool Latex_mode_Parse(
 // ===================================================================
 
 class Notation_element final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Notation_element) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Server_Protocol.Notation_element) */ {
  public:
   inline Notation_element() : Notation_element(nullptr) {}
   ~Notation_element() override;
@@ -329,7 +332,7 @@ class Notation_element final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Notation_element";
+    return "Server_Protocol.Notation_element";
   }
   protected:
   explicit Notation_element(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -387,7 +390,7 @@ class Notation_element final :
 
   void clear_t();
   TCase t_case() const;
-  // @@protoc_insertion_point(class_scope:Notation_element)
+  // @@protoc_insertion_point(class_scope:Server_Protocol.Notation_element)
  private:
   class _Internal;
   void set_has_param();
@@ -413,7 +416,7 @@ class Notation_element final :
 // -------------------------------------------------------------------
 
 class Command_Prop final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Command.Prop) */ {
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Server_Protocol.Command.Prop) */ {
  public:
   inline Command_Prop() : Command_Prop(nullptr) {}
   explicit PROTOBUF_CONSTEXPR Command_Prop(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
@@ -501,7 +504,7 @@ class Command_Prop final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Command.Prop";
+    return "Server_Protocol.Command.Prop";
   }
   protected:
   explicit Command_Prop(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -517,7 +520,7 @@ class Command_Prop final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:Command.Prop)
+  // @@protoc_insertion_point(class_scope:Server_Protocol.Command.Prop)
  private:
   class _Internal;
 
@@ -529,7 +532,7 @@ class Command_Prop final :
 // -------------------------------------------------------------------
 
 class Command_File final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Command.File) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Server_Protocol.Command.File) */ {
  public:
   inline Command_File() : Command_File(nullptr) {}
   ~Command_File() override;
@@ -630,7 +633,7 @@ class Command_File final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Command.File";
+    return "Server_Protocol.Command.File";
   }
   protected:
   explicit Command_File(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -664,16 +667,16 @@ class Command_File final :
   std::string* _internal_mutable_filename();
   public:
 
-  // .File_mode mode = 1;
+  // .Server_Protocol.File_mode mode = 1;
   void clear_mode();
-  ::File_mode mode() const;
-  void set_mode(::File_mode value);
+  ::Server_Protocol::File_mode mode() const;
+  void set_mode(::Server_Protocol::File_mode value);
   private:
-  ::File_mode _internal_mode() const;
-  void _internal_set_mode(::File_mode value);
+  ::Server_Protocol::File_mode _internal_mode() const;
+  void _internal_set_mode(::Server_Protocol::File_mode value);
   public:
 
-  // @@protoc_insertion_point(class_scope:Command.File)
+  // @@protoc_insertion_point(class_scope:Server_Protocol.Command.File)
  private:
   class _Internal;
 
@@ -688,7 +691,7 @@ class Command_File final :
 // -------------------------------------------------------------------
 
 class Command_Keep_notations final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Command.Keep_notations) */ {
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Server_Protocol.Command.Keep_notations) */ {
  public:
   inline Command_Keep_notations() : Command_Keep_notations(nullptr) {}
   explicit PROTOBUF_CONSTEXPR Command_Keep_notations(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
@@ -776,7 +779,7 @@ class Command_Keep_notations final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Command.Keep_notations";
+    return "Server_Protocol.Command.Keep_notations";
   }
   protected:
   explicit Command_Keep_notations(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -792,7 +795,7 @@ class Command_Keep_notations final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:Command.Keep_notations)
+  // @@protoc_insertion_point(class_scope:Server_Protocol.Command.Keep_notations)
  private:
   class _Internal;
 
@@ -804,7 +807,7 @@ class Command_Keep_notations final :
 // -------------------------------------------------------------------
 
 class Command_Expand_notations final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Command.Expand_notations) */ {
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Server_Protocol.Command.Expand_notations) */ {
  public:
   inline Command_Expand_notations() : Command_Expand_notations(nullptr) {}
   explicit PROTOBUF_CONSTEXPR Command_Expand_notations(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
@@ -892,7 +895,7 @@ class Command_Expand_notations final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Command.Expand_notations";
+    return "Server_Protocol.Command.Expand_notations";
   }
   protected:
   explicit Command_Expand_notations(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -908,7 +911,7 @@ class Command_Expand_notations final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:Command.Expand_notations)
+  // @@protoc_insertion_point(class_scope:Server_Protocol.Command.Expand_notations)
  private:
   class _Internal;
 
@@ -920,7 +923,7 @@ class Command_Expand_notations final :
 // -------------------------------------------------------------------
 
 class Command_Compiled final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Command.Compiled) */ {
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Server_Protocol.Command.Compiled) */ {
  public:
   inline Command_Compiled() : Command_Compiled(nullptr) {}
   explicit PROTOBUF_CONSTEXPR Command_Compiled(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
@@ -1008,7 +1011,7 @@ class Command_Compiled final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Command.Compiled";
+    return "Server_Protocol.Command.Compiled";
   }
   protected:
   explicit Command_Compiled(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -1024,7 +1027,7 @@ class Command_Compiled final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:Command.Compiled)
+  // @@protoc_insertion_point(class_scope:Server_Protocol.Command.Compiled)
  private:
   class _Internal;
 
@@ -1036,7 +1039,7 @@ class Command_Compiled final :
 // -------------------------------------------------------------------
 
 class Command_Interpreted final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Command.Interpreted) */ {
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Server_Protocol.Command.Interpreted) */ {
  public:
   inline Command_Interpreted() : Command_Interpreted(nullptr) {}
   explicit PROTOBUF_CONSTEXPR Command_Interpreted(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
@@ -1124,7 +1127,7 @@ class Command_Interpreted final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Command.Interpreted";
+    return "Server_Protocol.Command.Interpreted";
   }
   protected:
   explicit Command_Interpreted(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -1140,7 +1143,7 @@ class Command_Interpreted final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:Command.Interpreted)
+  // @@protoc_insertion_point(class_scope:Server_Protocol.Command.Interpreted)
  private:
   class _Internal;
 
@@ -1152,7 +1155,7 @@ class Command_Interpreted final :
 // -------------------------------------------------------------------
 
 class Command_First_order final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Command.First_order) */ {
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Server_Protocol.Command.First_order) */ {
  public:
   inline Command_First_order() : Command_First_order(nullptr) {}
   explicit PROTOBUF_CONSTEXPR Command_First_order(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
@@ -1240,7 +1243,7 @@ class Command_First_order final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Command.First_order";
+    return "Server_Protocol.Command.First_order";
   }
   protected:
   explicit Command_First_order(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -1256,7 +1259,7 @@ class Command_First_order final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:Command.First_order)
+  // @@protoc_insertion_point(class_scope:Server_Protocol.Command.First_order)
  private:
   class _Internal;
 
@@ -1268,7 +1271,7 @@ class Command_First_order final :
 // -------------------------------------------------------------------
 
 class Command_Notation final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Command.Notation) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Server_Protocol.Command.Notation) */ {
  public:
   inline Command_Notation() : Command_Notation(nullptr) {}
   ~Command_Notation() override;
@@ -1369,7 +1372,7 @@ class Command_Notation final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Command.Notation";
+    return "Server_Protocol.Command.Notation";
   }
   protected:
   explicit Command_Notation(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -1415,40 +1418,40 @@ class Command_Notation final :
   std::string* _internal_add_params();
   public:
 
-  // repeated .Notation_element syntax = 3;
+  // repeated .Server_Protocol.Notation_element syntax = 3;
   int syntax_size() const;
   private:
   int _internal_syntax_size() const;
   public:
   void clear_syntax();
-  ::Notation_element* mutable_syntax(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Notation_element >*
+  ::Server_Protocol::Notation_element* mutable_syntax(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Server_Protocol::Notation_element >*
       mutable_syntax();
   private:
-  const ::Notation_element& _internal_syntax(int index) const;
-  ::Notation_element* _internal_add_syntax();
+  const ::Server_Protocol::Notation_element& _internal_syntax(int index) const;
+  ::Server_Protocol::Notation_element* _internal_add_syntax();
   public:
-  const ::Notation_element& syntax(int index) const;
-  ::Notation_element* add_syntax();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Notation_element >&
+  const ::Server_Protocol::Notation_element& syntax(int index) const;
+  ::Server_Protocol::Notation_element* add_syntax();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Server_Protocol::Notation_element >&
       syntax() const;
 
-  // repeated .Notation_element semantics = 4;
+  // repeated .Server_Protocol.Notation_element semantics = 4;
   int semantics_size() const;
   private:
   int _internal_semantics_size() const;
   public:
   void clear_semantics();
-  ::Notation_element* mutable_semantics(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Notation_element >*
+  ::Server_Protocol::Notation_element* mutable_semantics(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Server_Protocol::Notation_element >*
       mutable_semantics();
   private:
-  const ::Notation_element& _internal_semantics(int index) const;
-  ::Notation_element* _internal_add_semantics();
+  const ::Server_Protocol::Notation_element& _internal_semantics(int index) const;
+  ::Server_Protocol::Notation_element* _internal_add_semantics();
   public:
-  const ::Notation_element& semantics(int index) const;
-  ::Notation_element* add_semantics();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Notation_element >&
+  const ::Server_Protocol::Notation_element& semantics(int index) const;
+  ::Server_Protocol::Notation_element* add_semantics();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Server_Protocol::Notation_element >&
       semantics() const;
 
   // string name = 1;
@@ -1465,7 +1468,7 @@ class Command_Notation final :
   std::string* _internal_mutable_name();
   public:
 
-  // @@protoc_insertion_point(class_scope:Command.Notation)
+  // @@protoc_insertion_point(class_scope:Server_Protocol.Command.Notation)
  private:
   class _Internal;
 
@@ -1473,8 +1476,8 @@ class Command_Notation final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> params_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Notation_element > syntax_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Notation_element > semantics_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Server_Protocol::Notation_element > syntax_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Server_Protocol::Notation_element > semantics_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_server_5fprotocol_2eproto;
@@ -1482,7 +1485,7 @@ class Command_Notation final :
 // -------------------------------------------------------------------
 
 class Command_Theorem final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Command.Theorem) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Server_Protocol.Command.Theorem) */ {
  public:
   inline Command_Theorem() : Command_Theorem(nullptr) {}
   ~Command_Theorem() override;
@@ -1583,7 +1586,7 @@ class Command_Theorem final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Command.Theorem";
+    return "Server_Protocol.Command.Theorem";
   }
   protected:
   explicit Command_Theorem(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -1707,16 +1710,16 @@ class Command_Theorem final :
   std::string* _internal_mutable_conclusion();
   public:
 
-  // .Status status = 6;
+  // .Server_Protocol.Status status = 6;
   void clear_status();
-  ::Status status() const;
-  void set_status(::Status value);
+  ::Server_Protocol::Status status() const;
+  void set_status(::Server_Protocol::Status value);
   private:
-  ::Status _internal_status() const;
-  void _internal_set_status(::Status value);
+  ::Server_Protocol::Status _internal_status() const;
+  void _internal_set_status(::Server_Protocol::Status value);
   public:
 
-  // @@protoc_insertion_point(class_scope:Command.Theorem)
+  // @@protoc_insertion_point(class_scope:Server_Protocol.Command.Theorem)
  private:
   class _Internal;
 
@@ -1735,7 +1738,7 @@ class Command_Theorem final :
 // -------------------------------------------------------------------
 
 class Command_Axiom final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Command.Axiom) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Server_Protocol.Command.Axiom) */ {
  public:
   inline Command_Axiom() : Command_Axiom(nullptr) {}
   ~Command_Axiom() override;
@@ -1836,7 +1839,7 @@ class Command_Axiom final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Command.Axiom";
+    return "Server_Protocol.Command.Axiom";
   }
   protected:
   explicit Command_Axiom(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -1884,7 +1887,7 @@ class Command_Axiom final :
   std::string* _internal_mutable_formula();
   public:
 
-  // @@protoc_insertion_point(class_scope:Command.Axiom)
+  // @@protoc_insertion_point(class_scope:Server_Protocol.Command.Axiom)
  private:
   class _Internal;
 
@@ -1899,7 +1902,7 @@ class Command_Axiom final :
 // -------------------------------------------------------------------
 
 class Command_History final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Command.History) */ {
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Server_Protocol.Command.History) */ {
  public:
   inline Command_History() : Command_History(nullptr) {}
   explicit PROTOBUF_CONSTEXPR Command_History(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
@@ -1987,7 +1990,7 @@ class Command_History final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Command.History";
+    return "Server_Protocol.Command.History";
   }
   protected:
   explicit Command_History(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -2003,7 +2006,7 @@ class Command_History final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:Command.History)
+  // @@protoc_insertion_point(class_scope:Server_Protocol.Command.History)
  private:
   class _Internal;
 
@@ -2015,7 +2018,7 @@ class Command_History final :
 // -------------------------------------------------------------------
 
 class Command_Quit final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Command.Quit) */ {
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:Server_Protocol.Command.Quit) */ {
  public:
   inline Command_Quit() : Command_Quit(nullptr) {}
   explicit PROTOBUF_CONSTEXPR Command_Quit(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
@@ -2103,7 +2106,7 @@ class Command_Quit final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Command.Quit";
+    return "Server_Protocol.Command.Quit";
   }
   protected:
   explicit Command_Quit(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -2119,7 +2122,7 @@ class Command_Quit final :
 
   // accessors -------------------------------------------------------
 
-  // @@protoc_insertion_point(class_scope:Command.Quit)
+  // @@protoc_insertion_point(class_scope:Server_Protocol.Command.Quit)
  private:
   class _Internal;
 
@@ -2131,7 +2134,7 @@ class Command_Quit final :
 // -------------------------------------------------------------------
 
 class Command final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Command) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Server_Protocol.Command) */ {
  public:
   inline Command() : Command(nullptr) {}
   ~Command() override;
@@ -2253,7 +2256,7 @@ class Command final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Command";
+    return "Server_Protocol.Command";
   }
   protected:
   explicit Command(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -2314,221 +2317,221 @@ class Command final :
   void _internal_set_verbose(int32_t value);
   public:
 
-  // .Command.Prop prop = 2;
+  // .Server_Protocol.Command.Prop prop = 2;
   bool has_prop() const;
   private:
   bool _internal_has_prop() const;
   public:
   void clear_prop();
-  const ::Command_Prop& prop() const;
-  PROTOBUF_NODISCARD ::Command_Prop* release_prop();
-  ::Command_Prop* mutable_prop();
-  void set_allocated_prop(::Command_Prop* prop);
+  const ::Server_Protocol::Command_Prop& prop() const;
+  PROTOBUF_NODISCARD ::Server_Protocol::Command_Prop* release_prop();
+  ::Server_Protocol::Command_Prop* mutable_prop();
+  void set_allocated_prop(::Server_Protocol::Command_Prop* prop);
   private:
-  const ::Command_Prop& _internal_prop() const;
-  ::Command_Prop* _internal_mutable_prop();
+  const ::Server_Protocol::Command_Prop& _internal_prop() const;
+  ::Server_Protocol::Command_Prop* _internal_mutable_prop();
   public:
   void unsafe_arena_set_allocated_prop(
-      ::Command_Prop* prop);
-  ::Command_Prop* unsafe_arena_release_prop();
+      ::Server_Protocol::Command_Prop* prop);
+  ::Server_Protocol::Command_Prop* unsafe_arena_release_prop();
 
-  // .Command.Keep_notations keep_notations = 3;
+  // .Server_Protocol.Command.Keep_notations keep_notations = 3;
   bool has_keep_notations() const;
   private:
   bool _internal_has_keep_notations() const;
   public:
   void clear_keep_notations();
-  const ::Command_Keep_notations& keep_notations() const;
-  PROTOBUF_NODISCARD ::Command_Keep_notations* release_keep_notations();
-  ::Command_Keep_notations* mutable_keep_notations();
-  void set_allocated_keep_notations(::Command_Keep_notations* keep_notations);
+  const ::Server_Protocol::Command_Keep_notations& keep_notations() const;
+  PROTOBUF_NODISCARD ::Server_Protocol::Command_Keep_notations* release_keep_notations();
+  ::Server_Protocol::Command_Keep_notations* mutable_keep_notations();
+  void set_allocated_keep_notations(::Server_Protocol::Command_Keep_notations* keep_notations);
   private:
-  const ::Command_Keep_notations& _internal_keep_notations() const;
-  ::Command_Keep_notations* _internal_mutable_keep_notations();
+  const ::Server_Protocol::Command_Keep_notations& _internal_keep_notations() const;
+  ::Server_Protocol::Command_Keep_notations* _internal_mutable_keep_notations();
   public:
   void unsafe_arena_set_allocated_keep_notations(
-      ::Command_Keep_notations* keep_notations);
-  ::Command_Keep_notations* unsafe_arena_release_keep_notations();
+      ::Server_Protocol::Command_Keep_notations* keep_notations);
+  ::Server_Protocol::Command_Keep_notations* unsafe_arena_release_keep_notations();
 
-  // .Command.Expand_notations expand_notations = 4;
+  // .Server_Protocol.Command.Expand_notations expand_notations = 4;
   bool has_expand_notations() const;
   private:
   bool _internal_has_expand_notations() const;
   public:
   void clear_expand_notations();
-  const ::Command_Expand_notations& expand_notations() const;
-  PROTOBUF_NODISCARD ::Command_Expand_notations* release_expand_notations();
-  ::Command_Expand_notations* mutable_expand_notations();
-  void set_allocated_expand_notations(::Command_Expand_notations* expand_notations);
+  const ::Server_Protocol::Command_Expand_notations& expand_notations() const;
+  PROTOBUF_NODISCARD ::Server_Protocol::Command_Expand_notations* release_expand_notations();
+  ::Server_Protocol::Command_Expand_notations* mutable_expand_notations();
+  void set_allocated_expand_notations(::Server_Protocol::Command_Expand_notations* expand_notations);
   private:
-  const ::Command_Expand_notations& _internal_expand_notations() const;
-  ::Command_Expand_notations* _internal_mutable_expand_notations();
+  const ::Server_Protocol::Command_Expand_notations& _internal_expand_notations() const;
+  ::Server_Protocol::Command_Expand_notations* _internal_mutable_expand_notations();
   public:
   void unsafe_arena_set_allocated_expand_notations(
-      ::Command_Expand_notations* expand_notations);
-  ::Command_Expand_notations* unsafe_arena_release_expand_notations();
+      ::Server_Protocol::Command_Expand_notations* expand_notations);
+  ::Server_Protocol::Command_Expand_notations* unsafe_arena_release_expand_notations();
 
-  // .Command.Compiled compiled = 5;
+  // .Server_Protocol.Command.Compiled compiled = 5;
   bool has_compiled() const;
   private:
   bool _internal_has_compiled() const;
   public:
   void clear_compiled();
-  const ::Command_Compiled& compiled() const;
-  PROTOBUF_NODISCARD ::Command_Compiled* release_compiled();
-  ::Command_Compiled* mutable_compiled();
-  void set_allocated_compiled(::Command_Compiled* compiled);
+  const ::Server_Protocol::Command_Compiled& compiled() const;
+  PROTOBUF_NODISCARD ::Server_Protocol::Command_Compiled* release_compiled();
+  ::Server_Protocol::Command_Compiled* mutable_compiled();
+  void set_allocated_compiled(::Server_Protocol::Command_Compiled* compiled);
   private:
-  const ::Command_Compiled& _internal_compiled() const;
-  ::Command_Compiled* _internal_mutable_compiled();
+  const ::Server_Protocol::Command_Compiled& _internal_compiled() const;
+  ::Server_Protocol::Command_Compiled* _internal_mutable_compiled();
   public:
   void unsafe_arena_set_allocated_compiled(
-      ::Command_Compiled* compiled);
-  ::Command_Compiled* unsafe_arena_release_compiled();
+      ::Server_Protocol::Command_Compiled* compiled);
+  ::Server_Protocol::Command_Compiled* unsafe_arena_release_compiled();
 
-  // .Command.Interpreted interpreted = 6;
+  // .Server_Protocol.Command.Interpreted interpreted = 6;
   bool has_interpreted() const;
   private:
   bool _internal_has_interpreted() const;
   public:
   void clear_interpreted();
-  const ::Command_Interpreted& interpreted() const;
-  PROTOBUF_NODISCARD ::Command_Interpreted* release_interpreted();
-  ::Command_Interpreted* mutable_interpreted();
-  void set_allocated_interpreted(::Command_Interpreted* interpreted);
+  const ::Server_Protocol::Command_Interpreted& interpreted() const;
+  PROTOBUF_NODISCARD ::Server_Protocol::Command_Interpreted* release_interpreted();
+  ::Server_Protocol::Command_Interpreted* mutable_interpreted();
+  void set_allocated_interpreted(::Server_Protocol::Command_Interpreted* interpreted);
   private:
-  const ::Command_Interpreted& _internal_interpreted() const;
-  ::Command_Interpreted* _internal_mutable_interpreted();
+  const ::Server_Protocol::Command_Interpreted& _internal_interpreted() const;
+  ::Server_Protocol::Command_Interpreted* _internal_mutable_interpreted();
   public:
   void unsafe_arena_set_allocated_interpreted(
-      ::Command_Interpreted* interpreted);
-  ::Command_Interpreted* unsafe_arena_release_interpreted();
+      ::Server_Protocol::Command_Interpreted* interpreted);
+  ::Server_Protocol::Command_Interpreted* unsafe_arena_release_interpreted();
 
-  // .Command.File save = 7;
+  // .Server_Protocol.Command.File save = 7;
   bool has_save() const;
   private:
   bool _internal_has_save() const;
   public:
   void clear_save();
-  const ::Command_File& save() const;
-  PROTOBUF_NODISCARD ::Command_File* release_save();
-  ::Command_File* mutable_save();
-  void set_allocated_save(::Command_File* save);
+  const ::Server_Protocol::Command_File& save() const;
+  PROTOBUF_NODISCARD ::Server_Protocol::Command_File* release_save();
+  ::Server_Protocol::Command_File* mutable_save();
+  void set_allocated_save(::Server_Protocol::Command_File* save);
   private:
-  const ::Command_File& _internal_save() const;
-  ::Command_File* _internal_mutable_save();
+  const ::Server_Protocol::Command_File& _internal_save() const;
+  ::Server_Protocol::Command_File* _internal_mutable_save();
   public:
   void unsafe_arena_set_allocated_save(
-      ::Command_File* save);
-  ::Command_File* unsafe_arena_release_save();
+      ::Server_Protocol::Command_File* save);
+  ::Server_Protocol::Command_File* unsafe_arena_release_save();
 
-  // .Command.File load = 8;
+  // .Server_Protocol.Command.File load = 8;
   bool has_load() const;
   private:
   bool _internal_has_load() const;
   public:
   void clear_load();
-  const ::Command_File& load() const;
-  PROTOBUF_NODISCARD ::Command_File* release_load();
-  ::Command_File* mutable_load();
-  void set_allocated_load(::Command_File* load);
+  const ::Server_Protocol::Command_File& load() const;
+  PROTOBUF_NODISCARD ::Server_Protocol::Command_File* release_load();
+  ::Server_Protocol::Command_File* mutable_load();
+  void set_allocated_load(::Server_Protocol::Command_File* load);
   private:
-  const ::Command_File& _internal_load() const;
-  ::Command_File* _internal_mutable_load();
+  const ::Server_Protocol::Command_File& _internal_load() const;
+  ::Server_Protocol::Command_File* _internal_mutable_load();
   public:
   void unsafe_arena_set_allocated_load(
-      ::Command_File* load);
-  ::Command_File* unsafe_arena_release_load();
+      ::Server_Protocol::Command_File* load);
+  ::Server_Protocol::Command_File* unsafe_arena_release_load();
 
-  // .Command.First_order first_order = 9;
+  // .Server_Protocol.Command.First_order first_order = 9;
   bool has_first_order() const;
   private:
   bool _internal_has_first_order() const;
   public:
   void clear_first_order();
-  const ::Command_First_order& first_order() const;
-  PROTOBUF_NODISCARD ::Command_First_order* release_first_order();
-  ::Command_First_order* mutable_first_order();
-  void set_allocated_first_order(::Command_First_order* first_order);
+  const ::Server_Protocol::Command_First_order& first_order() const;
+  PROTOBUF_NODISCARD ::Server_Protocol::Command_First_order* release_first_order();
+  ::Server_Protocol::Command_First_order* mutable_first_order();
+  void set_allocated_first_order(::Server_Protocol::Command_First_order* first_order);
   private:
-  const ::Command_First_order& _internal_first_order() const;
-  ::Command_First_order* _internal_mutable_first_order();
+  const ::Server_Protocol::Command_First_order& _internal_first_order() const;
+  ::Server_Protocol::Command_First_order* _internal_mutable_first_order();
   public:
   void unsafe_arena_set_allocated_first_order(
-      ::Command_First_order* first_order);
-  ::Command_First_order* unsafe_arena_release_first_order();
+      ::Server_Protocol::Command_First_order* first_order);
+  ::Server_Protocol::Command_First_order* unsafe_arena_release_first_order();
 
-  // .Command.Notation notation = 10;
+  // .Server_Protocol.Command.Notation notation = 10;
   bool has_notation() const;
   private:
   bool _internal_has_notation() const;
   public:
   void clear_notation();
-  const ::Command_Notation& notation() const;
-  PROTOBUF_NODISCARD ::Command_Notation* release_notation();
-  ::Command_Notation* mutable_notation();
-  void set_allocated_notation(::Command_Notation* notation);
+  const ::Server_Protocol::Command_Notation& notation() const;
+  PROTOBUF_NODISCARD ::Server_Protocol::Command_Notation* release_notation();
+  ::Server_Protocol::Command_Notation* mutable_notation();
+  void set_allocated_notation(::Server_Protocol::Command_Notation* notation);
   private:
-  const ::Command_Notation& _internal_notation() const;
-  ::Command_Notation* _internal_mutable_notation();
+  const ::Server_Protocol::Command_Notation& _internal_notation() const;
+  ::Server_Protocol::Command_Notation* _internal_mutable_notation();
   public:
   void unsafe_arena_set_allocated_notation(
-      ::Command_Notation* notation);
-  ::Command_Notation* unsafe_arena_release_notation();
+      ::Server_Protocol::Command_Notation* notation);
+  ::Server_Protocol::Command_Notation* unsafe_arena_release_notation();
 
-  // .Command.Theorem theorem = 11;
+  // .Server_Protocol.Command.Theorem theorem = 11;
   bool has_theorem() const;
   private:
   bool _internal_has_theorem() const;
   public:
   void clear_theorem();
-  const ::Command_Theorem& theorem() const;
-  PROTOBUF_NODISCARD ::Command_Theorem* release_theorem();
-  ::Command_Theorem* mutable_theorem();
-  void set_allocated_theorem(::Command_Theorem* theorem);
+  const ::Server_Protocol::Command_Theorem& theorem() const;
+  PROTOBUF_NODISCARD ::Server_Protocol::Command_Theorem* release_theorem();
+  ::Server_Protocol::Command_Theorem* mutable_theorem();
+  void set_allocated_theorem(::Server_Protocol::Command_Theorem* theorem);
   private:
-  const ::Command_Theorem& _internal_theorem() const;
-  ::Command_Theorem* _internal_mutable_theorem();
+  const ::Server_Protocol::Command_Theorem& _internal_theorem() const;
+  ::Server_Protocol::Command_Theorem* _internal_mutable_theorem();
   public:
   void unsafe_arena_set_allocated_theorem(
-      ::Command_Theorem* theorem);
-  ::Command_Theorem* unsafe_arena_release_theorem();
+      ::Server_Protocol::Command_Theorem* theorem);
+  ::Server_Protocol::Command_Theorem* unsafe_arena_release_theorem();
 
-  // .Command.Axiom axiom = 12;
+  // .Server_Protocol.Command.Axiom axiom = 12;
   bool has_axiom() const;
   private:
   bool _internal_has_axiom() const;
   public:
   void clear_axiom();
-  const ::Command_Axiom& axiom() const;
-  PROTOBUF_NODISCARD ::Command_Axiom* release_axiom();
-  ::Command_Axiom* mutable_axiom();
-  void set_allocated_axiom(::Command_Axiom* axiom);
+  const ::Server_Protocol::Command_Axiom& axiom() const;
+  PROTOBUF_NODISCARD ::Server_Protocol::Command_Axiom* release_axiom();
+  ::Server_Protocol::Command_Axiom* mutable_axiom();
+  void set_allocated_axiom(::Server_Protocol::Command_Axiom* axiom);
   private:
-  const ::Command_Axiom& _internal_axiom() const;
-  ::Command_Axiom* _internal_mutable_axiom();
+  const ::Server_Protocol::Command_Axiom& _internal_axiom() const;
+  ::Server_Protocol::Command_Axiom* _internal_mutable_axiom();
   public:
   void unsafe_arena_set_allocated_axiom(
-      ::Command_Axiom* axiom);
-  ::Command_Axiom* unsafe_arena_release_axiom();
+      ::Server_Protocol::Command_Axiom* axiom);
+  ::Server_Protocol::Command_Axiom* unsafe_arena_release_axiom();
 
-  // .Command.History history = 13;
+  // .Server_Protocol.Command.History history = 13;
   bool has_history() const;
   private:
   bool _internal_has_history() const;
   public:
   void clear_history();
-  const ::Command_History& history() const;
-  PROTOBUF_NODISCARD ::Command_History* release_history();
-  ::Command_History* mutable_history();
-  void set_allocated_history(::Command_History* history);
+  const ::Server_Protocol::Command_History& history() const;
+  PROTOBUF_NODISCARD ::Server_Protocol::Command_History* release_history();
+  ::Server_Protocol::Command_History* mutable_history();
+  void set_allocated_history(::Server_Protocol::Command_History* history);
   private:
-  const ::Command_History& _internal_history() const;
-  ::Command_History* _internal_mutable_history();
+  const ::Server_Protocol::Command_History& _internal_history() const;
+  ::Server_Protocol::Command_History* _internal_mutable_history();
   public:
   void unsafe_arena_set_allocated_history(
-      ::Command_History* history);
-  ::Command_History* unsafe_arena_release_history();
+      ::Server_Protocol::Command_History* history);
+  ::Server_Protocol::Command_History* unsafe_arena_release_history();
 
   // string show = 14;
   bool has_show() const;
@@ -2548,17 +2551,17 @@ class Command final :
   std::string* _internal_mutable_show();
   public:
 
-  // .Known list = 15;
+  // .Server_Protocol.Known list = 15;
   bool has_list() const;
   private:
   bool _internal_has_list() const;
   public:
   void clear_list();
-  ::Known list() const;
-  void set_list(::Known value);
+  ::Server_Protocol::Known list() const;
+  void set_list(::Server_Protocol::Known value);
   private:
-  ::Known _internal_list() const;
-  void _internal_set_list(::Known value);
+  ::Server_Protocol::Known _internal_list() const;
+  void _internal_set_list(::Server_Protocol::Known value);
   public:
 
   // string user = 16;
@@ -2579,27 +2582,27 @@ class Command final :
   std::string* _internal_mutable_user();
   public:
 
-  // .Command.Quit quit = 17;
+  // .Server_Protocol.Command.Quit quit = 17;
   bool has_quit() const;
   private:
   bool _internal_has_quit() const;
   public:
   void clear_quit();
-  const ::Command_Quit& quit() const;
-  PROTOBUF_NODISCARD ::Command_Quit* release_quit();
-  ::Command_Quit* mutable_quit();
-  void set_allocated_quit(::Command_Quit* quit);
+  const ::Server_Protocol::Command_Quit& quit() const;
+  PROTOBUF_NODISCARD ::Server_Protocol::Command_Quit* release_quit();
+  ::Server_Protocol::Command_Quit* mutable_quit();
+  void set_allocated_quit(::Server_Protocol::Command_Quit* quit);
   private:
-  const ::Command_Quit& _internal_quit() const;
-  ::Command_Quit* _internal_mutable_quit();
+  const ::Server_Protocol::Command_Quit& _internal_quit() const;
+  ::Server_Protocol::Command_Quit* _internal_mutable_quit();
   public:
   void unsafe_arena_set_allocated_quit(
-      ::Command_Quit* quit);
-  ::Command_Quit* unsafe_arena_release_quit();
+      ::Server_Protocol::Command_Quit* quit);
+  ::Server_Protocol::Command_Quit* unsafe_arena_release_quit();
 
   void clear_t();
   TCase t_case() const;
-  // @@protoc_insertion_point(class_scope:Command)
+  // @@protoc_insertion_point(class_scope:Server_Protocol.Command)
  private:
   class _Internal;
   void set_has_verbose();
@@ -2630,22 +2633,22 @@ class Command final :
     constexpr TUnion() : _constinit_{} {}
       ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
     int32_t verbose_;
-    ::Command_Prop* prop_;
-    ::Command_Keep_notations* keep_notations_;
-    ::Command_Expand_notations* expand_notations_;
-    ::Command_Compiled* compiled_;
-    ::Command_Interpreted* interpreted_;
-    ::Command_File* save_;
-    ::Command_File* load_;
-    ::Command_First_order* first_order_;
-    ::Command_Notation* notation_;
-    ::Command_Theorem* theorem_;
-    ::Command_Axiom* axiom_;
-    ::Command_History* history_;
+    ::Server_Protocol::Command_Prop* prop_;
+    ::Server_Protocol::Command_Keep_notations* keep_notations_;
+    ::Server_Protocol::Command_Expand_notations* expand_notations_;
+    ::Server_Protocol::Command_Compiled* compiled_;
+    ::Server_Protocol::Command_Interpreted* interpreted_;
+    ::Server_Protocol::Command_File* save_;
+    ::Server_Protocol::Command_File* load_;
+    ::Server_Protocol::Command_First_order* first_order_;
+    ::Server_Protocol::Command_Notation* notation_;
+    ::Server_Protocol::Command_Theorem* theorem_;
+    ::Server_Protocol::Command_Axiom* axiom_;
+    ::Server_Protocol::Command_History* history_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr show_;
     int list_;
     ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr user_;
-    ::Command_Quit* quit_;
+    ::Server_Protocol::Command_Quit* quit_;
   } t_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   uint32_t _oneof_case_[1];
@@ -2655,7 +2658,7 @@ class Command final :
 // -------------------------------------------------------------------
 
 class Answer_Error final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Answer.Error) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Server_Protocol.Answer.Error) */ {
  public:
   inline Answer_Error() : Answer_Error(nullptr) {}
   ~Answer_Error() override;
@@ -2756,7 +2759,7 @@ class Answer_Error final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Answer.Error";
+    return "Server_Protocol.Answer.Error";
   }
   protected:
   explicit Answer_Error(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -2790,25 +2793,25 @@ class Answer_Error final :
   std::string* _internal_mutable_error_message();
   public:
 
-  // .Command command = 2;
+  // .Server_Protocol.Command command = 2;
   bool has_command() const;
   private:
   bool _internal_has_command() const;
   public:
   void clear_command();
-  const ::Command& command() const;
-  PROTOBUF_NODISCARD ::Command* release_command();
-  ::Command* mutable_command();
-  void set_allocated_command(::Command* command);
+  const ::Server_Protocol::Command& command() const;
+  PROTOBUF_NODISCARD ::Server_Protocol::Command* release_command();
+  ::Server_Protocol::Command* mutable_command();
+  void set_allocated_command(::Server_Protocol::Command* command);
   private:
-  const ::Command& _internal_command() const;
-  ::Command* _internal_mutable_command();
+  const ::Server_Protocol::Command& _internal_command() const;
+  ::Server_Protocol::Command* _internal_mutable_command();
   public:
   void unsafe_arena_set_allocated_command(
-      ::Command* command);
-  ::Command* unsafe_arena_release_command();
+      ::Server_Protocol::Command* command);
+  ::Server_Protocol::Command* unsafe_arena_release_command();
 
-  // @@protoc_insertion_point(class_scope:Answer.Error)
+  // @@protoc_insertion_point(class_scope:Server_Protocol.Answer.Error)
  private:
   class _Internal;
 
@@ -2816,14 +2819,14 @@ class Answer_Error final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_message_;
-  ::Command* command_;
+  ::Server_Protocol::Command* command_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_server_5fprotocol_2eproto;
 };
 // -------------------------------------------------------------------
 
 class Answer_Latex_answer final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Answer.Latex_answer) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Server_Protocol.Answer.Latex_answer) */ {
  public:
   inline Answer_Latex_answer() : Answer_Latex_answer(nullptr) {}
   ~Answer_Latex_answer() override;
@@ -2924,7 +2927,7 @@ class Answer_Latex_answer final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Answer.Latex_answer";
+    return "Server_Protocol.Answer.Latex_answer";
   }
   protected:
   explicit Answer_Latex_answer(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -2958,16 +2961,16 @@ class Answer_Latex_answer final :
   std::string* _internal_mutable_answer();
   public:
 
-  // .Latex_mode mode = 1;
+  // .Server_Protocol.Latex_mode mode = 1;
   void clear_mode();
-  ::Latex_mode mode() const;
-  void set_mode(::Latex_mode value);
+  ::Server_Protocol::Latex_mode mode() const;
+  void set_mode(::Server_Protocol::Latex_mode value);
   private:
-  ::Latex_mode _internal_mode() const;
-  void _internal_set_mode(::Latex_mode value);
+  ::Server_Protocol::Latex_mode _internal_mode() const;
+  void _internal_set_mode(::Server_Protocol::Latex_mode value);
   public:
 
-  // @@protoc_insertion_point(class_scope:Answer.Latex_answer)
+  // @@protoc_insertion_point(class_scope:Server_Protocol.Answer.Latex_answer)
  private:
   class _Internal;
 
@@ -2982,7 +2985,7 @@ class Answer_Latex_answer final :
 // -------------------------------------------------------------------
 
 class Answer final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Answer) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Server_Protocol.Answer) */ {
  public:
   inline Answer() : Answer(nullptr) {}
   ~Answer() override;
@@ -3090,7 +3093,7 @@ class Answer final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "Answer";
+    return "Server_Protocol.Answer";
   }
   protected:
   explicit Answer(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -3114,63 +3117,63 @@ class Answer final :
     kErrorFieldNumber = 2,
     kAnswerFieldNumber = 3,
   };
-  // .Command ok = 1;
+  // .Server_Protocol.Command ok = 1;
   bool has_ok() const;
   private:
   bool _internal_has_ok() const;
   public:
   void clear_ok();
-  const ::Command& ok() const;
-  PROTOBUF_NODISCARD ::Command* release_ok();
-  ::Command* mutable_ok();
-  void set_allocated_ok(::Command* ok);
+  const ::Server_Protocol::Command& ok() const;
+  PROTOBUF_NODISCARD ::Server_Protocol::Command* release_ok();
+  ::Server_Protocol::Command* mutable_ok();
+  void set_allocated_ok(::Server_Protocol::Command* ok);
   private:
-  const ::Command& _internal_ok() const;
-  ::Command* _internal_mutable_ok();
+  const ::Server_Protocol::Command& _internal_ok() const;
+  ::Server_Protocol::Command* _internal_mutable_ok();
   public:
   void unsafe_arena_set_allocated_ok(
-      ::Command* ok);
-  ::Command* unsafe_arena_release_ok();
+      ::Server_Protocol::Command* ok);
+  ::Server_Protocol::Command* unsafe_arena_release_ok();
 
-  // .Answer.Error error = 2;
+  // .Server_Protocol.Answer.Error error = 2;
   bool has_error() const;
   private:
   bool _internal_has_error() const;
   public:
   void clear_error();
-  const ::Answer_Error& error() const;
-  PROTOBUF_NODISCARD ::Answer_Error* release_error();
-  ::Answer_Error* mutable_error();
-  void set_allocated_error(::Answer_Error* error);
+  const ::Server_Protocol::Answer_Error& error() const;
+  PROTOBUF_NODISCARD ::Server_Protocol::Answer_Error* release_error();
+  ::Server_Protocol::Answer_Error* mutable_error();
+  void set_allocated_error(::Server_Protocol::Answer_Error* error);
   private:
-  const ::Answer_Error& _internal_error() const;
-  ::Answer_Error* _internal_mutable_error();
+  const ::Server_Protocol::Answer_Error& _internal_error() const;
+  ::Server_Protocol::Answer_Error* _internal_mutable_error();
   public:
   void unsafe_arena_set_allocated_error(
-      ::Answer_Error* error);
-  ::Answer_Error* unsafe_arena_release_error();
+      ::Server_Protocol::Answer_Error* error);
+  ::Server_Protocol::Answer_Error* unsafe_arena_release_error();
 
-  // .Answer.Latex_answer answer = 3;
+  // .Server_Protocol.Answer.Latex_answer answer = 3;
   bool has_answer() const;
   private:
   bool _internal_has_answer() const;
   public:
   void clear_answer();
-  const ::Answer_Latex_answer& answer() const;
-  PROTOBUF_NODISCARD ::Answer_Latex_answer* release_answer();
-  ::Answer_Latex_answer* mutable_answer();
-  void set_allocated_answer(::Answer_Latex_answer* answer);
+  const ::Server_Protocol::Answer_Latex_answer& answer() const;
+  PROTOBUF_NODISCARD ::Server_Protocol::Answer_Latex_answer* release_answer();
+  ::Server_Protocol::Answer_Latex_answer* mutable_answer();
+  void set_allocated_answer(::Server_Protocol::Answer_Latex_answer* answer);
   private:
-  const ::Answer_Latex_answer& _internal_answer() const;
-  ::Answer_Latex_answer* _internal_mutable_answer();
+  const ::Server_Protocol::Answer_Latex_answer& _internal_answer() const;
+  ::Server_Protocol::Answer_Latex_answer* _internal_mutable_answer();
   public:
   void unsafe_arena_set_allocated_answer(
-      ::Answer_Latex_answer* answer);
-  ::Answer_Latex_answer* unsafe_arena_release_answer();
+      ::Server_Protocol::Answer_Latex_answer* answer);
+  ::Server_Protocol::Answer_Latex_answer* unsafe_arena_release_answer();
 
   void clear_t();
   TCase t_case() const;
-  // @@protoc_insertion_point(class_scope:Answer)
+  // @@protoc_insertion_point(class_scope:Server_Protocol.Answer)
  private:
   class _Internal;
   void set_has_ok();
@@ -3186,9 +3189,9 @@ class Answer final :
   union TUnion {
     constexpr TUnion() : _constinit_{} {}
       ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized _constinit_;
-    ::Command* ok_;
-    ::Answer_Error* error_;
-    ::Answer_Latex_answer* answer_;
+    ::Server_Protocol::Command* ok_;
+    ::Server_Protocol::Answer_Error* error_;
+    ::Server_Protocol::Answer_Latex_answer* answer_;
   } t_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   uint32_t _oneof_case_[1];
@@ -3223,7 +3226,7 @@ inline void Notation_element::clear_param() {
   }
 }
 inline const std::string& Notation_element::param() const {
-  // @@protoc_insertion_point(field_get:Notation_element.param)
+  // @@protoc_insertion_point(field_get:Server_Protocol.Notation_element.param)
   return _internal_param();
 }
 template <typename ArgT0, typename... ArgT>
@@ -3234,11 +3237,11 @@ inline void Notation_element::set_param(ArgT0&& arg0, ArgT... args) {
     t_.param_.InitDefault();
   }
   t_.param_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Notation_element.param)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Notation_element.param)
 }
 inline std::string* Notation_element::mutable_param() {
   std::string* _s = _internal_mutable_param();
-  // @@protoc_insertion_point(field_mutable:Notation_element.param)
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Notation_element.param)
   return _s;
 }
 inline const std::string& Notation_element::_internal_param() const {
@@ -3264,7 +3267,7 @@ inline std::string* Notation_element::_internal_mutable_param() {
   return t_.param_.Mutable(      GetArenaForAllocation());
 }
 inline std::string* Notation_element::release_param() {
-  // @@protoc_insertion_point(field_release:Notation_element.param)
+  // @@protoc_insertion_point(field_release:Server_Protocol.Notation_element.param)
   if (_internal_has_param()) {
     clear_has_t();
     return t_.param_.Release();
@@ -3280,7 +3283,7 @@ inline void Notation_element::set_allocated_param(std::string* param) {
     set_has_param();
     t_.param_.InitAllocated(param, GetArenaForAllocation());
   }
-  // @@protoc_insertion_point(field_set_allocated:Notation_element.param)
+  // @@protoc_insertion_point(field_set_allocated:Server_Protocol.Notation_element.param)
 }
 
 // string string = 2;
@@ -3300,7 +3303,7 @@ inline void Notation_element::clear_string() {
   }
 }
 inline const std::string& Notation_element::string() const {
-  // @@protoc_insertion_point(field_get:Notation_element.string)
+  // @@protoc_insertion_point(field_get:Server_Protocol.Notation_element.string)
   return _internal_string();
 }
 template <typename ArgT0, typename... ArgT>
@@ -3311,11 +3314,11 @@ inline void Notation_element::set_string(ArgT0&& arg0, ArgT... args) {
     t_.string_.InitDefault();
   }
   t_.string_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Notation_element.string)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Notation_element.string)
 }
 inline std::string* Notation_element::mutable_string() {
   std::string* _s = _internal_mutable_string();
-  // @@protoc_insertion_point(field_mutable:Notation_element.string)
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Notation_element.string)
   return _s;
 }
 inline const std::string& Notation_element::_internal_string() const {
@@ -3341,7 +3344,7 @@ inline std::string* Notation_element::_internal_mutable_string() {
   return t_.string_.Mutable(      GetArenaForAllocation());
 }
 inline std::string* Notation_element::release_string() {
-  // @@protoc_insertion_point(field_release:Notation_element.string)
+  // @@protoc_insertion_point(field_release:Server_Protocol.Notation_element.string)
   if (_internal_has_string()) {
     clear_has_t();
     return t_.string_.Release();
@@ -3357,7 +3360,7 @@ inline void Notation_element::set_allocated_string(std::string* string) {
     set_has_string();
     t_.string_.InitAllocated(string, GetArenaForAllocation());
   }
-  // @@protoc_insertion_point(field_set_allocated:Notation_element.string)
+  // @@protoc_insertion_point(field_set_allocated:Server_Protocol.Notation_element.string)
 }
 
 inline bool Notation_element::has_t() const {
@@ -3377,24 +3380,24 @@ inline Notation_element::TCase Notation_element::t_case() const {
 
 // Command_File
 
-// .File_mode mode = 1;
+// .Server_Protocol.File_mode mode = 1;
 inline void Command_File::clear_mode() {
   mode_ = 0;
 }
-inline ::File_mode Command_File::_internal_mode() const {
-  return static_cast< ::File_mode >(mode_);
+inline ::Server_Protocol::File_mode Command_File::_internal_mode() const {
+  return static_cast< ::Server_Protocol::File_mode >(mode_);
 }
-inline ::File_mode Command_File::mode() const {
-  // @@protoc_insertion_point(field_get:Command.File.mode)
+inline ::Server_Protocol::File_mode Command_File::mode() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.File.mode)
   return _internal_mode();
 }
-inline void Command_File::_internal_set_mode(::File_mode value) {
+inline void Command_File::_internal_set_mode(::Server_Protocol::File_mode value) {
   
   mode_ = value;
 }
-inline void Command_File::set_mode(::File_mode value) {
+inline void Command_File::set_mode(::Server_Protocol::File_mode value) {
   _internal_set_mode(value);
-  // @@protoc_insertion_point(field_set:Command.File.mode)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.File.mode)
 }
 
 // string filename = 2;
@@ -3402,7 +3405,7 @@ inline void Command_File::clear_filename() {
   filename_.ClearToEmpty();
 }
 inline const std::string& Command_File::filename() const {
-  // @@protoc_insertion_point(field_get:Command.File.filename)
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.File.filename)
   return _internal_filename();
 }
 template <typename ArgT0, typename... ArgT>
@@ -3410,11 +3413,11 @@ inline PROTOBUF_ALWAYS_INLINE
 void Command_File::set_filename(ArgT0&& arg0, ArgT... args) {
  
  filename_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Command.File.filename)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.File.filename)
 }
 inline std::string* Command_File::mutable_filename() {
   std::string* _s = _internal_mutable_filename();
-  // @@protoc_insertion_point(field_mutable:Command.File.filename)
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.File.filename)
   return _s;
 }
 inline const std::string& Command_File::_internal_filename() const {
@@ -3429,7 +3432,7 @@ inline std::string* Command_File::_internal_mutable_filename() {
   return filename_.Mutable(GetArenaForAllocation());
 }
 inline std::string* Command_File::release_filename() {
-  // @@protoc_insertion_point(field_release:Command.File.filename)
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.File.filename)
   return filename_.Release();
 }
 inline void Command_File::set_allocated_filename(std::string* filename) {
@@ -3444,7 +3447,7 @@ inline void Command_File::set_allocated_filename(std::string* filename) {
     filename_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Command.File.filename)
+  // @@protoc_insertion_point(field_set_allocated:Server_Protocol.Command.File.filename)
 }
 
 // -------------------------------------------------------------------
@@ -3476,7 +3479,7 @@ inline void Command_Notation::clear_name() {
   name_.ClearToEmpty();
 }
 inline const std::string& Command_Notation::name() const {
-  // @@protoc_insertion_point(field_get:Command.Notation.name)
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.Notation.name)
   return _internal_name();
 }
 template <typename ArgT0, typename... ArgT>
@@ -3484,11 +3487,11 @@ inline PROTOBUF_ALWAYS_INLINE
 void Command_Notation::set_name(ArgT0&& arg0, ArgT... args) {
  
  name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Command.Notation.name)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.Notation.name)
 }
 inline std::string* Command_Notation::mutable_name() {
   std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:Command.Notation.name)
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.Notation.name)
   return _s;
 }
 inline const std::string& Command_Notation::_internal_name() const {
@@ -3503,7 +3506,7 @@ inline std::string* Command_Notation::_internal_mutable_name() {
   return name_.Mutable(GetArenaForAllocation());
 }
 inline std::string* Command_Notation::release_name() {
-  // @@protoc_insertion_point(field_release:Command.Notation.name)
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.Notation.name)
   return name_.Release();
 }
 inline void Command_Notation::set_allocated_name(std::string* name) {
@@ -3518,7 +3521,7 @@ inline void Command_Notation::set_allocated_name(std::string* name) {
     name_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Command.Notation.name)
+  // @@protoc_insertion_point(field_set_allocated:Server_Protocol.Command.Notation.name)
 }
 
 // repeated string params = 2;
@@ -3533,70 +3536,70 @@ inline void Command_Notation::clear_params() {
 }
 inline std::string* Command_Notation::add_params() {
   std::string* _s = _internal_add_params();
-  // @@protoc_insertion_point(field_add_mutable:Command.Notation.params)
+  // @@protoc_insertion_point(field_add_mutable:Server_Protocol.Command.Notation.params)
   return _s;
 }
 inline const std::string& Command_Notation::_internal_params(int index) const {
   return params_.Get(index);
 }
 inline const std::string& Command_Notation::params(int index) const {
-  // @@protoc_insertion_point(field_get:Command.Notation.params)
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.Notation.params)
   return _internal_params(index);
 }
 inline std::string* Command_Notation::mutable_params(int index) {
-  // @@protoc_insertion_point(field_mutable:Command.Notation.params)
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.Notation.params)
   return params_.Mutable(index);
 }
 inline void Command_Notation::set_params(int index, const std::string& value) {
   params_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set:Command.Notation.params)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.Notation.params)
 }
 inline void Command_Notation::set_params(int index, std::string&& value) {
   params_.Mutable(index)->assign(std::move(value));
-  // @@protoc_insertion_point(field_set:Command.Notation.params)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.Notation.params)
 }
 inline void Command_Notation::set_params(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   params_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:Command.Notation.params)
+  // @@protoc_insertion_point(field_set_char:Server_Protocol.Command.Notation.params)
 }
 inline void Command_Notation::set_params(int index, const char* value, size_t size) {
   params_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:Command.Notation.params)
+  // @@protoc_insertion_point(field_set_pointer:Server_Protocol.Command.Notation.params)
 }
 inline std::string* Command_Notation::_internal_add_params() {
   return params_.Add();
 }
 inline void Command_Notation::add_params(const std::string& value) {
   params_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:Command.Notation.params)
+  // @@protoc_insertion_point(field_add:Server_Protocol.Command.Notation.params)
 }
 inline void Command_Notation::add_params(std::string&& value) {
   params_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:Command.Notation.params)
+  // @@protoc_insertion_point(field_add:Server_Protocol.Command.Notation.params)
 }
 inline void Command_Notation::add_params(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   params_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:Command.Notation.params)
+  // @@protoc_insertion_point(field_add_char:Server_Protocol.Command.Notation.params)
 }
 inline void Command_Notation::add_params(const char* value, size_t size) {
   params_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:Command.Notation.params)
+  // @@protoc_insertion_point(field_add_pointer:Server_Protocol.Command.Notation.params)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 Command_Notation::params() const {
-  // @@protoc_insertion_point(field_list:Command.Notation.params)
+  // @@protoc_insertion_point(field_list:Server_Protocol.Command.Notation.params)
   return params_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 Command_Notation::mutable_params() {
-  // @@protoc_insertion_point(field_mutable_list:Command.Notation.params)
+  // @@protoc_insertion_point(field_mutable_list:Server_Protocol.Command.Notation.params)
   return &params_;
 }
 
-// repeated .Notation_element syntax = 3;
+// repeated .Server_Protocol.Notation_element syntax = 3;
 inline int Command_Notation::_internal_syntax_size() const {
   return syntax_.size();
 }
@@ -3606,37 +3609,37 @@ inline int Command_Notation::syntax_size() const {
 inline void Command_Notation::clear_syntax() {
   syntax_.Clear();
 }
-inline ::Notation_element* Command_Notation::mutable_syntax(int index) {
-  // @@protoc_insertion_point(field_mutable:Command.Notation.syntax)
+inline ::Server_Protocol::Notation_element* Command_Notation::mutable_syntax(int index) {
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.Notation.syntax)
   return syntax_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Notation_element >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Server_Protocol::Notation_element >*
 Command_Notation::mutable_syntax() {
-  // @@protoc_insertion_point(field_mutable_list:Command.Notation.syntax)
+  // @@protoc_insertion_point(field_mutable_list:Server_Protocol.Command.Notation.syntax)
   return &syntax_;
 }
-inline const ::Notation_element& Command_Notation::_internal_syntax(int index) const {
+inline const ::Server_Protocol::Notation_element& Command_Notation::_internal_syntax(int index) const {
   return syntax_.Get(index);
 }
-inline const ::Notation_element& Command_Notation::syntax(int index) const {
-  // @@protoc_insertion_point(field_get:Command.Notation.syntax)
+inline const ::Server_Protocol::Notation_element& Command_Notation::syntax(int index) const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.Notation.syntax)
   return _internal_syntax(index);
 }
-inline ::Notation_element* Command_Notation::_internal_add_syntax() {
+inline ::Server_Protocol::Notation_element* Command_Notation::_internal_add_syntax() {
   return syntax_.Add();
 }
-inline ::Notation_element* Command_Notation::add_syntax() {
-  ::Notation_element* _add = _internal_add_syntax();
-  // @@protoc_insertion_point(field_add:Command.Notation.syntax)
+inline ::Server_Protocol::Notation_element* Command_Notation::add_syntax() {
+  ::Server_Protocol::Notation_element* _add = _internal_add_syntax();
+  // @@protoc_insertion_point(field_add:Server_Protocol.Command.Notation.syntax)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Notation_element >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Server_Protocol::Notation_element >&
 Command_Notation::syntax() const {
-  // @@protoc_insertion_point(field_list:Command.Notation.syntax)
+  // @@protoc_insertion_point(field_list:Server_Protocol.Command.Notation.syntax)
   return syntax_;
 }
 
-// repeated .Notation_element semantics = 4;
+// repeated .Server_Protocol.Notation_element semantics = 4;
 inline int Command_Notation::_internal_semantics_size() const {
   return semantics_.size();
 }
@@ -3646,33 +3649,33 @@ inline int Command_Notation::semantics_size() const {
 inline void Command_Notation::clear_semantics() {
   semantics_.Clear();
 }
-inline ::Notation_element* Command_Notation::mutable_semantics(int index) {
-  // @@protoc_insertion_point(field_mutable:Command.Notation.semantics)
+inline ::Server_Protocol::Notation_element* Command_Notation::mutable_semantics(int index) {
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.Notation.semantics)
   return semantics_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Notation_element >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Server_Protocol::Notation_element >*
 Command_Notation::mutable_semantics() {
-  // @@protoc_insertion_point(field_mutable_list:Command.Notation.semantics)
+  // @@protoc_insertion_point(field_mutable_list:Server_Protocol.Command.Notation.semantics)
   return &semantics_;
 }
-inline const ::Notation_element& Command_Notation::_internal_semantics(int index) const {
+inline const ::Server_Protocol::Notation_element& Command_Notation::_internal_semantics(int index) const {
   return semantics_.Get(index);
 }
-inline const ::Notation_element& Command_Notation::semantics(int index) const {
-  // @@protoc_insertion_point(field_get:Command.Notation.semantics)
+inline const ::Server_Protocol::Notation_element& Command_Notation::semantics(int index) const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.Notation.semantics)
   return _internal_semantics(index);
 }
-inline ::Notation_element* Command_Notation::_internal_add_semantics() {
+inline ::Server_Protocol::Notation_element* Command_Notation::_internal_add_semantics() {
   return semantics_.Add();
 }
-inline ::Notation_element* Command_Notation::add_semantics() {
-  ::Notation_element* _add = _internal_add_semantics();
-  // @@protoc_insertion_point(field_add:Command.Notation.semantics)
+inline ::Server_Protocol::Notation_element* Command_Notation::add_semantics() {
+  ::Server_Protocol::Notation_element* _add = _internal_add_semantics();
+  // @@protoc_insertion_point(field_add:Server_Protocol.Command.Notation.semantics)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Notation_element >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::Server_Protocol::Notation_element >&
 Command_Notation::semantics() const {
-  // @@protoc_insertion_point(field_list:Command.Notation.semantics)
+  // @@protoc_insertion_point(field_list:Server_Protocol.Command.Notation.semantics)
   return semantics_;
 }
 
@@ -3685,7 +3688,7 @@ inline void Command_Theorem::clear_name() {
   name_.ClearToEmpty();
 }
 inline const std::string& Command_Theorem::name() const {
-  // @@protoc_insertion_point(field_get:Command.Theorem.name)
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.Theorem.name)
   return _internal_name();
 }
 template <typename ArgT0, typename... ArgT>
@@ -3693,11 +3696,11 @@ inline PROTOBUF_ALWAYS_INLINE
 void Command_Theorem::set_name(ArgT0&& arg0, ArgT... args) {
  
  name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Command.Theorem.name)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.Theorem.name)
 }
 inline std::string* Command_Theorem::mutable_name() {
   std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:Command.Theorem.name)
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.Theorem.name)
   return _s;
 }
 inline const std::string& Command_Theorem::_internal_name() const {
@@ -3712,7 +3715,7 @@ inline std::string* Command_Theorem::_internal_mutable_name() {
   return name_.Mutable(GetArenaForAllocation());
 }
 inline std::string* Command_Theorem::release_name() {
-  // @@protoc_insertion_point(field_release:Command.Theorem.name)
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.Theorem.name)
   return name_.Release();
 }
 inline void Command_Theorem::set_allocated_name(std::string* name) {
@@ -3727,7 +3730,7 @@ inline void Command_Theorem::set_allocated_name(std::string* name) {
     name_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Command.Theorem.name)
+  // @@protoc_insertion_point(field_set_allocated:Server_Protocol.Command.Theorem.name)
 }
 
 // repeated string params = 2;
@@ -3742,66 +3745,66 @@ inline void Command_Theorem::clear_params() {
 }
 inline std::string* Command_Theorem::add_params() {
   std::string* _s = _internal_add_params();
-  // @@protoc_insertion_point(field_add_mutable:Command.Theorem.params)
+  // @@protoc_insertion_point(field_add_mutable:Server_Protocol.Command.Theorem.params)
   return _s;
 }
 inline const std::string& Command_Theorem::_internal_params(int index) const {
   return params_.Get(index);
 }
 inline const std::string& Command_Theorem::params(int index) const {
-  // @@protoc_insertion_point(field_get:Command.Theorem.params)
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.Theorem.params)
   return _internal_params(index);
 }
 inline std::string* Command_Theorem::mutable_params(int index) {
-  // @@protoc_insertion_point(field_mutable:Command.Theorem.params)
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.Theorem.params)
   return params_.Mutable(index);
 }
 inline void Command_Theorem::set_params(int index, const std::string& value) {
   params_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set:Command.Theorem.params)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.Theorem.params)
 }
 inline void Command_Theorem::set_params(int index, std::string&& value) {
   params_.Mutable(index)->assign(std::move(value));
-  // @@protoc_insertion_point(field_set:Command.Theorem.params)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.Theorem.params)
 }
 inline void Command_Theorem::set_params(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   params_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:Command.Theorem.params)
+  // @@protoc_insertion_point(field_set_char:Server_Protocol.Command.Theorem.params)
 }
 inline void Command_Theorem::set_params(int index, const char* value, size_t size) {
   params_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:Command.Theorem.params)
+  // @@protoc_insertion_point(field_set_pointer:Server_Protocol.Command.Theorem.params)
 }
 inline std::string* Command_Theorem::_internal_add_params() {
   return params_.Add();
 }
 inline void Command_Theorem::add_params(const std::string& value) {
   params_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:Command.Theorem.params)
+  // @@protoc_insertion_point(field_add:Server_Protocol.Command.Theorem.params)
 }
 inline void Command_Theorem::add_params(std::string&& value) {
   params_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:Command.Theorem.params)
+  // @@protoc_insertion_point(field_add:Server_Protocol.Command.Theorem.params)
 }
 inline void Command_Theorem::add_params(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   params_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:Command.Theorem.params)
+  // @@protoc_insertion_point(field_add_char:Server_Protocol.Command.Theorem.params)
 }
 inline void Command_Theorem::add_params(const char* value, size_t size) {
   params_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:Command.Theorem.params)
+  // @@protoc_insertion_point(field_add_pointer:Server_Protocol.Command.Theorem.params)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 Command_Theorem::params() const {
-  // @@protoc_insertion_point(field_list:Command.Theorem.params)
+  // @@protoc_insertion_point(field_list:Server_Protocol.Command.Theorem.params)
   return params_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 Command_Theorem::mutable_params() {
-  // @@protoc_insertion_point(field_mutable_list:Command.Theorem.params)
+  // @@protoc_insertion_point(field_mutable_list:Server_Protocol.Command.Theorem.params)
   return &params_;
 }
 
@@ -3817,66 +3820,66 @@ inline void Command_Theorem::clear_premisses() {
 }
 inline std::string* Command_Theorem::add_premisses() {
   std::string* _s = _internal_add_premisses();
-  // @@protoc_insertion_point(field_add_mutable:Command.Theorem.premisses)
+  // @@protoc_insertion_point(field_add_mutable:Server_Protocol.Command.Theorem.premisses)
   return _s;
 }
 inline const std::string& Command_Theorem::_internal_premisses(int index) const {
   return premisses_.Get(index);
 }
 inline const std::string& Command_Theorem::premisses(int index) const {
-  // @@protoc_insertion_point(field_get:Command.Theorem.premisses)
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.Theorem.premisses)
   return _internal_premisses(index);
 }
 inline std::string* Command_Theorem::mutable_premisses(int index) {
-  // @@protoc_insertion_point(field_mutable:Command.Theorem.premisses)
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.Theorem.premisses)
   return premisses_.Mutable(index);
 }
 inline void Command_Theorem::set_premisses(int index, const std::string& value) {
   premisses_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set:Command.Theorem.premisses)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.Theorem.premisses)
 }
 inline void Command_Theorem::set_premisses(int index, std::string&& value) {
   premisses_.Mutable(index)->assign(std::move(value));
-  // @@protoc_insertion_point(field_set:Command.Theorem.premisses)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.Theorem.premisses)
 }
 inline void Command_Theorem::set_premisses(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   premisses_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:Command.Theorem.premisses)
+  // @@protoc_insertion_point(field_set_char:Server_Protocol.Command.Theorem.premisses)
 }
 inline void Command_Theorem::set_premisses(int index, const char* value, size_t size) {
   premisses_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:Command.Theorem.premisses)
+  // @@protoc_insertion_point(field_set_pointer:Server_Protocol.Command.Theorem.premisses)
 }
 inline std::string* Command_Theorem::_internal_add_premisses() {
   return premisses_.Add();
 }
 inline void Command_Theorem::add_premisses(const std::string& value) {
   premisses_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:Command.Theorem.premisses)
+  // @@protoc_insertion_point(field_add:Server_Protocol.Command.Theorem.premisses)
 }
 inline void Command_Theorem::add_premisses(std::string&& value) {
   premisses_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:Command.Theorem.premisses)
+  // @@protoc_insertion_point(field_add:Server_Protocol.Command.Theorem.premisses)
 }
 inline void Command_Theorem::add_premisses(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   premisses_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:Command.Theorem.premisses)
+  // @@protoc_insertion_point(field_add_char:Server_Protocol.Command.Theorem.premisses)
 }
 inline void Command_Theorem::add_premisses(const char* value, size_t size) {
   premisses_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:Command.Theorem.premisses)
+  // @@protoc_insertion_point(field_add_pointer:Server_Protocol.Command.Theorem.premisses)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 Command_Theorem::premisses() const {
-  // @@protoc_insertion_point(field_list:Command.Theorem.premisses)
+  // @@protoc_insertion_point(field_list:Server_Protocol.Command.Theorem.premisses)
   return premisses_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 Command_Theorem::mutable_premisses() {
-  // @@protoc_insertion_point(field_mutable_list:Command.Theorem.premisses)
+  // @@protoc_insertion_point(field_mutable_list:Server_Protocol.Command.Theorem.premisses)
   return &premisses_;
 }
 
@@ -3885,7 +3888,7 @@ inline void Command_Theorem::clear_conclusion() {
   conclusion_.ClearToEmpty();
 }
 inline const std::string& Command_Theorem::conclusion() const {
-  // @@protoc_insertion_point(field_get:Command.Theorem.conclusion)
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.Theorem.conclusion)
   return _internal_conclusion();
 }
 template <typename ArgT0, typename... ArgT>
@@ -3893,11 +3896,11 @@ inline PROTOBUF_ALWAYS_INLINE
 void Command_Theorem::set_conclusion(ArgT0&& arg0, ArgT... args) {
  
  conclusion_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Command.Theorem.conclusion)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.Theorem.conclusion)
 }
 inline std::string* Command_Theorem::mutable_conclusion() {
   std::string* _s = _internal_mutable_conclusion();
-  // @@protoc_insertion_point(field_mutable:Command.Theorem.conclusion)
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.Theorem.conclusion)
   return _s;
 }
 inline const std::string& Command_Theorem::_internal_conclusion() const {
@@ -3912,7 +3915,7 @@ inline std::string* Command_Theorem::_internal_mutable_conclusion() {
   return conclusion_.Mutable(GetArenaForAllocation());
 }
 inline std::string* Command_Theorem::release_conclusion() {
-  // @@protoc_insertion_point(field_release:Command.Theorem.conclusion)
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.Theorem.conclusion)
   return conclusion_.Release();
 }
 inline void Command_Theorem::set_allocated_conclusion(std::string* conclusion) {
@@ -3927,7 +3930,7 @@ inline void Command_Theorem::set_allocated_conclusion(std::string* conclusion) {
     conclusion_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Command.Theorem.conclusion)
+  // @@protoc_insertion_point(field_set_allocated:Server_Protocol.Command.Theorem.conclusion)
 }
 
 // repeated string demonstration = 5;
@@ -3942,87 +3945,87 @@ inline void Command_Theorem::clear_demonstration() {
 }
 inline std::string* Command_Theorem::add_demonstration() {
   std::string* _s = _internal_add_demonstration();
-  // @@protoc_insertion_point(field_add_mutable:Command.Theorem.demonstration)
+  // @@protoc_insertion_point(field_add_mutable:Server_Protocol.Command.Theorem.demonstration)
   return _s;
 }
 inline const std::string& Command_Theorem::_internal_demonstration(int index) const {
   return demonstration_.Get(index);
 }
 inline const std::string& Command_Theorem::demonstration(int index) const {
-  // @@protoc_insertion_point(field_get:Command.Theorem.demonstration)
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.Theorem.demonstration)
   return _internal_demonstration(index);
 }
 inline std::string* Command_Theorem::mutable_demonstration(int index) {
-  // @@protoc_insertion_point(field_mutable:Command.Theorem.demonstration)
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.Theorem.demonstration)
   return demonstration_.Mutable(index);
 }
 inline void Command_Theorem::set_demonstration(int index, const std::string& value) {
   demonstration_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set:Command.Theorem.demonstration)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.Theorem.demonstration)
 }
 inline void Command_Theorem::set_demonstration(int index, std::string&& value) {
   demonstration_.Mutable(index)->assign(std::move(value));
-  // @@protoc_insertion_point(field_set:Command.Theorem.demonstration)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.Theorem.demonstration)
 }
 inline void Command_Theorem::set_demonstration(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   demonstration_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:Command.Theorem.demonstration)
+  // @@protoc_insertion_point(field_set_char:Server_Protocol.Command.Theorem.demonstration)
 }
 inline void Command_Theorem::set_demonstration(int index, const char* value, size_t size) {
   demonstration_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:Command.Theorem.demonstration)
+  // @@protoc_insertion_point(field_set_pointer:Server_Protocol.Command.Theorem.demonstration)
 }
 inline std::string* Command_Theorem::_internal_add_demonstration() {
   return demonstration_.Add();
 }
 inline void Command_Theorem::add_demonstration(const std::string& value) {
   demonstration_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:Command.Theorem.demonstration)
+  // @@protoc_insertion_point(field_add:Server_Protocol.Command.Theorem.demonstration)
 }
 inline void Command_Theorem::add_demonstration(std::string&& value) {
   demonstration_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:Command.Theorem.demonstration)
+  // @@protoc_insertion_point(field_add:Server_Protocol.Command.Theorem.demonstration)
 }
 inline void Command_Theorem::add_demonstration(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   demonstration_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:Command.Theorem.demonstration)
+  // @@protoc_insertion_point(field_add_char:Server_Protocol.Command.Theorem.demonstration)
 }
 inline void Command_Theorem::add_demonstration(const char* value, size_t size) {
   demonstration_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:Command.Theorem.demonstration)
+  // @@protoc_insertion_point(field_add_pointer:Server_Protocol.Command.Theorem.demonstration)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 Command_Theorem::demonstration() const {
-  // @@protoc_insertion_point(field_list:Command.Theorem.demonstration)
+  // @@protoc_insertion_point(field_list:Server_Protocol.Command.Theorem.demonstration)
   return demonstration_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 Command_Theorem::mutable_demonstration() {
-  // @@protoc_insertion_point(field_mutable_list:Command.Theorem.demonstration)
+  // @@protoc_insertion_point(field_mutable_list:Server_Protocol.Command.Theorem.demonstration)
   return &demonstration_;
 }
 
-// .Status status = 6;
+// .Server_Protocol.Status status = 6;
 inline void Command_Theorem::clear_status() {
   status_ = 0;
 }
-inline ::Status Command_Theorem::_internal_status() const {
-  return static_cast< ::Status >(status_);
+inline ::Server_Protocol::Status Command_Theorem::_internal_status() const {
+  return static_cast< ::Server_Protocol::Status >(status_);
 }
-inline ::Status Command_Theorem::status() const {
-  // @@protoc_insertion_point(field_get:Command.Theorem.status)
+inline ::Server_Protocol::Status Command_Theorem::status() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.Theorem.status)
   return _internal_status();
 }
-inline void Command_Theorem::_internal_set_status(::Status value) {
+inline void Command_Theorem::_internal_set_status(::Server_Protocol::Status value) {
   
   status_ = value;
 }
-inline void Command_Theorem::set_status(::Status value) {
+inline void Command_Theorem::set_status(::Server_Protocol::Status value) {
   _internal_set_status(value);
-  // @@protoc_insertion_point(field_set:Command.Theorem.status)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.Theorem.status)
 }
 
 // -------------------------------------------------------------------
@@ -4034,7 +4037,7 @@ inline void Command_Axiom::clear_name() {
   name_.ClearToEmpty();
 }
 inline const std::string& Command_Axiom::name() const {
-  // @@protoc_insertion_point(field_get:Command.Axiom.name)
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.Axiom.name)
   return _internal_name();
 }
 template <typename ArgT0, typename... ArgT>
@@ -4042,11 +4045,11 @@ inline PROTOBUF_ALWAYS_INLINE
 void Command_Axiom::set_name(ArgT0&& arg0, ArgT... args) {
  
  name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Command.Axiom.name)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.Axiom.name)
 }
 inline std::string* Command_Axiom::mutable_name() {
   std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:Command.Axiom.name)
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.Axiom.name)
   return _s;
 }
 inline const std::string& Command_Axiom::_internal_name() const {
@@ -4061,7 +4064,7 @@ inline std::string* Command_Axiom::_internal_mutable_name() {
   return name_.Mutable(GetArenaForAllocation());
 }
 inline std::string* Command_Axiom::release_name() {
-  // @@protoc_insertion_point(field_release:Command.Axiom.name)
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.Axiom.name)
   return name_.Release();
 }
 inline void Command_Axiom::set_allocated_name(std::string* name) {
@@ -4076,7 +4079,7 @@ inline void Command_Axiom::set_allocated_name(std::string* name) {
     name_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Command.Axiom.name)
+  // @@protoc_insertion_point(field_set_allocated:Server_Protocol.Command.Axiom.name)
 }
 
 // string formula = 2;
@@ -4084,7 +4087,7 @@ inline void Command_Axiom::clear_formula() {
   formula_.ClearToEmpty();
 }
 inline const std::string& Command_Axiom::formula() const {
-  // @@protoc_insertion_point(field_get:Command.Axiom.formula)
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.Axiom.formula)
   return _internal_formula();
 }
 template <typename ArgT0, typename... ArgT>
@@ -4092,11 +4095,11 @@ inline PROTOBUF_ALWAYS_INLINE
 void Command_Axiom::set_formula(ArgT0&& arg0, ArgT... args) {
  
  formula_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Command.Axiom.formula)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.Axiom.formula)
 }
 inline std::string* Command_Axiom::mutable_formula() {
   std::string* _s = _internal_mutable_formula();
-  // @@protoc_insertion_point(field_mutable:Command.Axiom.formula)
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.Axiom.formula)
   return _s;
 }
 inline const std::string& Command_Axiom::_internal_formula() const {
@@ -4111,7 +4114,7 @@ inline std::string* Command_Axiom::_internal_mutable_formula() {
   return formula_.Mutable(GetArenaForAllocation());
 }
 inline std::string* Command_Axiom::release_formula() {
-  // @@protoc_insertion_point(field_release:Command.Axiom.formula)
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.Axiom.formula)
   return formula_.Release();
 }
 inline void Command_Axiom::set_allocated_formula(std::string* formula) {
@@ -4126,7 +4129,7 @@ inline void Command_Axiom::set_allocated_formula(std::string* formula) {
     formula_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Command.Axiom.formula)
+  // @@protoc_insertion_point(field_set_allocated:Server_Protocol.Command.Axiom.formula)
 }
 
 // -------------------------------------------------------------------
@@ -4171,15 +4174,15 @@ inline void Command::_internal_set_verbose(int32_t value) {
   t_.verbose_ = value;
 }
 inline int32_t Command::verbose() const {
-  // @@protoc_insertion_point(field_get:Command.verbose)
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.verbose)
   return _internal_verbose();
 }
 inline void Command::set_verbose(int32_t value) {
   _internal_set_verbose(value);
-  // @@protoc_insertion_point(field_set:Command.verbose)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.verbose)
 }
 
-// .Command.Prop prop = 2;
+// .Server_Protocol.Command.Prop prop = 2;
 inline bool Command::_internal_has_prop() const {
   return t_case() == kProp;
 }
@@ -4197,11 +4200,11 @@ inline void Command::clear_prop() {
     clear_has_t();
   }
 }
-inline ::Command_Prop* Command::release_prop() {
-  // @@protoc_insertion_point(field_release:Command.prop)
+inline ::Server_Protocol::Command_Prop* Command::release_prop() {
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.prop)
   if (_internal_has_prop()) {
     clear_has_t();
-    ::Command_Prop* temp = t_.prop_;
+    ::Server_Protocol::Command_Prop* temp = t_.prop_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
@@ -4211,49 +4214,49 @@ inline ::Command_Prop* Command::release_prop() {
     return nullptr;
   }
 }
-inline const ::Command_Prop& Command::_internal_prop() const {
+inline const ::Server_Protocol::Command_Prop& Command::_internal_prop() const {
   return _internal_has_prop()
       ? *t_.prop_
-      : reinterpret_cast< ::Command_Prop&>(::_Command_Prop_default_instance_);
+      : reinterpret_cast< ::Server_Protocol::Command_Prop&>(::Server_Protocol::_Command_Prop_default_instance_);
 }
-inline const ::Command_Prop& Command::prop() const {
-  // @@protoc_insertion_point(field_get:Command.prop)
+inline const ::Server_Protocol::Command_Prop& Command::prop() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.prop)
   return _internal_prop();
 }
-inline ::Command_Prop* Command::unsafe_arena_release_prop() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Command.prop)
+inline ::Server_Protocol::Command_Prop* Command::unsafe_arena_release_prop() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Server_Protocol.Command.prop)
   if (_internal_has_prop()) {
     clear_has_t();
-    ::Command_Prop* temp = t_.prop_;
+    ::Server_Protocol::Command_Prop* temp = t_.prop_;
     t_.prop_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Command::unsafe_arena_set_allocated_prop(::Command_Prop* prop) {
+inline void Command::unsafe_arena_set_allocated_prop(::Server_Protocol::Command_Prop* prop) {
   clear_t();
   if (prop) {
     set_has_prop();
     t_.prop_ = prop;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Command.prop)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Server_Protocol.Command.prop)
 }
-inline ::Command_Prop* Command::_internal_mutable_prop() {
+inline ::Server_Protocol::Command_Prop* Command::_internal_mutable_prop() {
   if (!_internal_has_prop()) {
     clear_t();
     set_has_prop();
-    t_.prop_ = CreateMaybeMessage< ::Command_Prop >(GetArenaForAllocation());
+    t_.prop_ = CreateMaybeMessage< ::Server_Protocol::Command_Prop >(GetArenaForAllocation());
   }
   return t_.prop_;
 }
-inline ::Command_Prop* Command::mutable_prop() {
-  ::Command_Prop* _msg = _internal_mutable_prop();
-  // @@protoc_insertion_point(field_mutable:Command.prop)
+inline ::Server_Protocol::Command_Prop* Command::mutable_prop() {
+  ::Server_Protocol::Command_Prop* _msg = _internal_mutable_prop();
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.prop)
   return _msg;
 }
 
-// .Command.Keep_notations keep_notations = 3;
+// .Server_Protocol.Command.Keep_notations keep_notations = 3;
 inline bool Command::_internal_has_keep_notations() const {
   return t_case() == kKeepNotations;
 }
@@ -4271,11 +4274,11 @@ inline void Command::clear_keep_notations() {
     clear_has_t();
   }
 }
-inline ::Command_Keep_notations* Command::release_keep_notations() {
-  // @@protoc_insertion_point(field_release:Command.keep_notations)
+inline ::Server_Protocol::Command_Keep_notations* Command::release_keep_notations() {
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.keep_notations)
   if (_internal_has_keep_notations()) {
     clear_has_t();
-    ::Command_Keep_notations* temp = t_.keep_notations_;
+    ::Server_Protocol::Command_Keep_notations* temp = t_.keep_notations_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
@@ -4285,49 +4288,49 @@ inline ::Command_Keep_notations* Command::release_keep_notations() {
     return nullptr;
   }
 }
-inline const ::Command_Keep_notations& Command::_internal_keep_notations() const {
+inline const ::Server_Protocol::Command_Keep_notations& Command::_internal_keep_notations() const {
   return _internal_has_keep_notations()
       ? *t_.keep_notations_
-      : reinterpret_cast< ::Command_Keep_notations&>(::_Command_Keep_notations_default_instance_);
+      : reinterpret_cast< ::Server_Protocol::Command_Keep_notations&>(::Server_Protocol::_Command_Keep_notations_default_instance_);
 }
-inline const ::Command_Keep_notations& Command::keep_notations() const {
-  // @@protoc_insertion_point(field_get:Command.keep_notations)
+inline const ::Server_Protocol::Command_Keep_notations& Command::keep_notations() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.keep_notations)
   return _internal_keep_notations();
 }
-inline ::Command_Keep_notations* Command::unsafe_arena_release_keep_notations() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Command.keep_notations)
+inline ::Server_Protocol::Command_Keep_notations* Command::unsafe_arena_release_keep_notations() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Server_Protocol.Command.keep_notations)
   if (_internal_has_keep_notations()) {
     clear_has_t();
-    ::Command_Keep_notations* temp = t_.keep_notations_;
+    ::Server_Protocol::Command_Keep_notations* temp = t_.keep_notations_;
     t_.keep_notations_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Command::unsafe_arena_set_allocated_keep_notations(::Command_Keep_notations* keep_notations) {
+inline void Command::unsafe_arena_set_allocated_keep_notations(::Server_Protocol::Command_Keep_notations* keep_notations) {
   clear_t();
   if (keep_notations) {
     set_has_keep_notations();
     t_.keep_notations_ = keep_notations;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Command.keep_notations)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Server_Protocol.Command.keep_notations)
 }
-inline ::Command_Keep_notations* Command::_internal_mutable_keep_notations() {
+inline ::Server_Protocol::Command_Keep_notations* Command::_internal_mutable_keep_notations() {
   if (!_internal_has_keep_notations()) {
     clear_t();
     set_has_keep_notations();
-    t_.keep_notations_ = CreateMaybeMessage< ::Command_Keep_notations >(GetArenaForAllocation());
+    t_.keep_notations_ = CreateMaybeMessage< ::Server_Protocol::Command_Keep_notations >(GetArenaForAllocation());
   }
   return t_.keep_notations_;
 }
-inline ::Command_Keep_notations* Command::mutable_keep_notations() {
-  ::Command_Keep_notations* _msg = _internal_mutable_keep_notations();
-  // @@protoc_insertion_point(field_mutable:Command.keep_notations)
+inline ::Server_Protocol::Command_Keep_notations* Command::mutable_keep_notations() {
+  ::Server_Protocol::Command_Keep_notations* _msg = _internal_mutable_keep_notations();
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.keep_notations)
   return _msg;
 }
 
-// .Command.Expand_notations expand_notations = 4;
+// .Server_Protocol.Command.Expand_notations expand_notations = 4;
 inline bool Command::_internal_has_expand_notations() const {
   return t_case() == kExpandNotations;
 }
@@ -4345,11 +4348,11 @@ inline void Command::clear_expand_notations() {
     clear_has_t();
   }
 }
-inline ::Command_Expand_notations* Command::release_expand_notations() {
-  // @@protoc_insertion_point(field_release:Command.expand_notations)
+inline ::Server_Protocol::Command_Expand_notations* Command::release_expand_notations() {
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.expand_notations)
   if (_internal_has_expand_notations()) {
     clear_has_t();
-    ::Command_Expand_notations* temp = t_.expand_notations_;
+    ::Server_Protocol::Command_Expand_notations* temp = t_.expand_notations_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
@@ -4359,49 +4362,49 @@ inline ::Command_Expand_notations* Command::release_expand_notations() {
     return nullptr;
   }
 }
-inline const ::Command_Expand_notations& Command::_internal_expand_notations() const {
+inline const ::Server_Protocol::Command_Expand_notations& Command::_internal_expand_notations() const {
   return _internal_has_expand_notations()
       ? *t_.expand_notations_
-      : reinterpret_cast< ::Command_Expand_notations&>(::_Command_Expand_notations_default_instance_);
+      : reinterpret_cast< ::Server_Protocol::Command_Expand_notations&>(::Server_Protocol::_Command_Expand_notations_default_instance_);
 }
-inline const ::Command_Expand_notations& Command::expand_notations() const {
-  // @@protoc_insertion_point(field_get:Command.expand_notations)
+inline const ::Server_Protocol::Command_Expand_notations& Command::expand_notations() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.expand_notations)
   return _internal_expand_notations();
 }
-inline ::Command_Expand_notations* Command::unsafe_arena_release_expand_notations() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Command.expand_notations)
+inline ::Server_Protocol::Command_Expand_notations* Command::unsafe_arena_release_expand_notations() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Server_Protocol.Command.expand_notations)
   if (_internal_has_expand_notations()) {
     clear_has_t();
-    ::Command_Expand_notations* temp = t_.expand_notations_;
+    ::Server_Protocol::Command_Expand_notations* temp = t_.expand_notations_;
     t_.expand_notations_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Command::unsafe_arena_set_allocated_expand_notations(::Command_Expand_notations* expand_notations) {
+inline void Command::unsafe_arena_set_allocated_expand_notations(::Server_Protocol::Command_Expand_notations* expand_notations) {
   clear_t();
   if (expand_notations) {
     set_has_expand_notations();
     t_.expand_notations_ = expand_notations;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Command.expand_notations)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Server_Protocol.Command.expand_notations)
 }
-inline ::Command_Expand_notations* Command::_internal_mutable_expand_notations() {
+inline ::Server_Protocol::Command_Expand_notations* Command::_internal_mutable_expand_notations() {
   if (!_internal_has_expand_notations()) {
     clear_t();
     set_has_expand_notations();
-    t_.expand_notations_ = CreateMaybeMessage< ::Command_Expand_notations >(GetArenaForAllocation());
+    t_.expand_notations_ = CreateMaybeMessage< ::Server_Protocol::Command_Expand_notations >(GetArenaForAllocation());
   }
   return t_.expand_notations_;
 }
-inline ::Command_Expand_notations* Command::mutable_expand_notations() {
-  ::Command_Expand_notations* _msg = _internal_mutable_expand_notations();
-  // @@protoc_insertion_point(field_mutable:Command.expand_notations)
+inline ::Server_Protocol::Command_Expand_notations* Command::mutable_expand_notations() {
+  ::Server_Protocol::Command_Expand_notations* _msg = _internal_mutable_expand_notations();
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.expand_notations)
   return _msg;
 }
 
-// .Command.Compiled compiled = 5;
+// .Server_Protocol.Command.Compiled compiled = 5;
 inline bool Command::_internal_has_compiled() const {
   return t_case() == kCompiled;
 }
@@ -4419,11 +4422,11 @@ inline void Command::clear_compiled() {
     clear_has_t();
   }
 }
-inline ::Command_Compiled* Command::release_compiled() {
-  // @@protoc_insertion_point(field_release:Command.compiled)
+inline ::Server_Protocol::Command_Compiled* Command::release_compiled() {
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.compiled)
   if (_internal_has_compiled()) {
     clear_has_t();
-    ::Command_Compiled* temp = t_.compiled_;
+    ::Server_Protocol::Command_Compiled* temp = t_.compiled_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
@@ -4433,49 +4436,49 @@ inline ::Command_Compiled* Command::release_compiled() {
     return nullptr;
   }
 }
-inline const ::Command_Compiled& Command::_internal_compiled() const {
+inline const ::Server_Protocol::Command_Compiled& Command::_internal_compiled() const {
   return _internal_has_compiled()
       ? *t_.compiled_
-      : reinterpret_cast< ::Command_Compiled&>(::_Command_Compiled_default_instance_);
+      : reinterpret_cast< ::Server_Protocol::Command_Compiled&>(::Server_Protocol::_Command_Compiled_default_instance_);
 }
-inline const ::Command_Compiled& Command::compiled() const {
-  // @@protoc_insertion_point(field_get:Command.compiled)
+inline const ::Server_Protocol::Command_Compiled& Command::compiled() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.compiled)
   return _internal_compiled();
 }
-inline ::Command_Compiled* Command::unsafe_arena_release_compiled() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Command.compiled)
+inline ::Server_Protocol::Command_Compiled* Command::unsafe_arena_release_compiled() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Server_Protocol.Command.compiled)
   if (_internal_has_compiled()) {
     clear_has_t();
-    ::Command_Compiled* temp = t_.compiled_;
+    ::Server_Protocol::Command_Compiled* temp = t_.compiled_;
     t_.compiled_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Command::unsafe_arena_set_allocated_compiled(::Command_Compiled* compiled) {
+inline void Command::unsafe_arena_set_allocated_compiled(::Server_Protocol::Command_Compiled* compiled) {
   clear_t();
   if (compiled) {
     set_has_compiled();
     t_.compiled_ = compiled;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Command.compiled)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Server_Protocol.Command.compiled)
 }
-inline ::Command_Compiled* Command::_internal_mutable_compiled() {
+inline ::Server_Protocol::Command_Compiled* Command::_internal_mutable_compiled() {
   if (!_internal_has_compiled()) {
     clear_t();
     set_has_compiled();
-    t_.compiled_ = CreateMaybeMessage< ::Command_Compiled >(GetArenaForAllocation());
+    t_.compiled_ = CreateMaybeMessage< ::Server_Protocol::Command_Compiled >(GetArenaForAllocation());
   }
   return t_.compiled_;
 }
-inline ::Command_Compiled* Command::mutable_compiled() {
-  ::Command_Compiled* _msg = _internal_mutable_compiled();
-  // @@protoc_insertion_point(field_mutable:Command.compiled)
+inline ::Server_Protocol::Command_Compiled* Command::mutable_compiled() {
+  ::Server_Protocol::Command_Compiled* _msg = _internal_mutable_compiled();
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.compiled)
   return _msg;
 }
 
-// .Command.Interpreted interpreted = 6;
+// .Server_Protocol.Command.Interpreted interpreted = 6;
 inline bool Command::_internal_has_interpreted() const {
   return t_case() == kInterpreted;
 }
@@ -4493,11 +4496,11 @@ inline void Command::clear_interpreted() {
     clear_has_t();
   }
 }
-inline ::Command_Interpreted* Command::release_interpreted() {
-  // @@protoc_insertion_point(field_release:Command.interpreted)
+inline ::Server_Protocol::Command_Interpreted* Command::release_interpreted() {
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.interpreted)
   if (_internal_has_interpreted()) {
     clear_has_t();
-    ::Command_Interpreted* temp = t_.interpreted_;
+    ::Server_Protocol::Command_Interpreted* temp = t_.interpreted_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
@@ -4507,49 +4510,49 @@ inline ::Command_Interpreted* Command::release_interpreted() {
     return nullptr;
   }
 }
-inline const ::Command_Interpreted& Command::_internal_interpreted() const {
+inline const ::Server_Protocol::Command_Interpreted& Command::_internal_interpreted() const {
   return _internal_has_interpreted()
       ? *t_.interpreted_
-      : reinterpret_cast< ::Command_Interpreted&>(::_Command_Interpreted_default_instance_);
+      : reinterpret_cast< ::Server_Protocol::Command_Interpreted&>(::Server_Protocol::_Command_Interpreted_default_instance_);
 }
-inline const ::Command_Interpreted& Command::interpreted() const {
-  // @@protoc_insertion_point(field_get:Command.interpreted)
+inline const ::Server_Protocol::Command_Interpreted& Command::interpreted() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.interpreted)
   return _internal_interpreted();
 }
-inline ::Command_Interpreted* Command::unsafe_arena_release_interpreted() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Command.interpreted)
+inline ::Server_Protocol::Command_Interpreted* Command::unsafe_arena_release_interpreted() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Server_Protocol.Command.interpreted)
   if (_internal_has_interpreted()) {
     clear_has_t();
-    ::Command_Interpreted* temp = t_.interpreted_;
+    ::Server_Protocol::Command_Interpreted* temp = t_.interpreted_;
     t_.interpreted_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Command::unsafe_arena_set_allocated_interpreted(::Command_Interpreted* interpreted) {
+inline void Command::unsafe_arena_set_allocated_interpreted(::Server_Protocol::Command_Interpreted* interpreted) {
   clear_t();
   if (interpreted) {
     set_has_interpreted();
     t_.interpreted_ = interpreted;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Command.interpreted)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Server_Protocol.Command.interpreted)
 }
-inline ::Command_Interpreted* Command::_internal_mutable_interpreted() {
+inline ::Server_Protocol::Command_Interpreted* Command::_internal_mutable_interpreted() {
   if (!_internal_has_interpreted()) {
     clear_t();
     set_has_interpreted();
-    t_.interpreted_ = CreateMaybeMessage< ::Command_Interpreted >(GetArenaForAllocation());
+    t_.interpreted_ = CreateMaybeMessage< ::Server_Protocol::Command_Interpreted >(GetArenaForAllocation());
   }
   return t_.interpreted_;
 }
-inline ::Command_Interpreted* Command::mutable_interpreted() {
-  ::Command_Interpreted* _msg = _internal_mutable_interpreted();
-  // @@protoc_insertion_point(field_mutable:Command.interpreted)
+inline ::Server_Protocol::Command_Interpreted* Command::mutable_interpreted() {
+  ::Server_Protocol::Command_Interpreted* _msg = _internal_mutable_interpreted();
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.interpreted)
   return _msg;
 }
 
-// .Command.File save = 7;
+// .Server_Protocol.Command.File save = 7;
 inline bool Command::_internal_has_save() const {
   return t_case() == kSave;
 }
@@ -4567,11 +4570,11 @@ inline void Command::clear_save() {
     clear_has_t();
   }
 }
-inline ::Command_File* Command::release_save() {
-  // @@protoc_insertion_point(field_release:Command.save)
+inline ::Server_Protocol::Command_File* Command::release_save() {
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.save)
   if (_internal_has_save()) {
     clear_has_t();
-    ::Command_File* temp = t_.save_;
+    ::Server_Protocol::Command_File* temp = t_.save_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
@@ -4581,49 +4584,49 @@ inline ::Command_File* Command::release_save() {
     return nullptr;
   }
 }
-inline const ::Command_File& Command::_internal_save() const {
+inline const ::Server_Protocol::Command_File& Command::_internal_save() const {
   return _internal_has_save()
       ? *t_.save_
-      : reinterpret_cast< ::Command_File&>(::_Command_File_default_instance_);
+      : reinterpret_cast< ::Server_Protocol::Command_File&>(::Server_Protocol::_Command_File_default_instance_);
 }
-inline const ::Command_File& Command::save() const {
-  // @@protoc_insertion_point(field_get:Command.save)
+inline const ::Server_Protocol::Command_File& Command::save() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.save)
   return _internal_save();
 }
-inline ::Command_File* Command::unsafe_arena_release_save() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Command.save)
+inline ::Server_Protocol::Command_File* Command::unsafe_arena_release_save() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Server_Protocol.Command.save)
   if (_internal_has_save()) {
     clear_has_t();
-    ::Command_File* temp = t_.save_;
+    ::Server_Protocol::Command_File* temp = t_.save_;
     t_.save_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Command::unsafe_arena_set_allocated_save(::Command_File* save) {
+inline void Command::unsafe_arena_set_allocated_save(::Server_Protocol::Command_File* save) {
   clear_t();
   if (save) {
     set_has_save();
     t_.save_ = save;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Command.save)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Server_Protocol.Command.save)
 }
-inline ::Command_File* Command::_internal_mutable_save() {
+inline ::Server_Protocol::Command_File* Command::_internal_mutable_save() {
   if (!_internal_has_save()) {
     clear_t();
     set_has_save();
-    t_.save_ = CreateMaybeMessage< ::Command_File >(GetArenaForAllocation());
+    t_.save_ = CreateMaybeMessage< ::Server_Protocol::Command_File >(GetArenaForAllocation());
   }
   return t_.save_;
 }
-inline ::Command_File* Command::mutable_save() {
-  ::Command_File* _msg = _internal_mutable_save();
-  // @@protoc_insertion_point(field_mutable:Command.save)
+inline ::Server_Protocol::Command_File* Command::mutable_save() {
+  ::Server_Protocol::Command_File* _msg = _internal_mutable_save();
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.save)
   return _msg;
 }
 
-// .Command.File load = 8;
+// .Server_Protocol.Command.File load = 8;
 inline bool Command::_internal_has_load() const {
   return t_case() == kLoad;
 }
@@ -4641,11 +4644,11 @@ inline void Command::clear_load() {
     clear_has_t();
   }
 }
-inline ::Command_File* Command::release_load() {
-  // @@protoc_insertion_point(field_release:Command.load)
+inline ::Server_Protocol::Command_File* Command::release_load() {
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.load)
   if (_internal_has_load()) {
     clear_has_t();
-    ::Command_File* temp = t_.load_;
+    ::Server_Protocol::Command_File* temp = t_.load_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
@@ -4655,49 +4658,49 @@ inline ::Command_File* Command::release_load() {
     return nullptr;
   }
 }
-inline const ::Command_File& Command::_internal_load() const {
+inline const ::Server_Protocol::Command_File& Command::_internal_load() const {
   return _internal_has_load()
       ? *t_.load_
-      : reinterpret_cast< ::Command_File&>(::_Command_File_default_instance_);
+      : reinterpret_cast< ::Server_Protocol::Command_File&>(::Server_Protocol::_Command_File_default_instance_);
 }
-inline const ::Command_File& Command::load() const {
-  // @@protoc_insertion_point(field_get:Command.load)
+inline const ::Server_Protocol::Command_File& Command::load() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.load)
   return _internal_load();
 }
-inline ::Command_File* Command::unsafe_arena_release_load() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Command.load)
+inline ::Server_Protocol::Command_File* Command::unsafe_arena_release_load() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Server_Protocol.Command.load)
   if (_internal_has_load()) {
     clear_has_t();
-    ::Command_File* temp = t_.load_;
+    ::Server_Protocol::Command_File* temp = t_.load_;
     t_.load_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Command::unsafe_arena_set_allocated_load(::Command_File* load) {
+inline void Command::unsafe_arena_set_allocated_load(::Server_Protocol::Command_File* load) {
   clear_t();
   if (load) {
     set_has_load();
     t_.load_ = load;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Command.load)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Server_Protocol.Command.load)
 }
-inline ::Command_File* Command::_internal_mutable_load() {
+inline ::Server_Protocol::Command_File* Command::_internal_mutable_load() {
   if (!_internal_has_load()) {
     clear_t();
     set_has_load();
-    t_.load_ = CreateMaybeMessage< ::Command_File >(GetArenaForAllocation());
+    t_.load_ = CreateMaybeMessage< ::Server_Protocol::Command_File >(GetArenaForAllocation());
   }
   return t_.load_;
 }
-inline ::Command_File* Command::mutable_load() {
-  ::Command_File* _msg = _internal_mutable_load();
-  // @@protoc_insertion_point(field_mutable:Command.load)
+inline ::Server_Protocol::Command_File* Command::mutable_load() {
+  ::Server_Protocol::Command_File* _msg = _internal_mutable_load();
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.load)
   return _msg;
 }
 
-// .Command.First_order first_order = 9;
+// .Server_Protocol.Command.First_order first_order = 9;
 inline bool Command::_internal_has_first_order() const {
   return t_case() == kFirstOrder;
 }
@@ -4715,11 +4718,11 @@ inline void Command::clear_first_order() {
     clear_has_t();
   }
 }
-inline ::Command_First_order* Command::release_first_order() {
-  // @@protoc_insertion_point(field_release:Command.first_order)
+inline ::Server_Protocol::Command_First_order* Command::release_first_order() {
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.first_order)
   if (_internal_has_first_order()) {
     clear_has_t();
-    ::Command_First_order* temp = t_.first_order_;
+    ::Server_Protocol::Command_First_order* temp = t_.first_order_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
@@ -4729,49 +4732,49 @@ inline ::Command_First_order* Command::release_first_order() {
     return nullptr;
   }
 }
-inline const ::Command_First_order& Command::_internal_first_order() const {
+inline const ::Server_Protocol::Command_First_order& Command::_internal_first_order() const {
   return _internal_has_first_order()
       ? *t_.first_order_
-      : reinterpret_cast< ::Command_First_order&>(::_Command_First_order_default_instance_);
+      : reinterpret_cast< ::Server_Protocol::Command_First_order&>(::Server_Protocol::_Command_First_order_default_instance_);
 }
-inline const ::Command_First_order& Command::first_order() const {
-  // @@protoc_insertion_point(field_get:Command.first_order)
+inline const ::Server_Protocol::Command_First_order& Command::first_order() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.first_order)
   return _internal_first_order();
 }
-inline ::Command_First_order* Command::unsafe_arena_release_first_order() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Command.first_order)
+inline ::Server_Protocol::Command_First_order* Command::unsafe_arena_release_first_order() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Server_Protocol.Command.first_order)
   if (_internal_has_first_order()) {
     clear_has_t();
-    ::Command_First_order* temp = t_.first_order_;
+    ::Server_Protocol::Command_First_order* temp = t_.first_order_;
     t_.first_order_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Command::unsafe_arena_set_allocated_first_order(::Command_First_order* first_order) {
+inline void Command::unsafe_arena_set_allocated_first_order(::Server_Protocol::Command_First_order* first_order) {
   clear_t();
   if (first_order) {
     set_has_first_order();
     t_.first_order_ = first_order;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Command.first_order)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Server_Protocol.Command.first_order)
 }
-inline ::Command_First_order* Command::_internal_mutable_first_order() {
+inline ::Server_Protocol::Command_First_order* Command::_internal_mutable_first_order() {
   if (!_internal_has_first_order()) {
     clear_t();
     set_has_first_order();
-    t_.first_order_ = CreateMaybeMessage< ::Command_First_order >(GetArenaForAllocation());
+    t_.first_order_ = CreateMaybeMessage< ::Server_Protocol::Command_First_order >(GetArenaForAllocation());
   }
   return t_.first_order_;
 }
-inline ::Command_First_order* Command::mutable_first_order() {
-  ::Command_First_order* _msg = _internal_mutable_first_order();
-  // @@protoc_insertion_point(field_mutable:Command.first_order)
+inline ::Server_Protocol::Command_First_order* Command::mutable_first_order() {
+  ::Server_Protocol::Command_First_order* _msg = _internal_mutable_first_order();
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.first_order)
   return _msg;
 }
 
-// .Command.Notation notation = 10;
+// .Server_Protocol.Command.Notation notation = 10;
 inline bool Command::_internal_has_notation() const {
   return t_case() == kNotation;
 }
@@ -4789,11 +4792,11 @@ inline void Command::clear_notation() {
     clear_has_t();
   }
 }
-inline ::Command_Notation* Command::release_notation() {
-  // @@protoc_insertion_point(field_release:Command.notation)
+inline ::Server_Protocol::Command_Notation* Command::release_notation() {
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.notation)
   if (_internal_has_notation()) {
     clear_has_t();
-    ::Command_Notation* temp = t_.notation_;
+    ::Server_Protocol::Command_Notation* temp = t_.notation_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
@@ -4803,49 +4806,49 @@ inline ::Command_Notation* Command::release_notation() {
     return nullptr;
   }
 }
-inline const ::Command_Notation& Command::_internal_notation() const {
+inline const ::Server_Protocol::Command_Notation& Command::_internal_notation() const {
   return _internal_has_notation()
       ? *t_.notation_
-      : reinterpret_cast< ::Command_Notation&>(::_Command_Notation_default_instance_);
+      : reinterpret_cast< ::Server_Protocol::Command_Notation&>(::Server_Protocol::_Command_Notation_default_instance_);
 }
-inline const ::Command_Notation& Command::notation() const {
-  // @@protoc_insertion_point(field_get:Command.notation)
+inline const ::Server_Protocol::Command_Notation& Command::notation() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.notation)
   return _internal_notation();
 }
-inline ::Command_Notation* Command::unsafe_arena_release_notation() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Command.notation)
+inline ::Server_Protocol::Command_Notation* Command::unsafe_arena_release_notation() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Server_Protocol.Command.notation)
   if (_internal_has_notation()) {
     clear_has_t();
-    ::Command_Notation* temp = t_.notation_;
+    ::Server_Protocol::Command_Notation* temp = t_.notation_;
     t_.notation_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Command::unsafe_arena_set_allocated_notation(::Command_Notation* notation) {
+inline void Command::unsafe_arena_set_allocated_notation(::Server_Protocol::Command_Notation* notation) {
   clear_t();
   if (notation) {
     set_has_notation();
     t_.notation_ = notation;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Command.notation)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Server_Protocol.Command.notation)
 }
-inline ::Command_Notation* Command::_internal_mutable_notation() {
+inline ::Server_Protocol::Command_Notation* Command::_internal_mutable_notation() {
   if (!_internal_has_notation()) {
     clear_t();
     set_has_notation();
-    t_.notation_ = CreateMaybeMessage< ::Command_Notation >(GetArenaForAllocation());
+    t_.notation_ = CreateMaybeMessage< ::Server_Protocol::Command_Notation >(GetArenaForAllocation());
   }
   return t_.notation_;
 }
-inline ::Command_Notation* Command::mutable_notation() {
-  ::Command_Notation* _msg = _internal_mutable_notation();
-  // @@protoc_insertion_point(field_mutable:Command.notation)
+inline ::Server_Protocol::Command_Notation* Command::mutable_notation() {
+  ::Server_Protocol::Command_Notation* _msg = _internal_mutable_notation();
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.notation)
   return _msg;
 }
 
-// .Command.Theorem theorem = 11;
+// .Server_Protocol.Command.Theorem theorem = 11;
 inline bool Command::_internal_has_theorem() const {
   return t_case() == kTheorem;
 }
@@ -4863,11 +4866,11 @@ inline void Command::clear_theorem() {
     clear_has_t();
   }
 }
-inline ::Command_Theorem* Command::release_theorem() {
-  // @@protoc_insertion_point(field_release:Command.theorem)
+inline ::Server_Protocol::Command_Theorem* Command::release_theorem() {
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.theorem)
   if (_internal_has_theorem()) {
     clear_has_t();
-    ::Command_Theorem* temp = t_.theorem_;
+    ::Server_Protocol::Command_Theorem* temp = t_.theorem_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
@@ -4877,49 +4880,49 @@ inline ::Command_Theorem* Command::release_theorem() {
     return nullptr;
   }
 }
-inline const ::Command_Theorem& Command::_internal_theorem() const {
+inline const ::Server_Protocol::Command_Theorem& Command::_internal_theorem() const {
   return _internal_has_theorem()
       ? *t_.theorem_
-      : reinterpret_cast< ::Command_Theorem&>(::_Command_Theorem_default_instance_);
+      : reinterpret_cast< ::Server_Protocol::Command_Theorem&>(::Server_Protocol::_Command_Theorem_default_instance_);
 }
-inline const ::Command_Theorem& Command::theorem() const {
-  // @@protoc_insertion_point(field_get:Command.theorem)
+inline const ::Server_Protocol::Command_Theorem& Command::theorem() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.theorem)
   return _internal_theorem();
 }
-inline ::Command_Theorem* Command::unsafe_arena_release_theorem() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Command.theorem)
+inline ::Server_Protocol::Command_Theorem* Command::unsafe_arena_release_theorem() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Server_Protocol.Command.theorem)
   if (_internal_has_theorem()) {
     clear_has_t();
-    ::Command_Theorem* temp = t_.theorem_;
+    ::Server_Protocol::Command_Theorem* temp = t_.theorem_;
     t_.theorem_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Command::unsafe_arena_set_allocated_theorem(::Command_Theorem* theorem) {
+inline void Command::unsafe_arena_set_allocated_theorem(::Server_Protocol::Command_Theorem* theorem) {
   clear_t();
   if (theorem) {
     set_has_theorem();
     t_.theorem_ = theorem;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Command.theorem)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Server_Protocol.Command.theorem)
 }
-inline ::Command_Theorem* Command::_internal_mutable_theorem() {
+inline ::Server_Protocol::Command_Theorem* Command::_internal_mutable_theorem() {
   if (!_internal_has_theorem()) {
     clear_t();
     set_has_theorem();
-    t_.theorem_ = CreateMaybeMessage< ::Command_Theorem >(GetArenaForAllocation());
+    t_.theorem_ = CreateMaybeMessage< ::Server_Protocol::Command_Theorem >(GetArenaForAllocation());
   }
   return t_.theorem_;
 }
-inline ::Command_Theorem* Command::mutable_theorem() {
-  ::Command_Theorem* _msg = _internal_mutable_theorem();
-  // @@protoc_insertion_point(field_mutable:Command.theorem)
+inline ::Server_Protocol::Command_Theorem* Command::mutable_theorem() {
+  ::Server_Protocol::Command_Theorem* _msg = _internal_mutable_theorem();
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.theorem)
   return _msg;
 }
 
-// .Command.Axiom axiom = 12;
+// .Server_Protocol.Command.Axiom axiom = 12;
 inline bool Command::_internal_has_axiom() const {
   return t_case() == kAxiom;
 }
@@ -4937,11 +4940,11 @@ inline void Command::clear_axiom() {
     clear_has_t();
   }
 }
-inline ::Command_Axiom* Command::release_axiom() {
-  // @@protoc_insertion_point(field_release:Command.axiom)
+inline ::Server_Protocol::Command_Axiom* Command::release_axiom() {
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.axiom)
   if (_internal_has_axiom()) {
     clear_has_t();
-    ::Command_Axiom* temp = t_.axiom_;
+    ::Server_Protocol::Command_Axiom* temp = t_.axiom_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
@@ -4951,49 +4954,49 @@ inline ::Command_Axiom* Command::release_axiom() {
     return nullptr;
   }
 }
-inline const ::Command_Axiom& Command::_internal_axiom() const {
+inline const ::Server_Protocol::Command_Axiom& Command::_internal_axiom() const {
   return _internal_has_axiom()
       ? *t_.axiom_
-      : reinterpret_cast< ::Command_Axiom&>(::_Command_Axiom_default_instance_);
+      : reinterpret_cast< ::Server_Protocol::Command_Axiom&>(::Server_Protocol::_Command_Axiom_default_instance_);
 }
-inline const ::Command_Axiom& Command::axiom() const {
-  // @@protoc_insertion_point(field_get:Command.axiom)
+inline const ::Server_Protocol::Command_Axiom& Command::axiom() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.axiom)
   return _internal_axiom();
 }
-inline ::Command_Axiom* Command::unsafe_arena_release_axiom() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Command.axiom)
+inline ::Server_Protocol::Command_Axiom* Command::unsafe_arena_release_axiom() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Server_Protocol.Command.axiom)
   if (_internal_has_axiom()) {
     clear_has_t();
-    ::Command_Axiom* temp = t_.axiom_;
+    ::Server_Protocol::Command_Axiom* temp = t_.axiom_;
     t_.axiom_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Command::unsafe_arena_set_allocated_axiom(::Command_Axiom* axiom) {
+inline void Command::unsafe_arena_set_allocated_axiom(::Server_Protocol::Command_Axiom* axiom) {
   clear_t();
   if (axiom) {
     set_has_axiom();
     t_.axiom_ = axiom;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Command.axiom)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Server_Protocol.Command.axiom)
 }
-inline ::Command_Axiom* Command::_internal_mutable_axiom() {
+inline ::Server_Protocol::Command_Axiom* Command::_internal_mutable_axiom() {
   if (!_internal_has_axiom()) {
     clear_t();
     set_has_axiom();
-    t_.axiom_ = CreateMaybeMessage< ::Command_Axiom >(GetArenaForAllocation());
+    t_.axiom_ = CreateMaybeMessage< ::Server_Protocol::Command_Axiom >(GetArenaForAllocation());
   }
   return t_.axiom_;
 }
-inline ::Command_Axiom* Command::mutable_axiom() {
-  ::Command_Axiom* _msg = _internal_mutable_axiom();
-  // @@protoc_insertion_point(field_mutable:Command.axiom)
+inline ::Server_Protocol::Command_Axiom* Command::mutable_axiom() {
+  ::Server_Protocol::Command_Axiom* _msg = _internal_mutable_axiom();
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.axiom)
   return _msg;
 }
 
-// .Command.History history = 13;
+// .Server_Protocol.Command.History history = 13;
 inline bool Command::_internal_has_history() const {
   return t_case() == kHistory;
 }
@@ -5011,11 +5014,11 @@ inline void Command::clear_history() {
     clear_has_t();
   }
 }
-inline ::Command_History* Command::release_history() {
-  // @@protoc_insertion_point(field_release:Command.history)
+inline ::Server_Protocol::Command_History* Command::release_history() {
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.history)
   if (_internal_has_history()) {
     clear_has_t();
-    ::Command_History* temp = t_.history_;
+    ::Server_Protocol::Command_History* temp = t_.history_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
@@ -5025,45 +5028,45 @@ inline ::Command_History* Command::release_history() {
     return nullptr;
   }
 }
-inline const ::Command_History& Command::_internal_history() const {
+inline const ::Server_Protocol::Command_History& Command::_internal_history() const {
   return _internal_has_history()
       ? *t_.history_
-      : reinterpret_cast< ::Command_History&>(::_Command_History_default_instance_);
+      : reinterpret_cast< ::Server_Protocol::Command_History&>(::Server_Protocol::_Command_History_default_instance_);
 }
-inline const ::Command_History& Command::history() const {
-  // @@protoc_insertion_point(field_get:Command.history)
+inline const ::Server_Protocol::Command_History& Command::history() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.history)
   return _internal_history();
 }
-inline ::Command_History* Command::unsafe_arena_release_history() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Command.history)
+inline ::Server_Protocol::Command_History* Command::unsafe_arena_release_history() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Server_Protocol.Command.history)
   if (_internal_has_history()) {
     clear_has_t();
-    ::Command_History* temp = t_.history_;
+    ::Server_Protocol::Command_History* temp = t_.history_;
     t_.history_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Command::unsafe_arena_set_allocated_history(::Command_History* history) {
+inline void Command::unsafe_arena_set_allocated_history(::Server_Protocol::Command_History* history) {
   clear_t();
   if (history) {
     set_has_history();
     t_.history_ = history;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Command.history)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Server_Protocol.Command.history)
 }
-inline ::Command_History* Command::_internal_mutable_history() {
+inline ::Server_Protocol::Command_History* Command::_internal_mutable_history() {
   if (!_internal_has_history()) {
     clear_t();
     set_has_history();
-    t_.history_ = CreateMaybeMessage< ::Command_History >(GetArenaForAllocation());
+    t_.history_ = CreateMaybeMessage< ::Server_Protocol::Command_History >(GetArenaForAllocation());
   }
   return t_.history_;
 }
-inline ::Command_History* Command::mutable_history() {
-  ::Command_History* _msg = _internal_mutable_history();
-  // @@protoc_insertion_point(field_mutable:Command.history)
+inline ::Server_Protocol::Command_History* Command::mutable_history() {
+  ::Server_Protocol::Command_History* _msg = _internal_mutable_history();
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.history)
   return _msg;
 }
 
@@ -5084,7 +5087,7 @@ inline void Command::clear_show() {
   }
 }
 inline const std::string& Command::show() const {
-  // @@protoc_insertion_point(field_get:Command.show)
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.show)
   return _internal_show();
 }
 template <typename ArgT0, typename... ArgT>
@@ -5095,11 +5098,11 @@ inline void Command::set_show(ArgT0&& arg0, ArgT... args) {
     t_.show_.InitDefault();
   }
   t_.show_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Command.show)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.show)
 }
 inline std::string* Command::mutable_show() {
   std::string* _s = _internal_mutable_show();
-  // @@protoc_insertion_point(field_mutable:Command.show)
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.show)
   return _s;
 }
 inline const std::string& Command::_internal_show() const {
@@ -5125,7 +5128,7 @@ inline std::string* Command::_internal_mutable_show() {
   return t_.show_.Mutable(      GetArenaForAllocation());
 }
 inline std::string* Command::release_show() {
-  // @@protoc_insertion_point(field_release:Command.show)
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.show)
   if (_internal_has_show()) {
     clear_has_t();
     return t_.show_.Release();
@@ -5141,10 +5144,10 @@ inline void Command::set_allocated_show(std::string* show) {
     set_has_show();
     t_.show_.InitAllocated(show, GetArenaForAllocation());
   }
-  // @@protoc_insertion_point(field_set_allocated:Command.show)
+  // @@protoc_insertion_point(field_set_allocated:Server_Protocol.Command.show)
 }
 
-// .Known list = 15;
+// .Server_Protocol.Known list = 15;
 inline bool Command::_internal_has_list() const {
   return t_case() == kList;
 }
@@ -5160,26 +5163,26 @@ inline void Command::clear_list() {
     clear_has_t();
   }
 }
-inline ::Known Command::_internal_list() const {
+inline ::Server_Protocol::Known Command::_internal_list() const {
   if (_internal_has_list()) {
-    return static_cast< ::Known >(t_.list_);
+    return static_cast< ::Server_Protocol::Known >(t_.list_);
   }
-  return static_cast< ::Known >(0);
+  return static_cast< ::Server_Protocol::Known >(0);
 }
-inline ::Known Command::list() const {
-  // @@protoc_insertion_point(field_get:Command.list)
+inline ::Server_Protocol::Known Command::list() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.list)
   return _internal_list();
 }
-inline void Command::_internal_set_list(::Known value) {
+inline void Command::_internal_set_list(::Server_Protocol::Known value) {
   if (!_internal_has_list()) {
     clear_t();
     set_has_list();
   }
   t_.list_ = value;
 }
-inline void Command::set_list(::Known value) {
+inline void Command::set_list(::Server_Protocol::Known value) {
   _internal_set_list(value);
-  // @@protoc_insertion_point(field_set:Command.list)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.list)
 }
 
 // string user = 16;
@@ -5199,7 +5202,7 @@ inline void Command::clear_user() {
   }
 }
 inline const std::string& Command::user() const {
-  // @@protoc_insertion_point(field_get:Command.user)
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.user)
   return _internal_user();
 }
 template <typename ArgT0, typename... ArgT>
@@ -5210,11 +5213,11 @@ inline void Command::set_user(ArgT0&& arg0, ArgT... args) {
     t_.user_.InitDefault();
   }
   t_.user_.Set( static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Command.user)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Command.user)
 }
 inline std::string* Command::mutable_user() {
   std::string* _s = _internal_mutable_user();
-  // @@protoc_insertion_point(field_mutable:Command.user)
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.user)
   return _s;
 }
 inline const std::string& Command::_internal_user() const {
@@ -5240,7 +5243,7 @@ inline std::string* Command::_internal_mutable_user() {
   return t_.user_.Mutable(      GetArenaForAllocation());
 }
 inline std::string* Command::release_user() {
-  // @@protoc_insertion_point(field_release:Command.user)
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.user)
   if (_internal_has_user()) {
     clear_has_t();
     return t_.user_.Release();
@@ -5256,10 +5259,10 @@ inline void Command::set_allocated_user(std::string* user) {
     set_has_user();
     t_.user_.InitAllocated(user, GetArenaForAllocation());
   }
-  // @@protoc_insertion_point(field_set_allocated:Command.user)
+  // @@protoc_insertion_point(field_set_allocated:Server_Protocol.Command.user)
 }
 
-// .Command.Quit quit = 17;
+// .Server_Protocol.Command.Quit quit = 17;
 inline bool Command::_internal_has_quit() const {
   return t_case() == kQuit;
 }
@@ -5277,11 +5280,11 @@ inline void Command::clear_quit() {
     clear_has_t();
   }
 }
-inline ::Command_Quit* Command::release_quit() {
-  // @@protoc_insertion_point(field_release:Command.quit)
+inline ::Server_Protocol::Command_Quit* Command::release_quit() {
+  // @@protoc_insertion_point(field_release:Server_Protocol.Command.quit)
   if (_internal_has_quit()) {
     clear_has_t();
-    ::Command_Quit* temp = t_.quit_;
+    ::Server_Protocol::Command_Quit* temp = t_.quit_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
@@ -5291,45 +5294,45 @@ inline ::Command_Quit* Command::release_quit() {
     return nullptr;
   }
 }
-inline const ::Command_Quit& Command::_internal_quit() const {
+inline const ::Server_Protocol::Command_Quit& Command::_internal_quit() const {
   return _internal_has_quit()
       ? *t_.quit_
-      : reinterpret_cast< ::Command_Quit&>(::_Command_Quit_default_instance_);
+      : reinterpret_cast< ::Server_Protocol::Command_Quit&>(::Server_Protocol::_Command_Quit_default_instance_);
 }
-inline const ::Command_Quit& Command::quit() const {
-  // @@protoc_insertion_point(field_get:Command.quit)
+inline const ::Server_Protocol::Command_Quit& Command::quit() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Command.quit)
   return _internal_quit();
 }
-inline ::Command_Quit* Command::unsafe_arena_release_quit() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Command.quit)
+inline ::Server_Protocol::Command_Quit* Command::unsafe_arena_release_quit() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Server_Protocol.Command.quit)
   if (_internal_has_quit()) {
     clear_has_t();
-    ::Command_Quit* temp = t_.quit_;
+    ::Server_Protocol::Command_Quit* temp = t_.quit_;
     t_.quit_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Command::unsafe_arena_set_allocated_quit(::Command_Quit* quit) {
+inline void Command::unsafe_arena_set_allocated_quit(::Server_Protocol::Command_Quit* quit) {
   clear_t();
   if (quit) {
     set_has_quit();
     t_.quit_ = quit;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Command.quit)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Server_Protocol.Command.quit)
 }
-inline ::Command_Quit* Command::_internal_mutable_quit() {
+inline ::Server_Protocol::Command_Quit* Command::_internal_mutable_quit() {
   if (!_internal_has_quit()) {
     clear_t();
     set_has_quit();
-    t_.quit_ = CreateMaybeMessage< ::Command_Quit >(GetArenaForAllocation());
+    t_.quit_ = CreateMaybeMessage< ::Server_Protocol::Command_Quit >(GetArenaForAllocation());
   }
   return t_.quit_;
 }
-inline ::Command_Quit* Command::mutable_quit() {
-  ::Command_Quit* _msg = _internal_mutable_quit();
-  // @@protoc_insertion_point(field_mutable:Command.quit)
+inline ::Server_Protocol::Command_Quit* Command::mutable_quit() {
+  ::Server_Protocol::Command_Quit* _msg = _internal_mutable_quit();
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Command.quit)
   return _msg;
 }
 
@@ -5351,7 +5354,7 @@ inline void Answer_Error::clear_error_message() {
   error_message_.ClearToEmpty();
 }
 inline const std::string& Answer_Error::error_message() const {
-  // @@protoc_insertion_point(field_get:Answer.Error.error_message)
+  // @@protoc_insertion_point(field_get:Server_Protocol.Answer.Error.error_message)
   return _internal_error_message();
 }
 template <typename ArgT0, typename... ArgT>
@@ -5359,11 +5362,11 @@ inline PROTOBUF_ALWAYS_INLINE
 void Answer_Error::set_error_message(ArgT0&& arg0, ArgT... args) {
  
  error_message_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Answer.Error.error_message)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Answer.Error.error_message)
 }
 inline std::string* Answer_Error::mutable_error_message() {
   std::string* _s = _internal_mutable_error_message();
-  // @@protoc_insertion_point(field_mutable:Answer.Error.error_message)
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Answer.Error.error_message)
   return _s;
 }
 inline const std::string& Answer_Error::_internal_error_message() const {
@@ -5378,7 +5381,7 @@ inline std::string* Answer_Error::_internal_mutable_error_message() {
   return error_message_.Mutable(GetArenaForAllocation());
 }
 inline std::string* Answer_Error::release_error_message() {
-  // @@protoc_insertion_point(field_release:Answer.Error.error_message)
+  // @@protoc_insertion_point(field_release:Server_Protocol.Answer.Error.error_message)
   return error_message_.Release();
 }
 inline void Answer_Error::set_allocated_error_message(std::string* error_message) {
@@ -5393,10 +5396,10 @@ inline void Answer_Error::set_allocated_error_message(std::string* error_message
     error_message_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Answer.Error.error_message)
+  // @@protoc_insertion_point(field_set_allocated:Server_Protocol.Answer.Error.error_message)
 }
 
-// .Command command = 2;
+// .Server_Protocol.Command command = 2;
 inline bool Answer_Error::_internal_has_command() const {
   return this != internal_default_instance() && command_ != nullptr;
 }
@@ -5409,17 +5412,17 @@ inline void Answer_Error::clear_command() {
   }
   command_ = nullptr;
 }
-inline const ::Command& Answer_Error::_internal_command() const {
-  const ::Command* p = command_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Command&>(
-      ::_Command_default_instance_);
+inline const ::Server_Protocol::Command& Answer_Error::_internal_command() const {
+  const ::Server_Protocol::Command* p = command_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Server_Protocol::Command&>(
+      ::Server_Protocol::_Command_default_instance_);
 }
-inline const ::Command& Answer_Error::command() const {
-  // @@protoc_insertion_point(field_get:Answer.Error.command)
+inline const ::Server_Protocol::Command& Answer_Error::command() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Answer.Error.command)
   return _internal_command();
 }
 inline void Answer_Error::unsafe_arena_set_allocated_command(
-    ::Command* command) {
+    ::Server_Protocol::Command* command) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(command_);
   }
@@ -5429,11 +5432,11 @@ inline void Answer_Error::unsafe_arena_set_allocated_command(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Answer.Error.command)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Server_Protocol.Answer.Error.command)
 }
-inline ::Command* Answer_Error::release_command() {
+inline ::Server_Protocol::Command* Answer_Error::release_command() {
   
-  ::Command* temp = command_;
+  ::Server_Protocol::Command* temp = command_;
   command_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
@@ -5446,27 +5449,27 @@ inline ::Command* Answer_Error::release_command() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::Command* Answer_Error::unsafe_arena_release_command() {
-  // @@protoc_insertion_point(field_release:Answer.Error.command)
+inline ::Server_Protocol::Command* Answer_Error::unsafe_arena_release_command() {
+  // @@protoc_insertion_point(field_release:Server_Protocol.Answer.Error.command)
   
-  ::Command* temp = command_;
+  ::Server_Protocol::Command* temp = command_;
   command_ = nullptr;
   return temp;
 }
-inline ::Command* Answer_Error::_internal_mutable_command() {
+inline ::Server_Protocol::Command* Answer_Error::_internal_mutable_command() {
   
   if (command_ == nullptr) {
-    auto* p = CreateMaybeMessage<::Command>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::Server_Protocol::Command>(GetArenaForAllocation());
     command_ = p;
   }
   return command_;
 }
-inline ::Command* Answer_Error::mutable_command() {
-  ::Command* _msg = _internal_mutable_command();
-  // @@protoc_insertion_point(field_mutable:Answer.Error.command)
+inline ::Server_Protocol::Command* Answer_Error::mutable_command() {
+  ::Server_Protocol::Command* _msg = _internal_mutable_command();
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Answer.Error.command)
   return _msg;
 }
-inline void Answer_Error::set_allocated_command(::Command* command) {
+inline void Answer_Error::set_allocated_command(::Server_Protocol::Command* command) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete command_;
@@ -5483,31 +5486,31 @@ inline void Answer_Error::set_allocated_command(::Command* command) {
     
   }
   command_ = command;
-  // @@protoc_insertion_point(field_set_allocated:Answer.Error.command)
+  // @@protoc_insertion_point(field_set_allocated:Server_Protocol.Answer.Error.command)
 }
 
 // -------------------------------------------------------------------
 
 // Answer_Latex_answer
 
-// .Latex_mode mode = 1;
+// .Server_Protocol.Latex_mode mode = 1;
 inline void Answer_Latex_answer::clear_mode() {
   mode_ = 0;
 }
-inline ::Latex_mode Answer_Latex_answer::_internal_mode() const {
-  return static_cast< ::Latex_mode >(mode_);
+inline ::Server_Protocol::Latex_mode Answer_Latex_answer::_internal_mode() const {
+  return static_cast< ::Server_Protocol::Latex_mode >(mode_);
 }
-inline ::Latex_mode Answer_Latex_answer::mode() const {
-  // @@protoc_insertion_point(field_get:Answer.Latex_answer.mode)
+inline ::Server_Protocol::Latex_mode Answer_Latex_answer::mode() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Answer.Latex_answer.mode)
   return _internal_mode();
 }
-inline void Answer_Latex_answer::_internal_set_mode(::Latex_mode value) {
+inline void Answer_Latex_answer::_internal_set_mode(::Server_Protocol::Latex_mode value) {
   
   mode_ = value;
 }
-inline void Answer_Latex_answer::set_mode(::Latex_mode value) {
+inline void Answer_Latex_answer::set_mode(::Server_Protocol::Latex_mode value) {
   _internal_set_mode(value);
-  // @@protoc_insertion_point(field_set:Answer.Latex_answer.mode)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Answer.Latex_answer.mode)
 }
 
 // string answer = 2;
@@ -5515,7 +5518,7 @@ inline void Answer_Latex_answer::clear_answer() {
   answer_.ClearToEmpty();
 }
 inline const std::string& Answer_Latex_answer::answer() const {
-  // @@protoc_insertion_point(field_get:Answer.Latex_answer.answer)
+  // @@protoc_insertion_point(field_get:Server_Protocol.Answer.Latex_answer.answer)
   return _internal_answer();
 }
 template <typename ArgT0, typename... ArgT>
@@ -5523,11 +5526,11 @@ inline PROTOBUF_ALWAYS_INLINE
 void Answer_Latex_answer::set_answer(ArgT0&& arg0, ArgT... args) {
  
  answer_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:Answer.Latex_answer.answer)
+  // @@protoc_insertion_point(field_set:Server_Protocol.Answer.Latex_answer.answer)
 }
 inline std::string* Answer_Latex_answer::mutable_answer() {
   std::string* _s = _internal_mutable_answer();
-  // @@protoc_insertion_point(field_mutable:Answer.Latex_answer.answer)
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Answer.Latex_answer.answer)
   return _s;
 }
 inline const std::string& Answer_Latex_answer::_internal_answer() const {
@@ -5542,7 +5545,7 @@ inline std::string* Answer_Latex_answer::_internal_mutable_answer() {
   return answer_.Mutable(GetArenaForAllocation());
 }
 inline std::string* Answer_Latex_answer::release_answer() {
-  // @@protoc_insertion_point(field_release:Answer.Latex_answer.answer)
+  // @@protoc_insertion_point(field_release:Server_Protocol.Answer.Latex_answer.answer)
   return answer_.Release();
 }
 inline void Answer_Latex_answer::set_allocated_answer(std::string* answer) {
@@ -5557,14 +5560,14 @@ inline void Answer_Latex_answer::set_allocated_answer(std::string* answer) {
     answer_.Set("", GetArenaForAllocation());
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:Answer.Latex_answer.answer)
+  // @@protoc_insertion_point(field_set_allocated:Server_Protocol.Answer.Latex_answer.answer)
 }
 
 // -------------------------------------------------------------------
 
 // Answer
 
-// .Command ok = 1;
+// .Server_Protocol.Command ok = 1;
 inline bool Answer::_internal_has_ok() const {
   return t_case() == kOk;
 }
@@ -5582,11 +5585,11 @@ inline void Answer::clear_ok() {
     clear_has_t();
   }
 }
-inline ::Command* Answer::release_ok() {
-  // @@protoc_insertion_point(field_release:Answer.ok)
+inline ::Server_Protocol::Command* Answer::release_ok() {
+  // @@protoc_insertion_point(field_release:Server_Protocol.Answer.ok)
   if (_internal_has_ok()) {
     clear_has_t();
-    ::Command* temp = t_.ok_;
+    ::Server_Protocol::Command* temp = t_.ok_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
@@ -5596,49 +5599,49 @@ inline ::Command* Answer::release_ok() {
     return nullptr;
   }
 }
-inline const ::Command& Answer::_internal_ok() const {
+inline const ::Server_Protocol::Command& Answer::_internal_ok() const {
   return _internal_has_ok()
       ? *t_.ok_
-      : reinterpret_cast< ::Command&>(::_Command_default_instance_);
+      : reinterpret_cast< ::Server_Protocol::Command&>(::Server_Protocol::_Command_default_instance_);
 }
-inline const ::Command& Answer::ok() const {
-  // @@protoc_insertion_point(field_get:Answer.ok)
+inline const ::Server_Protocol::Command& Answer::ok() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Answer.ok)
   return _internal_ok();
 }
-inline ::Command* Answer::unsafe_arena_release_ok() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Answer.ok)
+inline ::Server_Protocol::Command* Answer::unsafe_arena_release_ok() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Server_Protocol.Answer.ok)
   if (_internal_has_ok()) {
     clear_has_t();
-    ::Command* temp = t_.ok_;
+    ::Server_Protocol::Command* temp = t_.ok_;
     t_.ok_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Answer::unsafe_arena_set_allocated_ok(::Command* ok) {
+inline void Answer::unsafe_arena_set_allocated_ok(::Server_Protocol::Command* ok) {
   clear_t();
   if (ok) {
     set_has_ok();
     t_.ok_ = ok;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Answer.ok)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Server_Protocol.Answer.ok)
 }
-inline ::Command* Answer::_internal_mutable_ok() {
+inline ::Server_Protocol::Command* Answer::_internal_mutable_ok() {
   if (!_internal_has_ok()) {
     clear_t();
     set_has_ok();
-    t_.ok_ = CreateMaybeMessage< ::Command >(GetArenaForAllocation());
+    t_.ok_ = CreateMaybeMessage< ::Server_Protocol::Command >(GetArenaForAllocation());
   }
   return t_.ok_;
 }
-inline ::Command* Answer::mutable_ok() {
-  ::Command* _msg = _internal_mutable_ok();
-  // @@protoc_insertion_point(field_mutable:Answer.ok)
+inline ::Server_Protocol::Command* Answer::mutable_ok() {
+  ::Server_Protocol::Command* _msg = _internal_mutable_ok();
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Answer.ok)
   return _msg;
 }
 
-// .Answer.Error error = 2;
+// .Server_Protocol.Answer.Error error = 2;
 inline bool Answer::_internal_has_error() const {
   return t_case() == kError;
 }
@@ -5656,11 +5659,11 @@ inline void Answer::clear_error() {
     clear_has_t();
   }
 }
-inline ::Answer_Error* Answer::release_error() {
-  // @@protoc_insertion_point(field_release:Answer.error)
+inline ::Server_Protocol::Answer_Error* Answer::release_error() {
+  // @@protoc_insertion_point(field_release:Server_Protocol.Answer.error)
   if (_internal_has_error()) {
     clear_has_t();
-    ::Answer_Error* temp = t_.error_;
+    ::Server_Protocol::Answer_Error* temp = t_.error_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
@@ -5670,49 +5673,49 @@ inline ::Answer_Error* Answer::release_error() {
     return nullptr;
   }
 }
-inline const ::Answer_Error& Answer::_internal_error() const {
+inline const ::Server_Protocol::Answer_Error& Answer::_internal_error() const {
   return _internal_has_error()
       ? *t_.error_
-      : reinterpret_cast< ::Answer_Error&>(::_Answer_Error_default_instance_);
+      : reinterpret_cast< ::Server_Protocol::Answer_Error&>(::Server_Protocol::_Answer_Error_default_instance_);
 }
-inline const ::Answer_Error& Answer::error() const {
-  // @@protoc_insertion_point(field_get:Answer.error)
+inline const ::Server_Protocol::Answer_Error& Answer::error() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Answer.error)
   return _internal_error();
 }
-inline ::Answer_Error* Answer::unsafe_arena_release_error() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Answer.error)
+inline ::Server_Protocol::Answer_Error* Answer::unsafe_arena_release_error() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Server_Protocol.Answer.error)
   if (_internal_has_error()) {
     clear_has_t();
-    ::Answer_Error* temp = t_.error_;
+    ::Server_Protocol::Answer_Error* temp = t_.error_;
     t_.error_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Answer::unsafe_arena_set_allocated_error(::Answer_Error* error) {
+inline void Answer::unsafe_arena_set_allocated_error(::Server_Protocol::Answer_Error* error) {
   clear_t();
   if (error) {
     set_has_error();
     t_.error_ = error;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Answer.error)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Server_Protocol.Answer.error)
 }
-inline ::Answer_Error* Answer::_internal_mutable_error() {
+inline ::Server_Protocol::Answer_Error* Answer::_internal_mutable_error() {
   if (!_internal_has_error()) {
     clear_t();
     set_has_error();
-    t_.error_ = CreateMaybeMessage< ::Answer_Error >(GetArenaForAllocation());
+    t_.error_ = CreateMaybeMessage< ::Server_Protocol::Answer_Error >(GetArenaForAllocation());
   }
   return t_.error_;
 }
-inline ::Answer_Error* Answer::mutable_error() {
-  ::Answer_Error* _msg = _internal_mutable_error();
-  // @@protoc_insertion_point(field_mutable:Answer.error)
+inline ::Server_Protocol::Answer_Error* Answer::mutable_error() {
+  ::Server_Protocol::Answer_Error* _msg = _internal_mutable_error();
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Answer.error)
   return _msg;
 }
 
-// .Answer.Latex_answer answer = 3;
+// .Server_Protocol.Answer.Latex_answer answer = 3;
 inline bool Answer::_internal_has_answer() const {
   return t_case() == kAnswer;
 }
@@ -5730,11 +5733,11 @@ inline void Answer::clear_answer() {
     clear_has_t();
   }
 }
-inline ::Answer_Latex_answer* Answer::release_answer() {
-  // @@protoc_insertion_point(field_release:Answer.answer)
+inline ::Server_Protocol::Answer_Latex_answer* Answer::release_answer() {
+  // @@protoc_insertion_point(field_release:Server_Protocol.Answer.answer)
   if (_internal_has_answer()) {
     clear_has_t();
-    ::Answer_Latex_answer* temp = t_.answer_;
+    ::Server_Protocol::Answer_Latex_answer* temp = t_.answer_;
     if (GetArenaForAllocation() != nullptr) {
       temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
     }
@@ -5744,45 +5747,45 @@ inline ::Answer_Latex_answer* Answer::release_answer() {
     return nullptr;
   }
 }
-inline const ::Answer_Latex_answer& Answer::_internal_answer() const {
+inline const ::Server_Protocol::Answer_Latex_answer& Answer::_internal_answer() const {
   return _internal_has_answer()
       ? *t_.answer_
-      : reinterpret_cast< ::Answer_Latex_answer&>(::_Answer_Latex_answer_default_instance_);
+      : reinterpret_cast< ::Server_Protocol::Answer_Latex_answer&>(::Server_Protocol::_Answer_Latex_answer_default_instance_);
 }
-inline const ::Answer_Latex_answer& Answer::answer() const {
-  // @@protoc_insertion_point(field_get:Answer.answer)
+inline const ::Server_Protocol::Answer_Latex_answer& Answer::answer() const {
+  // @@protoc_insertion_point(field_get:Server_Protocol.Answer.answer)
   return _internal_answer();
 }
-inline ::Answer_Latex_answer* Answer::unsafe_arena_release_answer() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:Answer.answer)
+inline ::Server_Protocol::Answer_Latex_answer* Answer::unsafe_arena_release_answer() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:Server_Protocol.Answer.answer)
   if (_internal_has_answer()) {
     clear_has_t();
-    ::Answer_Latex_answer* temp = t_.answer_;
+    ::Server_Protocol::Answer_Latex_answer* temp = t_.answer_;
     t_.answer_ = nullptr;
     return temp;
   } else {
     return nullptr;
   }
 }
-inline void Answer::unsafe_arena_set_allocated_answer(::Answer_Latex_answer* answer) {
+inline void Answer::unsafe_arena_set_allocated_answer(::Server_Protocol::Answer_Latex_answer* answer) {
   clear_t();
   if (answer) {
     set_has_answer();
     t_.answer_ = answer;
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Answer.answer)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Server_Protocol.Answer.answer)
 }
-inline ::Answer_Latex_answer* Answer::_internal_mutable_answer() {
+inline ::Server_Protocol::Answer_Latex_answer* Answer::_internal_mutable_answer() {
   if (!_internal_has_answer()) {
     clear_t();
     set_has_answer();
-    t_.answer_ = CreateMaybeMessage< ::Answer_Latex_answer >(GetArenaForAllocation());
+    t_.answer_ = CreateMaybeMessage< ::Server_Protocol::Answer_Latex_answer >(GetArenaForAllocation());
   }
   return t_.answer_;
 }
-inline ::Answer_Latex_answer* Answer::mutable_answer() {
-  ::Answer_Latex_answer* _msg = _internal_mutable_answer();
-  // @@protoc_insertion_point(field_mutable:Answer.answer)
+inline ::Server_Protocol::Answer_Latex_answer* Answer::mutable_answer() {
+  ::Server_Protocol::Answer_Latex_answer* _msg = _internal_mutable_answer();
+  // @@protoc_insertion_point(field_mutable:Server_Protocol.Answer.answer)
   return _msg;
 }
 
@@ -5833,28 +5836,29 @@ inline Answer::TCase Answer::t_case() const {
 
 // @@protoc_insertion_point(namespace_scope)
 
+}  // namespace Server_Protocol
 
 PROTOBUF_NAMESPACE_OPEN
 
-template <> struct is_proto_enum< ::File_mode> : ::std::true_type {};
+template <> struct is_proto_enum< ::Server_Protocol::File_mode> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::File_mode>() {
-  return ::File_mode_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::Server_Protocol::File_mode>() {
+  return ::Server_Protocol::File_mode_descriptor();
 }
-template <> struct is_proto_enum< ::Status> : ::std::true_type {};
+template <> struct is_proto_enum< ::Server_Protocol::Status> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::Status>() {
-  return ::Status_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::Server_Protocol::Status>() {
+  return ::Server_Protocol::Status_descriptor();
 }
-template <> struct is_proto_enum< ::Known> : ::std::true_type {};
+template <> struct is_proto_enum< ::Server_Protocol::Known> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::Known>() {
-  return ::Known_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::Server_Protocol::Known>() {
+  return ::Server_Protocol::Known_descriptor();
 }
-template <> struct is_proto_enum< ::Latex_mode> : ::std::true_type {};
+template <> struct is_proto_enum< ::Server_Protocol::Latex_mode> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::Latex_mode>() {
-  return ::Latex_mode_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::Server_Protocol::Latex_mode>() {
+  return ::Server_Protocol::Latex_mode_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE

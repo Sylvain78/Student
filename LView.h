@@ -7,12 +7,15 @@
 #include <TextControl.h>
 #include <View.h>
 
+#include "server_protocol.pb.h"
 #include "Constantes.h"
+
+namespace SP = Server_Protocol;
 
 enum LView_kind  
 {
-	LTEXT,
-	LMATH
+	LTEXT = SP::Latex_mode::LTEXT,
+	LMATH = SP::Latex_mode::LMATH
 };
 
 class LView : public BView {

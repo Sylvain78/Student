@@ -9,6 +9,7 @@
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "Session"
 
+namespace SP = Server_Protocol;
 Session::Session(const char* host, const uint16 port, BListView *output) :
 	fHost(host),
 	fPort(port)
@@ -57,8 +58,7 @@ int Session::Connect() {
 			snooze(100*1000);
 		}
 	} else {
-		if(!strcmp(fHost, "localhost")) 
-			fLocalServerLaunched = true;
+		if(!strcmp(fHost, "localhost"))			fLocalServerLaunched = true;
 	}
 
 	fSocket = connection;
@@ -103,8 +103,7 @@ status_t Session::_Send(void *data) {
 }
 
 status_t Session::Send(BString *text) {
-	send_data_params *data =(send_data_params*)malloc(sizeof(send_data_params)); 
-	data->text=text;
+	send_data_params *data =(send_data_params*)malloc(sizeof(send_data_params));	data->text=text;
 	data->socket=fSocket;
 	thread_id send_thread = spawn_thread(&Session::_Send, "sender", B_NORMAL_PRIORITY, data);
 	resume_thread(send_thread);
@@ -119,7 +118,7 @@ status_t Session::Receive(void *data) {
 	uint32 answerSize32;
 	char *answerBuffer;
 	ssize_t received;
-	Answer answer;
+	SP::Answer answer;
 
 	GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -148,33 +147,29 @@ status_t Session::Receive(void *data) {
 			messageQuit->AddString("status", "Disconnected");
 			output->Parent()->MessageReceived(messageQuit);
 			return B_OK;
-		}  
-
+		} 
 		answer.ParseFromString(answerBuffer);
 		switch (answer.t_case()) {
-			case Answer::TCase::kOk :
+			case SP::Answer::TCase::kOk :
 				{
 					rgb_color *bgColor = new rgb_color();
 					*bgColor = tint_color(ui_color(B_SUCCESS_COLOR), B_LIGHTEN_1_TINT);
 					output->LockLooper();
 					switch(answer.ok().t_case()) {
-						case Command::TCase::kProp : 
-							{
+						case SP::Command::TCase::kProp :							{
 								output->AddItem(new LatexListItem(new LView(BString(answer.ok().prop().GetDescriptor()->name().c_str()), LTEXT, bgColor)));
 								break;
 							}
-						case Command::TCase::kFirstOrder: 
-							{
+						case SP::Command::TCase::kFirstOrder:							{
 								std::string command = answer.ok().first_order().GetDescriptor()->name();
 								output->AddItem(new LatexListItem(new LView(BString(command.c_str()), LTEXT, bgColor)));
 								break;
 							}
-						case Command::TCase::kInterpreted: 
-							{
+						case SP::Command::TCase::kInterpreted:							{
 								output->AddItem(new LatexListItem(new LView(BString(answer.ok().interpreted().GetDescriptor()->name().c_str()), LTEXT, bgColor)));
 								break;
 							}
-						case Command::TCase::kNotation:
+						case SP::Command::TCase::kNotation:
 							{
 								output->AddItem(new LatexListItem(new LView(BString((
 														answer.ok().notation().GetDescriptor()->name()
@@ -182,7 +177,7 @@ status_t Session::Receive(void *data) {
 														+ answer.ok().notation().name()).c_str()), LTEXT, bgColor)));
 								break;
 							}
-						case Command::TCase::kTheorem:
+						case SP::Command::TCase::kTheorem:
 							{
 								output->AddItem(new LatexListItem(new LView(BString((answer.ok().theorem().GetDescriptor()->name() + std::string(" ") +
 														answer.ok().theorem().name()).c_str()), LTEXT, bgColor)));
@@ -195,16 +190,16 @@ status_t Session::Receive(void *data) {
 					break;
 				}
 
-			case Answer::TCase::kAnswer:
+			case SP::Answer::TCase::kAnswer:
 				{
 					rgb_color *bgColor = new rgb_color();
 					*bgColor = tint_color(ui_color(B_TOOL_TIP_BACKGROUND_COLOR), B_NO_TINT);
 					output->LockLooper();
-					output->AddItem(new LatexListItem(new LView(BString(answer.answer().c_str()), LTEXT, bgColor)));
+					output->AddItem(new LatexListItem(new LView(BString (answer.answer().answer().c_str()), (LView_kind)answer.answer().mode(), bgColor)));
 					output->UnlockLooper();
 					break;
 				}
-			case Answer::TCase::kError :
+			case SP::Answer::TCase::kError :
 				{
 					rgb_color *bgColor = new rgb_color();
 					*bgColor = tint_color(ui_color(B_FAILURE_COLOR), B_LIGHTEN_1_TINT);
