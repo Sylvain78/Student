@@ -7,21 +7,21 @@
 #include <TextControl.h>
 #include <View.h>
 
-#include "server_protocol.pb.h"
+
 #include "Constantes.h"
 
-namespace SP = Server_Protocol;
 
 enum LView_kind  
 {
-	LTEXT = SP::Latex_mode::LTEXT,
-	LMATH = SP::Latex_mode::LMATH
+		LMATH=0,
+		LTEXT=1,
+
 };
 
 class LView : public BView {
 	public:
 		LView(LView* lview);
-		LView(const BString& texte, LView_kind kind = LTEXT, rgb_color *bgColor = NULL);
+		LView(const BString& texte, LView_kind kind = LTEXT, rgb_color bgColor = B_TRANSPARENT_COLOR);
 		LView(BMessage *archive);
 
 		virtual status_t Archive(BMessage* archive, bool deep) const;

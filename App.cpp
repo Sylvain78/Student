@@ -3,7 +3,7 @@
 
 #include <poll.h>
 
-#include "server_protocol.pb.h"
+
 
 #include "App.h"
 
@@ -22,7 +22,6 @@ App::App(void)
 }
 
 App::~App() {
-	google::protobuf::ShutdownProtobufLibrary();
 }
 
 /**
@@ -263,7 +262,7 @@ void App::MessageReceived(BMessage *m)
 	}
 }
 
-status_t App::latexToPNG(const BString& texte, BBitmap **image, LView_kind kind, rgb_color *rgb_back_color) {
+status_t App::latexToPNG(const BString& texte, BBitmap **image, LView_kind kind, rgb_color rgb_back_color) {
 /*
 \\documentclass[fleqn]{article}
 \\usepackage{amssymb,amsmath,bm,color}
@@ -384,9 +383,9 @@ status_t App::latexToPNG(const BString& texte, BBitmap **image, LView_kind kind,
 		BView *composite = new BView((*image)->Bounds(), NULL, B_FOLLOW_NONE, B_WILL_DRAW);
 		(*image)->AddChild(composite);
 
-		rgb_back_color->set_to(rgb_back_color->red, rgb_back_color->green, rgb_back_color->blue, 127);
+		rgb_color back_color = make_color(rgb_back_color.red, rgb_back_color.green, rgb_back_color.blue, 127);
 		composite->LockLooper();
-		composite->SetLowColor(*rgb_back_color);
+		composite->SetLowColor(back_color);
 		composite->FillRect(composite->Bounds(), B_SOLID_LOW);
 		composite->SetDrawingMode(B_OP_OVER);
 		composite->DrawBitmap(BTranslationUtils::GetBitmap(student));

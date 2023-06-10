@@ -10,7 +10,7 @@ LView::LView(LView* lview)
 	fBitmap(lview->fBitmap)
 {}
 
-LView::LView(const BString& texte, LView_kind kind, rgb_color *bgColor)
+LView::LView(const BString& texte, LView_kind kind, rgb_color bgColor)
 	:BView("LView", B_FOLLOW_NONE|B_WILL_DRAW),
        fLatex(new BString(texte)),
        fOldLatex(new BString("")),
