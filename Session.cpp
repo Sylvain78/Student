@@ -192,23 +192,19 @@ status_t Session::Receive(void *data) {
 			output->UnlockLooper();
 		}
 
-	if(!strncmp("01", answerBuffer,2)) //Answer
+	if(!strncmp("Answer", answerBuffer,6)) //Answer
 	{
 		LView_kind mode ;
-		answerBuffer+=2*sizeof(char);
-		if(!strncmp("00", answerBuffer,2)) {
-			mode= LMATH;
-		}
-		if(!strncmp("00", answerBuffer,2)) {
+		answerBuffer+=6;
+		if(!strncmp("latex", answerBuffer,5)) {
+			answerBuffer += 5;
+			mode = LMATH;
+		} else 
+		if(!strncmp("text", answerBuffer,4)) {
+		answerBuffer += 4;
 		mode= LTEXT;
 		}
-		answerBuffer+=2*sizeof(char);
-		
-		uint32 answerSize = ntohl(*(uint32*)answerBuffer);
-		answerBuffer+=sizeof(uint32);
-		char *answer = (char *)malloc(answerSize *sizeof(char));
-		memcpy(answer, answerBuffer, answerSize);
-		answer[answerSize]='\0';
+		char *answer = decode_string(answerBuffer);
 					
 		rgb_color *bgColor = new rgb_color();
 		*bgColor = tint_color(ui_color(B_TOOL_TIP_BACKGROUND_COLOR), B_NO_TINT);
@@ -217,18 +213,15 @@ status_t Session::Receive(void *data) {
 		output->UnlockLooper();
 		
 	}
-	if(!strncmp("02", answerBuffer,2)) //Error
+	if(!strncmp("Error", answerBuffer,5)) //Error
 	{
-		uint32 errorSize = ntohl(*(uint32*)answerBuffer);
-		answerBuffer+=sizeof(uint32);
-		char *error = (char *)malloc(errorSize *sizeof(char));
-		memcpy(error, answerBuffer, errorSize);
-		error[errorSize]='\0';
+		answerBuffer+=5;
+		char *errorContent = decode_string(answerBuffer);
 		
 		rgb_color *bgColor = new rgb_color();
 		*bgColor = tint_color(ui_color(B_FAILURE_COLOR), B_LIGHTEN_1_TINT);
 		output->LockLooper();
-		output->AddItem(new LatexListItem(new LView(BString(error), LTEXT, *bgColor)));
+			output->AddItem(new LatexListItem(new LView(BString("Error : ").Append(errorContent), LTEXT, *bgColor)));
 		output->UnlockLooper();
 		break;
 	}
