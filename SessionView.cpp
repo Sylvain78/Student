@@ -22,7 +22,6 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 	{
 
 	fInputView  = new BTextView("InputView");
-	fInputView->MakeFocus(true);
 	BScrollView* fScrollInputView = new BScrollView("ScrollInput",fInputView, B_WILL_DRAW | B_FRAME_EVENTS, false,
 		true, B_FANCY_BORDER);
 	fScrollInputView->SetViewColor(255,255,255);
@@ -151,6 +150,7 @@ void SessionView::MessageReceived(BMessage* message) {
 					fCompile->SetEnabled(true);
 					fInterprete->SetEnabled(true);
 					fButton->SetEnabled(true);
+					fInputView->MakeFocus(true);
 				UnlockLooper();
 
 				newStatus = (char *)realloc(newStatus,strlen("Connected to ") +strlen(host)+1+5);

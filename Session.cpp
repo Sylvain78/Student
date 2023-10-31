@@ -65,7 +65,7 @@ int Session::Connect() {
 
 	thread_id receive_thread = spawn_thread(&Session::Receive, "receiver", B_NORMAL_PRIORITY, this);
 	resume_thread(receive_thread);
-
+	
 	return fSocket;
 }
 
