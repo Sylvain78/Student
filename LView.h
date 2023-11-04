@@ -15,6 +15,7 @@ enum LView_kind
 {
 		LMATH=0,
 		LTEXT=1,
+		TEXT=2
 
 };
 

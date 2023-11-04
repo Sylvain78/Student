@@ -198,11 +198,17 @@ status_t Session::Receive(void *data) {
 		answerBuffer+=6;
 		if(!strncmp("latex", answerBuffer,5)) {
 			answerBuffer += 5;
-			mode = LMATH;
+			if(!strncmp("math", answerBuffer,4)) {
+				answerBuffer += 4;
+				mode = LMATH;
+			} else if(!strncmp("text", answerBuffer,4)) {
+				answerBuffer += 4;
+				mode = LTEXT;
+			}
 		} else 
 		if(!strncmp("text", answerBuffer,4)) {
-		answerBuffer += 4;
-		mode= LTEXT;
+			answerBuffer += 4;
+			mode = TEXT;
 		}
 		char *answer = decode_string(answerBuffer);
 					

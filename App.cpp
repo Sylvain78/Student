@@ -301,6 +301,7 @@ status_t App::latexToPNG(const BString& texte, BBitmap **image, LView_kind kind,
 
 		//document
 		switch(kind) {
+			case TEXT:
 			case LTEXT : 
 				{
 					latex_string->Append("\"\\documentclass[fleqn]{article}\\usepackage{amssymb,amsmath,bm,color}\\usepackage[latin1]{inputenc}\\begin{document}\\pagestyle{empty}\\mathindent0cm\\parindent0cm ");
@@ -554,7 +555,7 @@ void App::LaunchLocalServer(const uint16 port) {
 	arg_v[1] = strdup("-v");
 	arg_v[2] = strdup("-s");
 	arg_v[3] = serverAddress;
-	arg_v[4] = strdup("--verbosity=info");
+	arg_v[4] = strdup("--verbosity=debug");
 	arg_v[5] = NULL;
 	extern char** environ;
 
