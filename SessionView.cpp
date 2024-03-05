@@ -14,7 +14,8 @@
 SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 	fDemonstration(new LatexListScrollView()),
 	fModeBox(new BBox("mode")),
-	fSpeedBox(new BBox("speed")),
+	fExpandNotationsBox(new BBox("notations")),
+	fExpandCallsBox(new BBox("calls")),
 	fCompileBox(new BBox("compile")),
 	fDemonstrationBox(new BBox("demonstration")),
 	fStatusText(new BString("Not connected")) ,
@@ -41,7 +42,8 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 		.AddGroup(B_VERTICAL)
 			.AddGroup(B_HORIZONTAL)
 	    		.Add(fModeBox)
-				.Add(fSpeedBox)
+				.Add(fExpandNotationsBox)
+				.Add(fExpandCallsBox)
 				.Add(fCompileBox)
 			.End()
 			.AddGroup(B_HORIZONTAL)
@@ -61,15 +63,19 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 
 	fMode_prop = new BRadioButton("Prop", new BMessage(kModeProp));
 	fMode_first_order = new BRadioButton(B_TRANSLATE("First order"), new BMessage(kModeFirstOrder));
-	fSpeed_fast = new BRadioButton("Fast", new BMessage(kSpeedFast));
-	fSpeed_paranoid = new BRadioButton("Paranoid", new BMessage(kSpeedParanoid));
+	fKeep_notations = new BRadioButton("Keep", new BMessage(kKeepNotations));
+	fExpand_notations = new BRadioButton("Expand", new BMessage(kExpandNotations));
+	fKeep_calls = new BRadioButton("Keep", new BMessage(kKeepCalls));
+	fExpand_calls = new BRadioButton("Expand", new BMessage(kExpandCalls));
 	fCompile = new BRadioButton("Compile", new BMessage(kCompile));
 	fInterprete = new BRadioButton("Interprete", new BMessage(kInterprete));
 
 	fMode_prop->SetEnabled(false);
 	fMode_first_order->SetEnabled(false);
-	fSpeed_fast->SetEnabled(false);
-	fSpeed_paranoid->SetEnabled(false);
+	fKeep_notations->SetEnabled(false);
+	fExpand_notations->SetEnabled(false);
+	fKeep_calls->SetEnabled(false);
+	fExpand_calls->SetEnabled(false);
 	fCompile->SetEnabled(false);
 	fInterprete->SetEnabled(false);
 	fButton->SetEnabled(false);
@@ -78,10 +84,16 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 	.SetInsets(2,0,2,0)
 	.Add(fMode_prop)
 	.Add(fMode_first_order);
-	BGroupLayout *speedBoxLayout = BLayoutBuilder::Group<>(B_HORIZONTAL)
+
+	BGroupLayout *notationsBoxLayout = BLayoutBuilder::Group<>(B_HORIZONTAL)
 	.SetInsets(2,0,2,0)
-	.Add(fSpeed_fast)
-	.Add(fSpeed_paranoid);
+	.Add(fKeep_notations)
+	.Add(fExpand_notations);
+
+	BGroupLayout *callsBoxLayout = BLayoutBuilder::Group<>(B_HORIZONTAL)
+	.SetInsets(2,0,2,0)
+	.Add(fKeep_calls)
+	.Add(fExpand_calls);
 
 	BGroupLayout *compileBoxLayout = BLayoutBuilder::Group<>(B_HORIZONTAL)
 	.SetInsets(2,0,2,0)
@@ -90,14 +102,18 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 
 	fModeBox->SetLabel(new BStringView("Order label", "Order"));
 	fModeBox->AddChild(modeBoxLayout->View());
-	fSpeedBox->SetLabel(new BStringView("Speed label", "Speed"));
-	fSpeedBox->AddChild(speedBoxLayout->View());
+
+	fExpandNotationsBox->SetLabel(new BStringView("Expand notations label", "Expand notations"));
+	fExpandNotationsBox->AddChild(notationsBoxLayout->View());
+
+	fExpandCallsBox->SetLabel(new BStringView("Expand calls label", "Expand calls"));
+	fExpandCallsBox->AddChild(callsBoxLayout->View());
 
 	fCompileBox->SetLabel(new BStringView("Compile label", "Compile"));
 	fCompileBox->AddChild(compileBoxLayout->View());
+	
 	fDemonstrationBox->SetLabel(new BStringView("Demonstration label", "Demonstration"));
 	fDemonstrationBox->AddChild(fDemonstration);
-
 }
 
 
@@ -145,8 +161,10 @@ void SessionView::MessageReceived(BMessage* message) {
 		 		LockLooper();
 					fMode_prop->SetEnabled(true);
 					fMode_first_order->SetEnabled(true);
-					fSpeed_fast->SetEnabled(true);
-					fSpeed_paranoid->SetEnabled(true);
+					fKeep_notations->SetEnabled(true);
+					fExpand_notations->SetEnabled(true);
+					fKeep_calls->SetEnabled(true);
+					fExpand_calls->SetEnabled(true);
 					fCompile->SetEnabled(true);
 					fInterprete->SetEnabled(true);
 					fButton->SetEnabled(true);
@@ -189,8 +207,8 @@ void SessionView::AttachedToWindow() {
 	fButton->SetTarget(this);
 	fMode_prop->SetTarget(this);
 	fMode_first_order->SetTarget(this);
-	fSpeed_fast->SetTarget(this);
-	fSpeed_paranoid->SetTarget(this);
+	fKeep_notations->SetTarget(this);
+	fExpand_notations->SetTarget(this);
 	fCompile->SetTarget(this);
 	fInterprete->SetTarget(this);
 
