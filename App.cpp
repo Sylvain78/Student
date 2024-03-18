@@ -266,7 +266,7 @@ status_t App::latexToPNG(const BString& texte, BBitmap **image, LView_kind kind,
 /*
 \\documentclass[fleqn]{article}
 \\usepackage{amssymb,amsmath,bm,color}
-\\usepackage[latin1]{inputenc}
+\\usepackage[utf8]{inputenc}
 \\begin{document}
 \\pagestyle{empty}
 \\mathindent0cm
@@ -304,7 +304,7 @@ status_t App::latexToPNG(const BString& texte, BBitmap **image, LView_kind kind,
 			case TEXT:
 			case LTEXT : 
 				{
-					latex_string->Append("\"\\documentclass[fleqn]{article}\\usepackage{amssymb,amsmath,bm,color}\\usepackage[latin1]{inputenc}\\begin{document}\\pagestyle{empty}\\mathindent0cm\\parindent0cm ");
+					latex_string->Append("\"\\documentclass[fleqn]{article}\\usepackage{amssymb,amsmath,bm,color}\\usepackage[utf8]{inputenc}\\begin{document}\\pagestyle{empty}\\mathindent0cm\\parindent0cm ");
 					
 					//Replace all _ with \_
 					std::string *escaped_text = new std::string(texte.String()); 
@@ -328,7 +328,7 @@ status_t App::latexToPNG(const BString& texte, BBitmap **image, LView_kind kind,
 				}
 			case LMATH : 
 				{
-					latex_string->Append("\"\\documentclass[fleqn]{article} \\usepackage{amssymb,amsmath,bm,color} \\usepackage[latin1]{inputenc} \\begin{document} \\thispagestyle{empty} \\mathindent0cm \\parindent0cm ");		     
+					latex_string->Append("\"\\documentclass[fleqn]{article} \\usepackage{amssymb,amsmath,bm,color} \\usepackage[utf8]{inputenc} \\begin{document} \\thispagestyle{empty} \\mathindent0cm \\parindent0cm ");		     
 					latex_string->Append(texte);
 					break;
 				}
