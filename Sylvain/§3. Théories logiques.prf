@@ -1,0 +1,23 @@
+# n°1. Les axiomes
+Theorem
+S1
+Param
+$\mathbf{A}$
+Premisses
+Conclusion
+$(\mathbf{A} \lor \mathbf{A}) \implies \mathbf{A}$
+Demonstration
+$((\mathbf{A} \lor \mathbf{A}) \implies \mathbf{A}) \implies ((\lnot \mathbf{A}) \implies \lnot (\mathbf{A} \lor \mathbf{A}))$
+$((\lnot \mathbf{A}) \implies ((\mathbf{A} \lor \mathbf{A}) \implies \mathbf{A}))$
+$((\lnot \mathbf{A}) \implies ((\mathbf{A} \lor \mathbf{A}) \implies \mathbf{A})) \implies ((((\mathbf{A} \lor \mathbf{A}) \implies \mathbf{A}) \implies ((\lnot \mathbf{A}) \implies \lnot (\mathbf{A} \lor \mathbf{A}))) \implies ((\lnot \mathbf{A}) \implies ((\lnot \mathbf{A}) \implies \lnot (\mathbf{A} \lor \mathbf{A}))))$
+$((((\mathbf{A} \lor \mathbf{A}) \implies \mathbf{A}) \implies ((\lnot \mathbf{A}) \implies \lnot (\mathbf{A} \lor \mathbf{A}))) \implies ((\lnot \mathbf{A}) \implies ((\lnot \mathbf{A}) \implies \lnot (\mathbf{A} \lor \mathbf{A}))))$
+$((\lnot \mathbf{A}) \implies ((\lnot \mathbf{A}) \implies \lnot (\mathbf{A} \lor \mathbf{A})))$
+$((\lnot \mathbf{A}) \implies ((\lnot \mathbf{A}) \implies \lnot (\mathbf{A} \lor \mathbf{A}))) \implies (((\lnot \mathbf{A}) \implies (\lnot \mathbf{A})) \implies ((\lnot \mathbf{A}) \implies (\lnot (\mathbf{A} \lor \mathbf{A}))))$
+$((\lnot \mathbf{A}) \implies (\lnot \mathbf{A}))$
+$(((\lnot \mathbf{A}) \implies (\lnot \mathbf{A})) \implies ((\lnot \mathbf{A}) \implies (\lnot (\mathbf{A} \lor \mathbf{A}))))$
+$((\lnot \mathbf{A}) \implies (\lnot (\mathbf{A} \lor \mathbf{A})))$
+$((\lnot \mathbf{A}) \implies (\lnot (\mathbf{A} \lor \mathbf{A}))) \implies ((\mathbf{A} \lor \mathbf{A}) \implies \mathbf{A})$
+$(\mathbf{A} \lor \mathbf{A}) \ìmplies \mathbf{A}$
+End
+
+
