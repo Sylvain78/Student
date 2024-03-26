@@ -37,7 +37,7 @@ class App : public BApplication
 		BMessage* GetSettings();
 
 		int32 boucle_interactive(int fdin, int fdout);
-		status_t latexToPNG(const BString& texte, BBitmap **image, LView_kind kind, rgb_color *rgb_back_color);
+		status_t latexToPNG(const BString& texte, BBitmap **image, LView_kind kind, rgb_color rgb_back_color);
 		
 		BPath* GetTheoriesFolder();
 		void ChooseSaveFolder();

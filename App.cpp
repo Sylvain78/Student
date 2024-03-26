@@ -3,7 +3,7 @@
 
 #include <poll.h>
 
-#include "server_protocol.pb.h"
+
 
 #include "App.h"
 
@@ -22,7 +22,6 @@ App::App(void)
 }
 
 App::~App() {
-	google::protobuf::ShutdownProtobufLibrary();
 }
 
 /**
@@ -263,11 +262,11 @@ void App::MessageReceived(BMessage *m)
 	}
 }
 
-status_t App::latexToPNG(const BString& texte, BBitmap **image, LView_kind kind, rgb_color *rgb_back_color) {
+status_t App::latexToPNG(const BString& texte, BBitmap **image, LView_kind kind, rgb_color rgb_back_color) {
 /*
 \\documentclass[fleqn]{article}
 \\usepackage{amssymb,amsmath,bm,color}
-\\usepackage[latin1]{inputenc}
+\\usepackage[utf8]{inputenc}
 \\begin{document}
 \\pagestyle{empty}
 \\mathindent0cm
@@ -302,9 +301,10 @@ status_t App::latexToPNG(const BString& texte, BBitmap **image, LView_kind kind,
 
 		//document
 		switch(kind) {
+			case TEXT:
 			case LTEXT : 
 				{
-					latex_string->Append("\"\\documentclass[fleqn]{article}\\usepackage{amssymb,amsmath,bm,color}\\usepackage[latin1]{inputenc}\\begin{document}\\pagestyle{empty}\\mathindent0cm\\parindent0cm ");
+					latex_string->Append("\"\\documentclass[fleqn]{article}\\usepackage{amssymb,amsmath,bm,color}\\usepackage[utf8]{inputenc}\\begin{document}\\pagestyle{empty}\\mathindent0cm\\parindent0cm ");
 					
 					//Replace all _ with \_
 					std::string *escaped_text = new std::string(texte.String()); 
@@ -328,7 +328,7 @@ status_t App::latexToPNG(const BString& texte, BBitmap **image, LView_kind kind,
 				}
 			case LMATH : 
 				{
-					latex_string->Append("\"\\documentclass[fleqn]{article} \\usepackage{amssymb,amsmath,bm,color} \\usepackage[latin1]{inputenc} \\begin{document} \\thispagestyle{empty} \\mathindent0cm \\parindent0cm ");		     
+					latex_string->Append("\"\\documentclass[fleqn]{article} \\usepackage{amssymb,amsmath,bm,color} \\usepackage[utf8]{inputenc} \\begin{document} \\thispagestyle{empty} \\mathindent0cm \\parindent0cm ");		     
 					latex_string->Append(texte);
 					break;
 				}
@@ -384,9 +384,9 @@ status_t App::latexToPNG(const BString& texte, BBitmap **image, LView_kind kind,
 		BView *composite = new BView((*image)->Bounds(), NULL, B_FOLLOW_NONE, B_WILL_DRAW);
 		(*image)->AddChild(composite);
 
-		rgb_back_color->set_to(rgb_back_color->red, rgb_back_color->green, rgb_back_color->blue, 127);
+		rgb_color back_color = make_color(rgb_back_color.red, rgb_back_color.green, rgb_back_color.blue, 127);
 		composite->LockLooper();
-		composite->SetLowColor(*rgb_back_color);
+		composite->SetLowColor(back_color);
 		composite->FillRect(composite->Bounds(), B_SOLID_LOW);
 		composite->SetDrawingMode(B_OP_OVER);
 		composite->DrawBitmap(BTranslationUtils::GetBitmap(student));
@@ -555,7 +555,7 @@ void App::LaunchLocalServer(const uint16 port) {
 	arg_v[1] = strdup("-v");
 	arg_v[2] = strdup("-s");
 	arg_v[3] = serverAddress;
-	arg_v[4] = strdup("--verbosity=info");
+	arg_v[4] = strdup("--verbosity=debug");
 	arg_v[5] = NULL;
 	extern char** environ;
 

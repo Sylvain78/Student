@@ -18,23 +18,26 @@ class SessionView : public BView {
 		virtual	void MessageReceived(BMessage* message);
 		
 	private:
-		LatexListScrollView* fDemonstration;
-		BBox*         		 fModeBox;
-		BBox*		 		 fSpeedBox;
-		BBox*				 fCompileBox;
-		BRadioButton* 		 fMode_prop;
-		BRadioButton* 		 fMode_first_order;
-		BRadioButton* 		 fSpeed_fast;
-		BRadioButton* 		 fSpeed_paranoid;
-		BRadioButton* 		 fCompile;
-		BRadioButton* 		 fInterprete;
-		BBox*				 fDemonstrationBox;
-		BTextView*			 fInputView;
-		BListView*			 fOutputView;
-		BString*			 fStatusText;
-		BButton*			 fButton;
+		LatexListScrollView*	fDemonstration;
+		BBox*			fModeBox;
+		BBox*		 	fExpandNotationsBox;
+		BBox*		 	fExpandCallsBox;
+		BBox*			fCompileBox;
+		BRadioButton* 		fMode_prop;
+		BRadioButton* 		fMode_first_order;
+		BRadioButton* 		fKeep_notations;
+		BRadioButton* 		fExpand_notations;
+		BRadioButton* 		fKeep_calls;
+		BRadioButton* 		fExpand_calls;
+		BRadioButton* 		fCompile;
+		BRadioButton* 		fInterprete;
+		BBox*			fDemonstrationBox;
+		BTextView*		fInputView;
+		BListView*		fOutputView;
+		BString*		fStatusText;
+		BButton*		fButton;
 
-		Session*			 fSession;
+		Session*		fSession;
 
 };
 

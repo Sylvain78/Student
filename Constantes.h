@@ -61,8 +61,10 @@ static const uint32 kConnect=39;
 
 static const uint32 kModeProp='Prop';
 static const uint32 kModeFirstOrder='Frst';
-static const uint32 kSpeedFast='Fast';
-static const uint32 kSpeedParanoid='Prno';
+static const uint32 kKeepNotations='Keno';
+static const uint32 kExpandNotations='Exno';
+static const uint32 kKeepCalls='Keca';
+static const uint32 kExpandCalls='Exca';
 static const uint32 kCompile='Cmpl';
 static const uint32 kInterprete='Itrp';
 

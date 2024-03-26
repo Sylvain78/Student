@@ -1,0 +1,25 @@
+# §2. Théorèmes
+# n°3
+
+Theorem
+C1
+Param
+$\mathbf{A}$
+$\mathbf{B}$
+Premisses
+$\mathbf{A}$
+$\mathbf{A} \implies \mathbf{B}$
+Conclusion
+$\mathbf{B}$
+Demonstration
+$\mathbf{A}$
+$\mathbf{A} \implies \mathbf{B}$
+$\mathbf{B}$
+End
+
+#C2 : A theorem of Th --> (T|x)A theorem of (T|x)Th
+#C3 : A theorem of Th, x not constant --> (T|x)A theorem of Th
+#C4 : T' stronger than T --> theorems of T are theorems of T'
+#C5 : Ai axioms of Th, (T|a1)...(T|an)Ai theorems of Th', A theorem of Th -->  (T|a1)...(T|an)A theorem of Th'
+
+#Load text "§3. Théories logiques.prf"
