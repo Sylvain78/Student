@@ -5,7 +5,7 @@ Theorem
 C1
 Param
 $\mathbf{A}$
-$\mathlbf{B}$
+$\mathbf{B}$
 Premisses
 $\mathbf{A}$
 $\mathbf{A} \implies \mathbf{B}$
@@ -14,7 +14,7 @@ $\mathbf{B}$
 Demonstration
 $\mathbf{A}$
 $\mathbf{A} \implies \mathbf{B}$
-$\mathblogismef{B}$
+$\mathbf{B}$
 End
 
 #C2 : A theorem of Th --> (T|x)A theorem of (T|x)Th
