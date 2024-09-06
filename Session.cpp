@@ -49,16 +49,21 @@ int Session::Connect() {
 		perror(NULL);
 		close(connection);
 		LaunchLocalServer(fPort);
-		while ( connection = socket(AF_INET, SOCK_STREAM, 0),connect(connection, (struct sockaddr*)&serverAddr,
-					sizeof(struct sockaddr_in)) < 0) {
-			status_t err_connect = errno;
+		int nbAttempt = 10;
+		while (   connection = socket(AF_INET, SOCK_STREAM, 0), (status < 0) && (nbAttempt > 0)) {
+			status = connect(connection, (struct sockaddr*)&serverAddr, sizeof(struct sockaddr_in));
+		       	status_t err_connect = errno;
 			perror(NULL);
 			close(connection);
 
 			snooze(100*1000);
+			nbAttempt--;
 		}
+		if (status < 0) 
+			return status;
 	} else {
-		if(!strcmp(fHost, "localhost"))			fLocalServerLaunched = true;
+		if(strcmp(fHost, "localhost"))
+			return status;
 	}
 
 	fSocket = connection;

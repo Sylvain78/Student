@@ -36,14 +36,10 @@ class App : public BApplication
 		
 		BMessage* GetSettings();
 
-		int32 boucle_interactive(int fdin, int fdout);
 		status_t latexToPNG(const BString& texte, BBitmap **image, LView_kind kind, rgb_color rgb_back_color);
 		
 		BPath* GetTheoriesFolder();
 		void ChooseSaveFolder();
-		
-		void SendOCaml(BString texte);
-		BString* ReadOCaml();
 		
 		MainWindow* GetMainWindow();
 		static unsigned int nb_images_produites;
@@ -55,11 +51,6 @@ class App : public BApplication
 		void LaunchLocalServer(const uint16 port);
 		
 	private:
-	// #pragma mark - OCaml
-		int inputocaml[2];
-		int outputocaml[2];
-		int errorocaml[2];
-		
 		/* Cache des images */
 		std::map <BString, BBitmap *> images;
 		
