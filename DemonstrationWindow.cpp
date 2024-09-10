@@ -23,9 +23,11 @@ DemonstrationWindow::DemonstrationWindow() :
 	.End();
 	
 	fTabView_Demonstration->AddTab(new SessionView("Session"));
-	fTabView_Demonstration->AddTab(new SessionView("+"));
 }
 
+DemonstrationWindow::~DemonstrationWindow() {
+	}
+	
 void DemonstrationWindow::MessageReceived(BMessage* message) 
 {
 	SessionView* sessionView = (SessionView*)fTabView_Demonstration->ViewForTab(fTabView_Demonstration->Selection());

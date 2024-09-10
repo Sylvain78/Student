@@ -42,41 +42,15 @@ MainWindow::MainWindow(void)
 	menu = new BMenu("A Propos");
 	fMenuBar->AddItem(menu);
 	menu->Invalidate();
-	
-	
-	fButton = new BButton("Envoi", "Envoi", new BMessage(kEnvoi));
-	fButton->SetTarget(be_app);
-	fButton->MakeDefault(true);
-
-	fInputView  = new BTextView("InputView");
-	
-	
-	BRect viewFrame = Bounds();
-	viewFrame.top = fMenuBar->Bounds().Height() + 1;
-	viewFrame.right -=  B_V_SCROLL_BAR_WIDTH;
-	viewFrame.left = 0;
-	viewFrame.bottom -= B_H_SCROLL_BAR_HEIGHT;
-
-	BRect textBounds = viewFrame;
-	textBounds.OffsetTo(B_ORIGIN);
-	textBounds.InsetBy(TEXT_INSET, TEXT_INSET);
-
-	
-	fOutputView = new BTextView(viewFrame, "OutputView", textBounds, B_FOLLOW_ALL, B_FRAME_EVENTS | B_WILL_DRAW);
-	fScrollOutputView = new BScrollView("ScrollOutput",fOutputView, B_FOLLOW_ALL, 0, true, true);
-	fScrollOutputView->SetViewColor(255,255,255);
-	
-	fOutputView->MakeEditable(false);
 
 
 	BLayoutBuilder::Group<>(this, B_VERTICAL, 0)
 		.Add(fMenuBar)
 		.AddGroup(B_VERTICAL)
 			.SetInsets(5, 5, 5, 5)
-			.Add(fScrollOutputView)
+			
 			.AddGroup(B_HORIZONTAL)
-				.Add(fInputView)
-				.Add(fButton)
+				
 				;
 }
 
@@ -110,9 +84,10 @@ MainWindow::MessageReceived(BMessage *msg)
 		{
 			DemonstrationWindow* demonstrationWindow = new DemonstrationWindow();
 			demonstrationWindow->Show();
-			BMessage *messageStatus = new BMessage(kStatusChange);
-			messageStatus->AddString("status", "Not connected.");
-			demonstrationWindow->PostMessage(messageStatus);
+			BMessage messageStatus;
+			messageStatus.what= kStatusChange;
+			messageStatus.AddString("status", "Not connected.");
+			demonstrationWindow->PostMessage(&messageStatus);
 			break;
 		}
 		default:
@@ -131,6 +106,3 @@ MainWindow::QuitRequested(void)
 	return true;
 }
 
-const char* MainWindow::GetInputText() {
-	return fInputView->Text();
-	}

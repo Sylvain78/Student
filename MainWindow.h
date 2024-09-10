@@ -33,11 +33,8 @@ public:
 			const char *	GetInputText();
 			
 private:
-			BButton*   fButton;
+
 			BMenuBar*  fMenuBar;
-			BTextView* fInputView;
-			BTextView* fOutputView;
-			BScrollView* fScrollOutputView;
 };
 
 #endif

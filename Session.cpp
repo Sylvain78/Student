@@ -18,60 +18,60 @@ Session::Session(const char* host, const uint16 port, BListView *output) :
 }
 
 int Session::Connect() {
-	struct hostent* host = gethostbyname(fHost);
-	if (host == NULL) {
-		perror("gethostbyname");
-		return 1;
-	}
-
-	struct sockaddr_in serverAddr;
-	memset(&serverAddr, 0, sizeof(struct sockaddr_in));
-	serverAddr.sin_family = AF_INET;
-	serverAddr.sin_port = htons(fPort);
-	serverAddr.sin_addr = *((struct in_addr*)host->h_addr);
-
-	uint32 cookie = 0;
-	bool success = false;
-	const char *errorString;
-	int errorCode;
-
-	int connection = socket(AF_INET, SOCK_STREAM, 0);
-	if (connection < 0) {
-		errorString = B_TRANSLATE("Could not create socket");
-		errorCode = errno;
-		return B_ERROR;
-	}
-
-	status_t status = connect(connection,(struct sockaddr*)&serverAddr, sizeof(struct sockaddr_in));
-
-	if (status < 0	&& !strcmp(fHost, "localhost") && !fLocalServerLaunched) {
-		status_t err_connect = errno;
-		perror(NULL);
-		close(connection);
-		LaunchLocalServer(fPort);
-		int nbAttempt = 10;
-		while (   connection = socket(AF_INET, SOCK_STREAM, 0), (status < 0) && (nbAttempt > 0)) {
-			status = connect(connection, (struct sockaddr*)&serverAddr, sizeof(struct sockaddr_in));
-		       	status_t err_connect = errno;
-			perror(NULL);
-			close(connection);
-
-			snooze(100*1000);
-			nbAttempt--;
+		struct hostent* host = gethostbyname(fHost);
+		if (host == NULL) {
+				perror("gethostbyname");
+				return B_ERROR;
 		}
-		if (status < 0) 
-			return status;
-	} else {
-		if(strcmp(fHost, "localhost"))
-			return status;
-	}
 
-	fSocket = connection;
+		struct sockaddr_in serverAddr;
+		memset(&serverAddr, 0, sizeof(struct sockaddr_in));
+		serverAddr.sin_family = AF_INET;
+		serverAddr.sin_port = htons(fPort);
+		serverAddr.sin_addr = *((struct in_addr*)host->h_addr);
 
-	thread_id receive_thread = spawn_thread(&Session::Receive, "receiver", B_NORMAL_PRIORITY, this);
-	resume_thread(receive_thread);
-	
-	return fSocket;
+		uint32 cookie = 0;
+		bool success = false;
+		const char *errorString;
+		int errorCode;
+
+		int connection = socket(AF_INET, SOCK_STREAM, 0);
+		if (connection < 0) {
+				errorString = B_TRANSLATE("Could not create socket");
+				errorCode = errno;
+				return B_ERROR;
+		}
+
+		status_t status = connect(connection,(struct sockaddr*)&serverAddr, sizeof(struct sockaddr_in));
+
+		if (status < 0) {
+				if (!strcmp(fHost, "localhost") && !fLocalServerLaunched) {
+						status_t err_connect = errno;
+						perror(NULL);
+						close(connection);
+						LaunchLocalServer(fPort);
+						int nbAttempt = 10;
+						while (   connection = socket(AF_INET, SOCK_STREAM, 0), (status < 0) && (nbAttempt > 0)) {
+								status = connect(connection, (struct sockaddr*)&serverAddr, sizeof(struct sockaddr_in));
+								status_t err_connect = errno;
+								perror(NULL);
+								close(connection);
+
+								snooze(100*1000);
+								nbAttempt--;
+						}
+						if (status < 0)
+								return status;
+				} else {
+						return status;
+				}
+		}
+		fSocket = connection;
+
+		thread_id receive_thread = spawn_thread(&Session::Receive, "receiver", B_NORMAL_PRIORITY, this);
+		resume_thread(receive_thread);
+
+		return fSocket;
 }
 
 bool Session::IsLocalServerLaunched() {
@@ -157,7 +157,8 @@ status_t Session::Receive(void *data) {
 		if (received == 0) {
 			BMessage *messageQuit = new BMessage(kStatusChange);
 			messageQuit->AddString("status", "Disconnected");
-			output->Parent()->MessageReceived(messageQuit);
+			if (output) //TODO QUIT in DemonstrationWindow
+			       	output->Parent()->MessageReceived(messageQuit);
 			return B_OK;
 		} 
 

@@ -116,6 +116,9 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 	fDemonstrationBox->AddChild(fDemonstration);
 }
 
+SessionView::~SessionView(){
+	delete fStatusText;
+	}
 
 void SessionView::MessageReceived(BMessage* message) {
 	switch(message->what) {

@@ -14,6 +14,7 @@ class Session;
 class SessionView : public BView {
 	public:
 		SessionView(const char* name);
+		~SessionView();
 		virtual void AttachedToWindow();
 		virtual	void MessageReceived(BMessage* message);
 		

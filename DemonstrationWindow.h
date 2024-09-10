@@ -36,6 +36,7 @@ class DemonstrationWindow : public BWindow {
     
 	public :
 		DemonstrationWindow();
+		~DemonstrationWindow();
 		virtual void MessageReceived(BMessage* message);
 		bool QuitRequested();
 		
