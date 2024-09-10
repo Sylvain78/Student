@@ -6,6 +6,8 @@
 
 DemonstrationWindow::DemonstrationWindow() :
 	BWindow(BRect(100,100,800,700),"Démonstrations",B_TITLED_WINDOW,B_ASYNCHRONOUS_CONTROLS | B_AUTO_UPDATE_SIZE_LIMITS),
+	fHost(new BString("")),
+	fPort(0),
 	fServerWindow(NULL)
 {
 	fMenuBar = new BMenuBar("menubar");
@@ -37,8 +39,8 @@ void DemonstrationWindow::MessageReceived(BMessage* message)
 			
 			if (!fServerWindow) {
 				init = true;
-				fServerWindow = new ServerWindow();
-				fServerWindow->AddToSubset(this);
+			fServerWindow = new ServerWindow(*fHost, fPort, fLocal);
+			fServerWindow->AddToSubset(this);
 			}
 
 			fServerWindow->SetTarget(sessionView);
@@ -48,7 +50,10 @@ void DemonstrationWindow::MessageReceived(BMessage* message)
 			} else {
 				fServerWindow->Activate();
 			}
-			fServerWindow->PostMessage(new BMessage(kLocalServer));
+			if (fLocal)
+				fServerWindow->PostMessage(new BMessage(kLocalServer));
+			else
+				fServerWindow->PostMessage(new BMessage(kDistantServer));
 			break;
 		}
 		default:

@@ -203,6 +203,30 @@ void SessionView::MessageReceived(BMessage* message) {
 			fSession->Send(new BString("First_order"));
 			break;
 		}
+		case(kKeepNotations) : {
+			fSession->Send(new BString("Keep_Notations"));
+			break;
+		}
+		case(kExpandNotations) : {
+			fSession->Send(new BString("Expand_Notations"));
+			break;
+		}
+		case(kKeepCalls) : {
+			fSession->Send(new BString("Keep_Calls"));
+			break;
+		}
+		case(kExpandCalls) : {
+			fSession->Send(new BString("Expand_Calls"));
+			break;
+		}
+		case(kCompile) : {
+			 fSession->Send(new BString("Compiled"));
+			 break;
+		}
+		case(kInterprete) : {
+			 fSession->Send(new BString("Interpreted"));
+			 break;
+		}
 	}
 }
 
@@ -212,6 +236,8 @@ void SessionView::AttachedToWindow() {
 	fMode_first_order->SetTarget(this);
 	fKeep_notations->SetTarget(this);
 	fExpand_notations->SetTarget(this);
+	fKeep_calls->SetTarget(this);
+	fExpand_calls->SetTarget(this);
 	fCompile->SetTarget(this);
 	fInterprete->SetTarget(this);
 

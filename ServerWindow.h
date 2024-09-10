@@ -11,7 +11,7 @@ class DemonstrationWindow;
 class ServerWindow : public BWindow {
 
 public:
-		ServerWindow();
+		ServerWindow(BString &host, int &port, bool &local);
 
 		void MessageReceived(BMessage* message);
 		bool QuitRequested();
@@ -21,6 +21,9 @@ public:
 		SessionView* fTarget;
 		BRadioButton *fLocalButton, *fDistantButton;
 		BTextControl *fHost, *fPort;
+		BString &fHostDemonstration;
+		int &fPortDemonstration;
+		bool &fLocalDemonstration;
 };
 
 #endif	// _SERVERWINDOW_H_
