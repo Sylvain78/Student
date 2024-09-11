@@ -44,7 +44,7 @@ bool LatexListView::InitiateDrag(BPoint  point, int32  index, bool  wasSelected)
 	memcpy(bmp->Bits(), latex_list_item->GetLView()->GetBitmap()->Bits(), latex_list_item->GetLView()->GetBitmap()->BitsLength());
 
 	//	start the drag (the rest will be handled by MessageReceived())
-	BPoint pt(point.x-r.left, point.y-r.top);
+	BPoint pt(point.x-r.left, point.y/*-r.top*/);
 	dragMsg.PrintToStream();
 	DragMessage(&dragMsg,bmp, B_OP_ALPHA, pt, (BHandler *) Window());
 	// If you allocate the drag message on the heap, make sure

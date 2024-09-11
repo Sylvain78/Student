@@ -30,8 +30,8 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 	fButton = new BButton("Envoi", "Envoi", new BMessage(kEnvoi));
 
 	BStringView* statusView = new BStringView("status",fStatusText->String());
-	
-	
+
+
 	LatexListScrollView* fScrollOutputView = new LatexListScrollView();
 	fScrollOutputView->SetViewColor(255,255,255);
 	fOutputView = fScrollOutputView->GetView();
@@ -63,23 +63,28 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 
 	fMode_prop = new BRadioButton("Prop", new BMessage(kModeProp));
 	fMode_first_order = new BRadioButton(B_TRANSLATE("First order"), new BMessage(kModeFirstOrder));
-	fKeep_notations = new BRadioButton("Keep", new BMessage(kKeepNotations));
-	fExpand_notations = new BRadioButton("Expand", new BMessage(kExpandNotations));
-	fKeep_calls = new BRadioButton("Keep", new BMessage(kKeepCalls));
-	fExpand_calls = new BRadioButton("Expand", new BMessage(kExpandCalls));
+	fKeep_Notations = new BRadioButton("Keep", new BMessage(kKeepNotations));
+	fExpand_Notations = new BRadioButton("Expand", new BMessage(kExpandNotations));
+	fKeep_Calls = new BRadioButton("Keep", new BMessage(kKeepCalls));
+	fExpand_Calls = new BRadioButton("Expand", new BMessage(kExpandCalls));
 	fCompile = new BRadioButton("Compile", new BMessage(kCompile));
 	fInterprete = new BRadioButton("Interprete", new BMessage(kInterprete));
 
 	fMode_prop->SetEnabled(false);
 	fMode_first_order->SetEnabled(false);
-	fKeep_notations->SetEnabled(false);
-	fExpand_notations->SetEnabled(false);
-	fKeep_calls->SetEnabled(false);
-	fExpand_calls->SetEnabled(false);
+	fKeep_Notations->SetEnabled(false);
+	fExpand_Notations->SetEnabled(false);
+	fKeep_Calls->SetEnabled(false);
+	fExpand_Calls->SetEnabled(false);
 	fCompile->SetEnabled(false);
 	fInterprete->SetEnabled(false);
 	fButton->SetEnabled(false);
-	
+
+	fMode_prop->SetValue(1);
+	fExpand_Notations->SetValue(1);
+	fExpand_Calls->SetValue(1);
+	fInterprete->SetValue(1);
+
 	BGroupLayout *modeBoxLayout = BLayoutBuilder::Group<>(B_HORIZONTAL)
 	.SetInsets(2,0,2,0)
 	.Add(fMode_prop)
@@ -87,13 +92,13 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 
 	BGroupLayout *notationsBoxLayout = BLayoutBuilder::Group<>(B_HORIZONTAL)
 	.SetInsets(2,0,2,0)
-	.Add(fKeep_notations)
-	.Add(fExpand_notations);
+	.Add(fKeep_Notations)
+	.Add(fExpand_Notations);
 
 	BGroupLayout *callsBoxLayout = BLayoutBuilder::Group<>(B_HORIZONTAL)
 	.SetInsets(2,0,2,0)
-	.Add(fKeep_calls)
-	.Add(fExpand_calls);
+	.Add(fKeep_Calls)
+	.Add(fExpand_Calls);
 
 	BGroupLayout *compileBoxLayout = BLayoutBuilder::Group<>(B_HORIZONTAL)
 	.SetInsets(2,0,2,0)
@@ -111,7 +116,7 @@ SessionView::SessionView(const char * name) : BView(name, B_SUPPORTS_LAYOUT),
 
 	fCompileBox->SetLabel(new BStringView("Compile label", "Compile"));
 	fCompileBox->AddChild(compileBoxLayout->View());
-	
+
 	fDemonstrationBox->SetLabel(new BStringView("Demonstration label", "Demonstration"));
 	fDemonstrationBox->AddChild(fDemonstration);
 }
@@ -134,7 +139,7 @@ void SessionView::MessageReceived(BMessage* message) {
 			statusMessage->AddString("status", newStatus);
 		 	MessageReceived(statusMessage);
 
-			fSession = new Session(host, port, fOutputView);
+			fSession = new Session(host, port, this);
 			std::cout << "appel de Session::Connect" << std::endl;
 			int connection = fSession->Connect();
 			if (connection < 0) {
@@ -152,22 +157,22 @@ void SessionView::MessageReceived(BMessage* message) {
 				 	std::cout << newStatus << std::endl;
 					statusMessage->AddString("status", newStatus);
 				 	MessageReceived(statusMessage);
-				 	
+				
 				 	fSession->LaunchLocalServer(port);
 				 	BMessage* connectMessage = new BMessage(kConnect);
 				 	connectMessage->AddString("host", host);
 				 	connectMessage->AddUInt16("port", port);
-				 	
+				
 				 	MessageReceived(connectMessage);
 		 			}
 		 	} else {
 		 		LockLooper();
 					fMode_prop->SetEnabled(true);
 					fMode_first_order->SetEnabled(true);
-					fKeep_notations->SetEnabled(true);
-					fExpand_notations->SetEnabled(true);
-					fKeep_calls->SetEnabled(true);
-					fExpand_calls->SetEnabled(true);
+					fKeep_Notations->SetEnabled(true);
+					fExpand_Notations->SetEnabled(true);
+					fKeep_Calls->SetEnabled(true);
+					fExpand_Calls->SetEnabled(true);
 					fCompile->SetEnabled(true);
 					fInterprete->SetEnabled(true);
 					fButton->SetEnabled(true);
@@ -200,7 +205,7 @@ void SessionView::MessageReceived(BMessage* message) {
 			break;
 		}
 		case(kModeFirstOrder) : {
-			fSession->Send(new BString("First_order"));
+			fSession->Send(new BString("First_Order"));
 			break;
 		}
 		case(kKeepNotations) : {
@@ -234,10 +239,10 @@ void SessionView::AttachedToWindow() {
 	fButton->SetTarget(this);
 	fMode_prop->SetTarget(this);
 	fMode_first_order->SetTarget(this);
-	fKeep_notations->SetTarget(this);
-	fExpand_notations->SetTarget(this);
-	fKeep_calls->SetTarget(this);
-	fExpand_calls->SetTarget(this);
+	fKeep_Notations->SetTarget(this);
+	fExpand_Notations->SetTarget(this);
+	fKeep_Calls->SetTarget(this);
+	fExpand_Calls->SetTarget(this);
 	fCompile->SetTarget(this);
 	fInterprete->SetTarget(this);
 

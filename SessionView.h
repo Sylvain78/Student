@@ -12,6 +12,7 @@
 class Session;
 
 class SessionView : public BView {
+	friend class Session;
 	public:
 		SessionView(const char* name);
 		~SessionView();
@@ -26,10 +27,10 @@ class SessionView : public BView {
 		BBox*			fCompileBox;
 		BRadioButton* 		fMode_prop;
 		BRadioButton* 		fMode_first_order;
-		BRadioButton* 		fKeep_notations;
-		BRadioButton* 		fExpand_notations;
-		BRadioButton* 		fKeep_calls;
-		BRadioButton* 		fExpand_calls;
+		BRadioButton* 		fKeep_Notations;
+		BRadioButton* 		fExpand_Notations;
+		BRadioButton* 		fKeep_Calls;
+		BRadioButton* 		fExpand_Calls;
 		BRadioButton* 		fCompile;
 		BRadioButton* 		fInterprete;
 		BBox*			fDemonstrationBox;

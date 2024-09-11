@@ -13,7 +13,7 @@
 
 enum Flags {
 	Prop,
-	First_order,
+	First_Order,
 	Fast,
 	Paranoid,
 	Compile,
@@ -29,7 +29,7 @@ typedef struct {
 
 class Session {
 	public:
-		Session(const char* host, const uint16 port, BListView *output);
+		Session(const char* host, const uint16 port, SessionView *output);
 		int Connect();
 		status_t Send(BString *text);
 		bool IsLocalServerLaunched();
@@ -42,7 +42,7 @@ class Session {
 		const uint16 fPort;
 		bool fLocalServerLaunched=false;
 		int fSocket;
-		BListView *fOutput;
+		SessionView *fOutput;
 		static status_t _Send(void *send_data_params);
 		static status_t Receive(void *data);
 };	

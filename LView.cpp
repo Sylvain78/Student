@@ -90,7 +90,7 @@ void LView::MouseDown(BPoint where)
 	BBitmap * bmp = new BBitmap(fBitmap->Bounds(), fBitmap->ColorSpace(), false);
 	memcpy(bmp->Bits(), fBitmap->Bits(), fBitmap->BitsLength());
 	//	start the drag (the rest will be handled by MessageReceived())
-	BPoint pt(where.x-r.left, where.y-r.top);
+	BPoint pt(where.x-r.left, where.y/*-r.top*/);
 	DragMessage(&dragMsg, bmp, B_OP_ALPHA, pt, (BHandler *) Window());
 	// If you allocate the drag message on the heap, make sure
 	// you delete it after DragMessage() returns. If you use a

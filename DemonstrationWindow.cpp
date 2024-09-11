@@ -67,7 +67,7 @@ void DemonstrationWindow::ActiveButtons(bool activate) {
 
 bool DemonstrationWindow::QuitRequested() 
 {
-	//TODO
+	//TODO wait for receive thread
 	return true;
 }
 

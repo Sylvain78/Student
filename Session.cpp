@@ -10,12 +10,11 @@
 #undef B_TRANSLATION_CONTEXT
 #define B_TRANSLATION_CONTEXT "Session"
 
-Session::Session(const char* host, const uint16 port, BListView *output) :
+Session::Session(const char* host, const uint16 port, SessionView *output) :
 	fHost(host),
-	fPort(port)
-{
-	fOutput = output;
-}
+	fPort(port),
+	fOutput(output) {
+	}
 
 int Session::Connect() {
 		struct hostent* host = gethostbyname(fHost);
@@ -84,7 +83,7 @@ void Session::LaunchLocalServer(const uint16 port) {
 }
 
 BListView *Session::GetOutput() {
-	return fOutput;
+	return fOutput->fOutputView;
 }
 
 status_t Session::_Send(void *data) {
@@ -168,7 +167,35 @@ status_t Session::Receive(void *data) {
 			output->LockLooper();
 				answerBuffer += 2;
 				
+				//Radio buttons
 				char * answerCommand = decode_string(answerBuffer);
+				if (!strcmp(answerCommand, "Prop"))  {
+					session->fOutput->fMode_prop->SetValue(true);
+				}
+				if (!strcmp(answerCommand, "First_Order"))  {
+					session->fOutput->fMode_first_order->SetValue(true);
+				}
+				
+				if (!strcmp(answerCommand, "Keep_Notations"))  {
+					session->fOutput->fKeep_Notations->SetValue(true);
+				}
+				if (!strcmp(answerCommand, "Expand_Notations"))  {
+					session->fOutput->fExpand_Notations->SetValue(true);
+				}
+				
+				if (!strcmp(answerCommand, "Keep_Calls"))  {
+					session->fOutput->fKeep_Calls->SetValue(true);
+				}
+				if (!strcmp(answerCommand, "Expand_Calls"))  {
+					session->fOutput->fExpand_Calls->SetValue(true);
+				}
+				if (!strcmp(answerCommand, "Compiled"))  {
+					session->fOutput->fCompile->SetValue(true);
+				}
+				if (!strcmp(answerCommand, "Interpreted"))  {
+					session->fOutput->fInterprete->SetValue(true);
+				}
+				
 				if (!strcmp(answerCommand, "Notation"))  {
 					char * notationName = decode_string(answerBuffer);
 					output->AddItem(new LatexListItem(new LView(BString(answerCommand).Append(" ").Append(notationName), LTEXT, *bgColor)));
