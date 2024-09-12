@@ -11,10 +11,10 @@
 #define B_TRANSLATION_CONTEXT "Session"
 
 Session::Session(const char* host, const uint16 port, SessionView *output) :
-	fHost(host),
-	fPort(port),
-	fOutput(output) {
-	}
+		fHost(host),
+		fPort(port),
+		fOutput(output) {
+		}
 
 int Session::Connect() {
 		struct hostent* host = gethostbyname(fHost);
@@ -74,198 +74,208 @@ int Session::Connect() {
 }
 
 bool Session::IsLocalServerLaunched() {
-	return fLocalServerLaunched;
+		return fLocalServerLaunched;
 }
 
 void Session::LaunchLocalServer(const uint16 port) {
-	((App *)be_app)->LaunchLocalServer(port);
-	fLocalServerLaunched = true;
+		((App *)be_app)->LaunchLocalServer(port);
+		fLocalServerLaunched = true;
 }
 
 BListView *Session::GetOutput() {
-	return fOutput->fOutputView;
+		return fOutput->fOutputView;
 }
 
 status_t Session::_Send(void *data) {
-	send_data_params* send_params = (send_data_params *)(data);
-	BString *text= send_params->text;
-	int socket = send_params->socket;
-	BString textProtocol = text->Trim().Append("\n\n");
-	int size = textProtocol.Length();
-	int sent;
-	while (size>0) {
-		sent = send(socket, textProtocol.String(), size, 0);//TODO check return value /errno
-		textProtocol.Remove(0,sent);
-		size -= sent;
-		if (sent <= 0)
-			break;
-	}
-	if (sent < 0)
-		return B_ERROR;
-	else
-		return B_OK;
+		send_data_params* send_params = (send_data_params *)(data);
+		BString *text= send_params->text;
+		int socket = send_params->socket;
+		BString textProtocol = text->Trim().Append("\n\n");
+		int size = textProtocol.Length();
+		int sent;
+		while (size>0) {
+				sent = send(socket, textProtocol.String(), size, 0);//TODO check return value /errno
+				textProtocol.Remove(0,sent);
+				size -= sent;
+				if (sent <= 0)
+						break;
+		}
+		if (sent < 0)
+				return B_ERROR;
+		else
+				return B_OK;
 }
 
 status_t Session::Send(BString *text) {
-	send_data_params *data =(send_data_params*)malloc(sizeof(send_data_params));	data->text=text;
-	data->socket=fSocket;
-	thread_id send_thread = spawn_thread(&Session::_Send, "sender", B_NORMAL_PRIORITY, data);
-	resume_thread(send_thread);
-	return B_OK;
+		send_data_params *data =(send_data_params*)malloc(sizeof(send_data_params));	data->text=text;
+		data->socket=fSocket;
+		thread_id send_thread = spawn_thread(&Session::_Send, "sender", B_NORMAL_PRIORITY, data);
+		resume_thread(send_thread);
+		return B_OK;
 
 }
 
 char *decode_string(char *& answerBuffer){
-	uint32 answerSize = ntohl(*(uint32*)answerBuffer);
-	answerBuffer += sizeof(uint32);
-	char * answer = (char *)malloc((answerSize+1)*sizeof(char));
-	memcpy(answer, answerBuffer, answerSize);
-	answer[answerSize] = '\0';
-	answerBuffer += answerSize;
-	return answer;
+		uint32 answerSize = ntohl(*(uint32*)answerBuffer);
+		answerBuffer += sizeof(uint32);
+		char * answer = (char *)malloc((answerSize+1)*sizeof(char));
+		memcpy(answer, answerBuffer, answerSize);
+		answer[answerSize] = '\0';
+		answerBuffer += answerSize;
+		return answer;
 }
 
 status_t Session::Receive(void *data) {
-	Session *session = (Session *)data;
-	BListView *output = session->GetOutput();
-	char *answerSizeBuffer = (char *)malloc(4);
-	uint32 answerSize32;
-	char *answerBuffer;
-	ssize_t received;
+		Session *session = (Session *)data;
+		BListView *output = session->GetOutput();
+		char *answerSizeBuffer = (char *)malloc(4);
+		uint32 answerSize32;
+		char *answerBuffer;
+		ssize_t received;
 
-	while (true) {
+		while (true) {
 
-		int total = 0;
-		int sizeToRead = 4;
-		while ((received = recv(session->fSocket, &answerSizeBuffer[total], sizeToRead-total, 0/*flags*/)) > 0) {
-			total += received;
-			if (total == 4)
-				break;
-		}
-		answerSize32 = ntohl(* ((uint32 *)answerSizeBuffer));
+				int total = 0;
+				int sizeToRead = 4;
+				while ((received = recv(session->fSocket, &answerSizeBuffer[total], sizeToRead-total, 0/*flags*/)) > 0) {
+						total += received;
+						if (total == 4)
+								break;
+				}
+				answerSize32 = ntohl(* ((uint32 *)answerSizeBuffer));
 
-		answerBuffer = (char *)malloc(answerSize32);
+				answerBuffer = (char *)malloc(answerSize32);
 
-		total = 0;
-		while ((received = recv(session->fSocket, &answerBuffer[total], answerSize32-total, 0/*flags*/)) > 0) {
-			total += received;
-			if (total == answerSize32)
-				break;
-		}
+				total = 0;
+				while ((received = recv(session->fSocket, &answerBuffer[total], answerSize32-total, 0/*flags*/)) > 0) {
+						total += received;
+						if (total == answerSize32)
+								break;
+				}
 
-		if (received == 0) {
-			BMessage *messageQuit = new BMessage(kStatusChange);
-			messageQuit->AddString("status", "Disconnected");
-			if (output) //TODO QUIT in DemonstrationWindow
-			       	output->Parent()->MessageReceived(messageQuit);
-			return B_OK;
-		} 
+				if (received <= 0) {
+						BMessage *messageQuit = new BMessage(kStatusChange);
+						messageQuit->AddString("status", "Disconnected");
+						if (output) //TODO QUIT in DemonstrationWindow
+								output->Parent()->MessageReceived(messageQuit);
+						return B_OK;
+				} 
 
-		if(!strncmp("Ok", answerBuffer,2)) { //OK
-				rgb_color *bgColor = new rgb_color();
-				*bgColor = tint_color(ui_color(B_SUCCESS_COLOR), B_LIGHTEN_1_TINT);
-			output->LockLooper();
-				answerBuffer += 2;
-				
-				//Radio buttons
-				char * answerCommand = decode_string(answerBuffer);
-				if (!strcmp(answerCommand, "Prop"))  {
-					session->fOutput->fMode_prop->SetValue(true);
+				if(!strncmp("Ok", answerBuffer,2)) { //OK
+						rgb_color *bgColor = new rgb_color();
+						*bgColor = tint_color(ui_color(B_SUCCESS_COLOR), B_LIGHTEN_1_TINT);
+						output->LockLooper();
+						answerBuffer += 2;
+
+						//Radio buttons
+						char * answerCommand = decode_string(answerBuffer);
+						if (!strcmp(answerCommand, "Prop"))  {
+								session->fOutput->fMode_prop->SetValue(true);
+						}
+						if (!strcmp(answerCommand, "First_Order"))  {
+								session->fOutput->fMode_first_order->SetValue(true);
+						}
+
+						if (!strcmp(answerCommand, "Keep_Notations"))  {
+								session->fOutput->fKeep_Notations->SetValue(true);
+						}
+						if (!strcmp(answerCommand, "Expand_Notations"))  {
+								session->fOutput->fExpand_Notations->SetValue(true);
+						}
+
+						if (!strcmp(answerCommand, "Keep_Calls"))  {
+								session->fOutput->fKeep_Calls->SetValue(true);
+						}
+						if (!strcmp(answerCommand, "Expand_Calls"))  {
+								session->fOutput->fExpand_Calls->SetValue(true);
+						}
+						if (!strcmp(answerCommand, "Compiled"))  {
+								session->fOutput->fCompile->SetValue(true);
+						}
+						if (!strcmp(answerCommand, "Interpreted"))  {
+								session->fOutput->fInterprete->SetValue(true);
+						}
+
+						if (!strcmp(answerCommand, "Notation"))  {
+								char * notationName = decode_string(answerBuffer);
+								output->AddItem(new LatexListItem(new LView(BString(answerCommand).Append(" ").Append(notationName), LTEXT, *bgColor)));
+						} else 
+								if (!strcmp(answerCommand, "Theorem"))  {
+										char * theoremName = decode_string(answerBuffer);
+										char * theoremConclusion = decode_string(answerBuffer);
+										output->AddItem(new LatexListItem(new LView(
+																		BString(answerCommand)
+																		.Append(" ")
+																		.Append(theoremName)
+																		.Append(" : ")
+																		.Append(theoremConclusion), LMATH, *bgColor)));
+								} else
+										if (!strcmp(answerCommand, "User"))  {
+												char * userName = decode_string(answerBuffer);
+												output->AddItem(new LatexListItem(new LView(
+																				BString(answerCommand)
+																				.Append(" ")
+																				.Append(userName), LTEXT, *bgColor)));
+										} else
+										{
+												output->AddItem(new LatexListItem(new LView(BString(answerCommand), LTEXT, *bgColor)));
+										}
+
+
+						output->UnlockLooper();
 				}
-				if (!strcmp(answerCommand, "First_Order"))  {
-					session->fOutput->fMode_first_order->SetValue(true);
-				}
-				
-				if (!strcmp(answerCommand, "Keep_Notations"))  {
-					session->fOutput->fKeep_Notations->SetValue(true);
-				}
-				if (!strcmp(answerCommand, "Expand_Notations"))  {
-					session->fOutput->fExpand_Notations->SetValue(true);
-				}
-				
-				if (!strcmp(answerCommand, "Keep_Calls"))  {
-					session->fOutput->fKeep_Calls->SetValue(true);
-				}
-				if (!strcmp(answerCommand, "Expand_Calls"))  {
-					session->fOutput->fExpand_Calls->SetValue(true);
-				}
-				if (!strcmp(answerCommand, "Compiled"))  {
-					session->fOutput->fCompile->SetValue(true);
-				}
-				if (!strcmp(answerCommand, "Interpreted"))  {
-					session->fOutput->fInterprete->SetValue(true);
-				}
-				
-				if (!strcmp(answerCommand, "Notation"))  {
-					char * notationName = decode_string(answerBuffer);
-					output->AddItem(new LatexListItem(new LView(BString(answerCommand).Append(" ").Append(notationName), LTEXT, *bgColor)));
-				} else 
-				if (!strcmp(answerCommand, "Theorem"))  {
-					char * theoremName = decode_string(answerBuffer);
-					char * theoremConclusion = decode_string(answerBuffer);
-					output->AddItem(new LatexListItem(new LView(
-					BString(answerCommand)
-					.Append(" ")
-					.Append(theoremName)
-					.Append(" : ")
-					.Append(theoremConclusion), LMATH, *bgColor)));
-				} else
-				if (!strcmp(answerCommand, "User"))  {
-					char * userName = decode_string(answerBuffer);
-					output->AddItem(new LatexListItem(new LView(
-					BString(answerCommand)
-					.Append(" ")
-					.Append(userName), LTEXT, *bgColor)));
-				} else
+
+				if(!strncmp("Answer", answerBuffer,6)) //Answer
 				{
-					output->AddItem(new LatexListItem(new LView(BString(answerCommand), LTEXT, *bgColor)));
+						LView_kind mode ;
+						answerBuffer+=6;
+						if(!strncmp("latex", answerBuffer,5)) {
+								answerBuffer += 5;
+								if(!strncmp("math", answerBuffer,4)) {
+										answerBuffer += 4;
+										mode = LMATH;
+								} else if(!strncmp("text", answerBuffer,4)) {
+										answerBuffer += 4;
+										mode = LTEXT;
+								}
+						} else 
+								if(!strncmp("text", answerBuffer,4)) {
+										answerBuffer += 4;
+										mode = TEXT;
+								}
+						char *answer = decode_string(answerBuffer);
+
+						rgb_color *bgColor = new rgb_color();
+						*bgColor = tint_color(ui_color(B_TOOL_TIP_BACKGROUND_COLOR), B_NO_TINT);
+						output->LockLooper();
+						output->AddItem(new LatexListItem(new LView(BString (answer), mode, *bgColor)));
+						output->UnlockLooper();
+
 				}
-				
-		
-			output->UnlockLooper();
-		}
+				if(!strncmp("Error", answerBuffer,5)) //Error
+				{
+						answerBuffer+=5;
+						char *errorContent = decode_string(answerBuffer);
 
-	if(!strncmp("Answer", answerBuffer,6)) //Answer
-	{
-		LView_kind mode ;
-		answerBuffer+=6;
-		if(!strncmp("latex", answerBuffer,5)) {
-			answerBuffer += 5;
-			if(!strncmp("math", answerBuffer,4)) {
-				answerBuffer += 4;
-				mode = LMATH;
-			} else if(!strncmp("text", answerBuffer,4)) {
-				answerBuffer += 4;
-				mode = LTEXT;
-			}
-		} else 
-		if(!strncmp("text", answerBuffer,4)) {
-			answerBuffer += 4;
-			mode = TEXT;
-		}
-		char *answer = decode_string(answerBuffer);
-					
-		rgb_color *bgColor = new rgb_color();
-		*bgColor = tint_color(ui_color(B_TOOL_TIP_BACKGROUND_COLOR), B_NO_TINT);
-		output->LockLooper();
-		output->AddItem(new LatexListItem(new LView(BString (answer), mode, *bgColor)));
-		output->UnlockLooper();
-		
-	}
-	if(!strncmp("Error", answerBuffer,5)) //Error
-	{
-		answerBuffer+=5;
-		char *errorContent = decode_string(answerBuffer);
-		
-		rgb_color *bgColor = new rgb_color();
-		*bgColor = tint_color(ui_color(B_FAILURE_COLOR), B_LIGHTEN_1_TINT);
-		output->LockLooper();
-			output->AddItem(new LatexListItem(new LView(BString("Error : ").Append(errorContent), LTEXT, *bgColor)));
-		output->UnlockLooper();
-		break;
-	}
+						rgb_color *bgColor = new rgb_color();
+						*bgColor = tint_color(ui_color(B_FAILURE_COLOR), B_LIGHTEN_1_TINT);
+						output->LockLooper();
+						output->AddItem(new LatexListItem(new LView(BString("Error : ").Append(errorContent), LTEXT, *bgColor)));
+						output->UnlockLooper();
+				}
+				if(!strncmp("Warning", answerBuffer,7)) //Warning
+				{
+						answerBuffer+=7;
+						char *errorContent = decode_string(answerBuffer);
 
-};
+						rgb_color *bgColor = new rgb_color();
+						*bgColor = tint_color(ui_color(B_FAILURE_COLOR), B_LIGHTEN_2_TINT);
+						output->LockLooper();
+						output->AddItem(new LatexListItem(new LView(BString("Warning : ").Append(errorContent), LTEXT, *bgColor)));
+						output->UnlockLooper();
+				}
 
-return B_OK;
+		};
+
+		return B_OK;
 }
