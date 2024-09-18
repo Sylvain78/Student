@@ -3,7 +3,7 @@
 
 LatexListScrollView::LatexListScrollView() : BScrollView("latex list scroll", (BView *)NULL, (uint32)0, true,true),
 				 fListView(new LatexListView(B_SINGLE_SELECTION_LIST))
- {
+{
  	SetTarget(fListView);
 }
 
