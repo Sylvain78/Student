@@ -15,10 +15,10 @@ public:
 
 		void MessageReceived(BMessage* message);
 		bool QuitRequested();
-		void SetTarget(SessionView *target);
+		void SetTarget(BView *target);
 
 	private:
-		SessionView* fTarget;
+		BView* fTarget;
 		BRadioButton *fLocalButton, *fDistantButton;
 		BTextControl *fHost, *fPort;
 		BString &fHostDemonstration;

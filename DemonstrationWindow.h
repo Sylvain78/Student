@@ -44,10 +44,10 @@ class DemonstrationWindow : public BWindow {
 	private :
 		BString *fHost;
 		int fPort;
-		bool fLocal;
+		bool fLocal=false;;
 		ServerWindow*	fServerWindow;
 		BMenuBar*		fMenuBar;
-		BTabView*		fTabView_Demonstration;
+		BView*		fSessionView;
 		
 		void ActiveButtons(bool activate);
 };

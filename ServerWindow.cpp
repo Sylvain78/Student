@@ -17,10 +17,10 @@ ServerWindow::ServerWindow(BString &host, int &port, bool &local) : BWindow(rect
 	fLocalDemonstration(local)
 {
 	if (host == "") {
-		fHostDemonstration = BString("host / IP");
+		fHostDemonstration = BString(/*"192.168.1.2"*/"91.161.254.13");
 	}
 	if (port == 0 ) {
-		fPortDemonstration = 5757;
+		fPortDemonstration = /*5757*/51444;
 	}	
 	fHost = new BTextControl("host", (host).String() , new BMessage(kServerHost));
 	fPort = new BTextControl("port", std::to_string(port).c_str(), new BMessage(kServerPort));
@@ -119,7 +119,7 @@ void ServerWindow::MessageReceived(BMessage* message) {
 		}
 }
 
-void ServerWindow::SetTarget(SessionView* target) {
+void ServerWindow::SetTarget(BView* target) {
 	fTarget = target;
 }
 

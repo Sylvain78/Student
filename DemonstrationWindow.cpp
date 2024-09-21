@@ -17,14 +17,11 @@ DemonstrationWindow::DemonstrationWindow() :
 	menu->AddItem(item);
 	fMenuBar->AddItem(menu);
 
-	fTabView_Demonstration = new BTabView("Onglet Démonstrations");
-
+	fSessionView = new SessionView("Session");
 	BLayoutBuilder::Group<>(this, B_VERTICAL)
 		    .Add(fMenuBar)
-			.Add(fTabView_Demonstration)
+			.Add(fSessionView)
 	.End();
-	
-	fTabView_Demonstration->AddTab(new SessionView("Session"));
 }
 
 DemonstrationWindow::~DemonstrationWindow() {
@@ -32,7 +29,6 @@ DemonstrationWindow::~DemonstrationWindow() {
 	
 void DemonstrationWindow::MessageReceived(BMessage* message) 
 {
-	SessionView* sessionView = (SessionView*)fTabView_Demonstration->ViewForTab(fTabView_Demonstration->Selection());
 	switch(message->what) {
 		case (kServerSettings): {
 			bool init = false;
@@ -43,7 +39,7 @@ void DemonstrationWindow::MessageReceived(BMessage* message)
 			fServerWindow->AddToSubset(this);
 			}
 
-			fServerWindow->SetTarget(sessionView);
+			fServerWindow->SetTarget(fSessionView);
 			fServerWindow->Show();
 			if(init) {
 				fServerWindow->Show();
